@@ -33,6 +33,27 @@ The repository is private during preparation; access to releases requires
 an authorized account. If there are no releases, a ready-to-run package
 has not been published yet.
 
+### Report a bug
+
+Please report bugs through
+[GitHub Issues](https://github.com/Bezimienny111/FM08-Extended/issues).
+Sign in to GitHub, check whether the problem has already been reported,
+and select **New issue** if no matching report exists. Use one issue per
+problem; add details to an existing matching issue instead of duplicating it.
+
+Include:
+
+- Launcher version, FM08 version and database version if relevant.
+- Windows version, enabled modules and the skin/display settings involved.
+- Steps to reproduce the problem, expected behavior and actual behavior.
+- The exact error message, screenshots and relevant log excerpts if available.
+  Technical logs are accessible through the launcher's advanced mode.
+
+Remove personal information, private paths and sensitive data before
+attaching files. Do not upload game executables or complete game files.
+While the repository is private, Issues also requires repository access.
+Reports in **English or Polish** are welcome.
+
 ### About the project
 
 **FM08 Extended is a launcher and optional extensions for Football Manager
@@ -154,6 +175,29 @@ pierwszy start, opcjonalne panele, aktualizacja, usunięcie i pomoc.
 Repozytorium jest na etapie prywatnych przygotowań; dostęp do wydań wymaga
 uprawnień. Jeżeli lista Releases jest pusta, gotowa paczka nie została
 jeszcze opublikowana.
+
+### Zgłaszanie błędów
+
+Błędy zgłaszaj przez
+[GitHub Issues](https://github.com/Bezimienny111/FM08-Extended/issues).
+Zaloguj się do GitHuba, sprawdź, czy problem został już zgłoszony,
+i wybierz **New issue**, jeśli nie ma pasującego zgłoszenia. Jeden problem
+opisuj w jednym zgłoszeniu; zamiast tworzyć duplikat, dopisz szczegóły
+do istniejącego.
+
+Podaj:
+
+- Wersję launchera, FM08 i używanej bazy, jeśli dotyczy problemu.
+- Wersję Windows, włączone moduły oraz skórkę i ustawienia obrazu związane
+  z problemem.
+- Kroki odtworzenia błędu, oczekiwane zachowanie i rzeczywisty wynik.
+- Dokładny komunikat błędu, zrzuty ekranu i odpowiednie fragmenty logów,
+  jeśli są dostępne. Dostęp do logów technicznych daje tryb zaawansowany.
+
+Przed dołączeniem plików usuń dane osobowe, prywatne ścieżki i informacje
+wrażliwe. Nie przesyłaj plików wykonywalnych ani kompletnych plików gry.
+Dopóki repozytorium jest prywatne, również Issues wymaga dostępu do niego.
+Zgłoszenia można pisać **po polsku lub angielsku**.
 
 ### O projekcie
 
