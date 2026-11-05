@@ -123,8 +123,11 @@ ją ponownie z dysku — **nie są to przyciski zapisu/wczytania kariery FM08**.
 Zmiany integracji dotyczą następnego procesu gry, nie trwającej sesji.
 
 Dolny pasek otwiera YouTube, Discord i Ko-fi w domyślnej przeglądarce.
-Ikona Git pozostaje nieaktywna do skonfigurowania adresu repozytorium.
-Dokumentacja nie oznacza, że projekt został już opublikowany.
+Ikona Git otwiera repozytorium
+[FM08 Extended](https://github.com/Bezimienny111/FM08-Extended).
+Pierwsze paczki launchera i bazy są wydaniami testowymi; patrz
+[Releases](https://github.com/Bezimienny111/FM08-Extended/releases)
+i [ograniczenia bazy](DATABASE.md).
 
 <a id="4-obraz"></a>
 ## 4. Obraz

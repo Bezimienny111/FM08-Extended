@@ -29,9 +29,12 @@ included in the launcher package.
 [Full installation guide](INSTALLATION.md#english) — requirements,
 first launch, optional panels, updating, removal and troubleshooting.
 
-The repository is private during preparation; access to releases requires
-an authorized account. If there are no releases, a ready-to-run package
-has not been published yet.
+**First preview packages:**
+[Launcher 0.1.0](https://github.com/Bezimienny111/FM08-Extended/releases/tag/launcher-v0.1.0) ·
+[2026/27 database 0.1.0 (V21)](https://github.com/Bezimienny111/FM08-Extended/releases/tag/db-2026-27-v0.1.0).
+These are **pre-releases**, not stable versions. While the repository is
+private, downloads and Issues require an authorized account; after it is
+made public, downloads are available without signing in.
 
 ### Report a bug
 
@@ -53,6 +56,19 @@ Remove personal information, private paths and sensitive data before
 attaching files. Do not upload game executables or complete game files.
 While the repository is private, Issues also requires repository access.
 Reports in **English or Polish** are welcome.
+
+### The 2026/27 database
+
+The database is a **separate download**, based on the V21 modern overhaul.
+It contains modern squads and talents, with over 29,000 modern player
+profiles across more than 1,100 clubs. Staff and stadium modernization
+are not included. It requires a **new career** and FM08 8.0.2.
+
+**Known preview issue:** the audit found 160 future-transfer/retirement
+date conflicts, including Daniele Cacia. Historical players may remain
+available or join clubs later. Do not treat this version as fully cleaned.
+See [database installation, validation and limitations](DATABASE.md#english).
+The launcher does not download or install databases automatically.
 
 ### About the project
 
@@ -172,9 +188,12 @@ gry ani bazy danych.
 [Pełna instrukcja instalacji](INSTALLATION.md#polski) — wymagania,
 pierwszy start, opcjonalne panele, aktualizacja, usunięcie i pomoc.
 
-Repozytorium jest na etapie prywatnych przygotowań; dostęp do wydań wymaga
-uprawnień. Jeżeli lista Releases jest pusta, gotowa paczka nie została
-jeszcze opublikowana.
+**Pierwsze paczki testowe:**
+[Launcher 0.1.0](https://github.com/Bezimienny111/FM08-Extended/releases/tag/launcher-v0.1.0) ·
+[Baza 2026/27 0.1.0 (V21)](https://github.com/Bezimienny111/FM08-Extended/releases/tag/db-2026-27-v0.1.0).
+To **pre-release**, nie wersje stabilne. Dopóki repozytorium jest prywatne,
+pobieranie i Issues wymagają uprawnień; po jego upublicznieniu pobieranie
+będzie dostępne bez logowania.
 
 ### Zgłaszanie błędów
 
@@ -198,6 +217,19 @@ Przed dołączeniem plików usuń dane osobowe, prywatne ścieżki i informacje
 wrażliwe. Nie przesyłaj plików wykonywalnych ani kompletnych plików gry.
 Dopóki repozytorium jest prywatne, również Issues wymaga dostępu do niego.
 Zgłoszenia można pisać **po polsku lub angielsku**.
+
+### Baza sezonu 2026/27
+
+Baza jest **osobną paczką**, opartą na modernizacji V21.
+Obejmuje współczesne kadry i talenty: ponad 29 tys. nowoczesnych profili
+w ponad 1100 klubach. Nie modernizuje sztabów ani stadionów.
+Wymaga **nowej kariery** oraz FM08 8.0.2.
+
+**Znany problem preview:** audyt wykrył 160 konfliktów dat przyszłych
+transferów i emerytur, w tym Cacii. Historyczni gracze mogą pozostać
+dostępni lub później dołączyć do klubów. To nie jest w pełni oczyszczona baza.
+Zobacz [instalację, potwierdzenia i ograniczenia bazy](DATABASE.md#polski).
+Launcher nie pobiera ani nie instaluje baz automatycznie.
 
 ### O projekcie
 

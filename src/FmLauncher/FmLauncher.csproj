@@ -9,6 +9,8 @@
     <AssemblyTitle>FM08 Extended</AssemblyTitle>
     <Product>FM08 Extended</Product>
     <Description>FM08 Extended game launcher</Description>
+    <Version>0.1.0</Version>
+    <InformationalVersion>0.1.0-preview</InformationalVersion>
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="FmLauncher.languages.json" />

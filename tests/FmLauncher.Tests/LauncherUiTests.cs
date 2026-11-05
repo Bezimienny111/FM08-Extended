@@ -41,7 +41,7 @@ internal static partial class Program
         Assert(typeof(MainForm).Assembly.GetCustomAttribute<AssemblyTitleAttribute>()?.Title == "FM08 Extended");
         Assert(typeof(MainForm).Assembly.GetCustomAttribute<AssemblyProductAttribute>()?.Product == "FM08 Extended");
         Assert(links.Select(button => button.Name).SequenceEqual(new[] { "GitLink", "YouTubeLink", "DiscordLink", "DonateLink" }));
-        Assert(!links[0].Enabled && links[0].Tag is null);
+        Assert(links[0].Enabled && (string)links[0].Tag! == "https://github.com/Bezimienny111/FM08-Extended");
         Assert((string)links[1].Tag! == "https://www.youtube.com/@Bezimienny111");
         Assert((string)links[2].Tag! == "https://discord.gg/hP2g4MQS5T");
         Assert((string)links[3].Tag! == "https://ko-fi.com/ericaaurora");

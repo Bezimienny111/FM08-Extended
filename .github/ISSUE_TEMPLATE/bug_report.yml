@@ -1,0 +1,58 @@
+name: Bug report / Zgloszenie bledu
+description: Report a launcher or database problem / Zglos problem launchera lub bazy
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Reports in English or Polish are welcome. Check existing issues first.
+        Zgloszenia moga byc po polsku lub angielsku. Najpierw sprawdz istniejace Issues.
+        Do not attach game executables, complete game files, credentials or private logs.
+        Nie zalaczaj EXE gry, calej instalacji, hasel ani prywatnych logow.
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component / Element
+      options:
+        - Launcher
+        - Database / Baza
+        - Installation / Instalacja
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Versions / Wersje
+      description: Launcher, database, FM08 and Windows / Launcher, baza, FM08 i Windows
+      placeholder: Launcher 0.1.0; DB 2026/27 0.1.0 V21; FM08 8.0.2; Windows 11
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce / Kroki odtworzenia
+      description: One problem per issue / Jeden problem na zgloszenie
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and actual behavior / Oczekiwany i rzeczywisty wynik
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Settings and career context / Ustawienia i kontekst kariery
+      description: Modules, skin, player UID, leagues, database size and start/current dates where relevant.
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Screenshots, exact errors and sanitized logs / Screeny, bledy i oczyszczone logi
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting / Przed wyslaniem
+      options:
+        - label: I checked known issues and existing reports / Sprawdzono znane problemy i istniejace zgloszenia
+          required: true

@@ -332,7 +332,7 @@ internal sealed class MainForm : Form
         playRow.Controls.Add(launch, 1, 0);
         footer.Controls.Add(playRow);
         var links = new FlowLayoutPanel { Name = "SocialLinks", AutoSize = true, Anchor = AnchorStyles.None, WrapContents = false };
-        AddSocialLink(links, "GitLink", null);
+        AddSocialLink(links, "GitLink", "https://github.com/Bezimienny111/FM08-Extended");
         AddSocialLink(links, "YouTubeLink", "https://www.youtube.com/@Bezimienny111");
         AddSocialLink(links, "DiscordLink", "https://discord.gg/hP2g4MQS5T");
         var support = new FlowLayoutPanel

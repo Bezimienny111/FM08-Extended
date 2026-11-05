@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Installation / Instalacja
+    url: https://github.com/Bezimienny111/FM08-Extended/blob/main/INSTALLATION.md
+    about: Read the installation guide / Przeczytaj instrukcje instalacji
+  - name: Database known issues / Znane problemy bazy
+    url: https://github.com/Bezimienny111/FM08-Extended/blob/main/DATABASE.md
+    about: Preview scope and limitations / Zakres i ograniczenia wersji testowej

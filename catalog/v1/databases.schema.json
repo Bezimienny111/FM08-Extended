@@ -69,7 +69,13 @@
           "type": "string",
           "pattern": "^FM08Extended_[0-9]{4}-[0-9]{2}_[0-9]+\\.[0-9]+\\.[0-9]+$"
         },
-        "minimumLauncherVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "minimumLauncherVersion": {
+          "description": "Null for a manually installed database without a launcher requirement; not a claim that the current launcher implements downloading.",
+          "oneOf": [
+            { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+            { "type": "null" }
+          ]
+        },
         "supportedGameHashes": {
           "type": "array",
           "minItems": 1,

@@ -24,6 +24,15 @@ udostępnieniu repozytorium publicznie; obecny launcher nie pobiera baz.
 Numery są przykładami, nie deklaracją istniejących wydań. Wewnętrzne
 nazwy robocze V20/V21 nie są publiczną numeracją.
 
+Pierwsze wydania testowe mają numer **0.1.0**:
+`launcher-v0.1.0` i `db-2026-27-v0.1.0` (źródłowa V21).
+Oba są pre-release. Baza zachowuje znane 160 konfliktów dat transferów
+i emerytur; ich publikację jako preview zaakceptowano zamiast naprawy.
+Zakres potwierdzeń i instalację opisuje [DATABASE.md](DATABASE.md).
+Zawartość DAT/EDT/LNC pozostaje identyczna ze źródłem; zmieniane są wyłącznie
+nazwa folderu, XML i README kopii dystrybucyjnej. Weryfikacja i konflikty
+są dołączane do paczki, bez lokalnych ścieżek źródła.
+
 - Każda wersja ma własny tag, paczkę, opis zmian i sumę SHA256.
 - Używaj dokładnego adresu załącznika z tagiem, nie `releases/latest/download`.
 - Przy publikowaniu bazy nie zaznaczaj jej jako **Latest** dla launchera.
@@ -81,8 +90,9 @@ nazwy robocze V20/V21 nie są publiczną numeracją.
 ## Katalog baz, schemat 1
 
 [catalog/v1/databases.json](catalog/v1/databases.json) jest punktem wejścia
-dla przyszłego klienta. Na początku lista jest pusta, a rekomendacja `null`:
-nie opublikowano jeszcze żadnej paczki przez ten katalog.
+dla przyszłego klienta. Wpis dodaje się dopiero po publikacji i sprawdzeniu
+pobranego archiwum. Wersja preview nie otrzymuje rekomendacji:
+`recommendedDatabaseId` pozostaje `null`.
 
 [JSON Schema](catalog/v1/databases.schema.json) określa wymagane pola.
 Przykład struktury wpisu, **nie gotowy wpis do publikacji**:
@@ -101,7 +111,7 @@ archiveSizeBytes: rozmiar pobieranego ZIP
 installedSizeBytes: łączny rozmiar plików po rozpakowaniu
 sha256: 64 znaki szesnastkowe
 installFolder: jeden bezpieczny, wersjonowany segment nazwy folderu
-minimumLauncherVersion: minimalna wersja przyszłego klienta pobierania
+minimumLauncherVersion: minimalna wersja przyszłego klienta lub null dla instalacji ręcznej
 supportedGameHashes: jawna lista obsługiwanych SHA256 gry
 requiresNewCareer: true
 ```
@@ -111,6 +121,8 @@ wpis `stable` lub ma wartość `null`. JSON Schema opisuje pojedyncze pola;
 unikalność ID, referencję rekomendacji i zgodność tagu/adresów trzeba
 sprawdzić również przed publikacją. Nie wpisuj dzisiejszego launchera jako
 minimalnej wersji instalatora: funkcja pobierania nie istnieje jeszcze.
+`minimumLauncherVersion: null` oznacza bazę do ręcznej instalacji bez
+wymagania launchera, nie deklarację dostępności pobierania w aplikacji.
 
 Katalog może zmieniać status i rekomendację, lecz nie tożsamość, hash,
 folder ani zawartość opublikowanej wersji. Przyszły klient ma odrzucać

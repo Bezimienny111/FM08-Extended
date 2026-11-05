@@ -249,7 +249,7 @@ a brak wpisu nie dowodzi, że zdarzenie nie wystąpiło.
 - [Ko-fi — wsparcie projektu](https://ko-fi.com/ericaaurora)
 
 Przy wsparciu wpisz w treści **FM08Extended**.
-Ikona Git w aplikacji pozostaje nieaktywna do ustawienia adresu repozytorium.
+Ikona Git w aplikacji otwiera [repozytorium projektu](https://github.com/Bezimienny111/FM08-Extended).
 
 <a id="ograniczenia"></a>
 ## Ograniczenia i planowane funkcje

@@ -27,7 +27,7 @@ Launcher nie zawiera gry, jej EXE, baz ani skórek. Nie pobieraj zamiennika
 
 1. Otwórz [wydania FM08 Extended](https://github.com/Bezimienny111/FM08-Extended/releases).
    Dopóki repozytorium jest prywatne, dostęp wymaga zalogowania na konto
-   z uprawnieniami. Brak wydań oznacza, że paczki nie opublikowano jeszcze.
+   z uprawnieniami. Pierwsze wydanie to `launcher-v0.1.0` (pre-release).
 2. Wybierz wydanie **launchera**, oznaczone tagiem `launcher-v...`,
    i pobierz dołączoną paczkę ZIP. **Source code (zip/tar.gz)** to źródła,
    nie gotowy program. Wydania `db-...` zawierają osobne bazy.
@@ -122,6 +122,17 @@ Szczegóły: [panele i skórki](DOCUMENTATION.md#8-panele-zawodnikow-i-skorki).
 Nie wyłączaj ochrony systemu ani antywirusa, aby obejść ostrzeżenia.
 Zweryfikuj źródło paczki, sumę kontrolną i zgłoś problem.
 
+### 7. Osobna baza sezonu 2026/27
+
+Pobierz paczkę z wydania `db-2026-27-v0.1.0`, nie archiwum Source code.
+Rozpakuj folder `FM08Extended_2026-27_0.1.0` do katalogu baz FM08,
+obok istniejących baz, bez nadpisywania ich. W grze rozpocznij nową karierę
+i wybierz **FM08 Extended 2026/27 0.1.0 Preview (V21)**.
+
+To wersja testowa ze znanymi konfliktami przyszłych transferów i emerytur.
+Przeczytaj [pełną instrukcję i ograniczenia bazy](DATABASE.md#polski).
+Baza nie aktualizuje istniejących karier, a launcher nie instaluje jej sam.
+
 <a id="english"></a>
 ## English
 
@@ -142,7 +153,7 @@ The package does not include the game, its executable, databases or skins.
 
 1. Open [FM08 Extended releases](https://github.com/Bezimienny111/FM08-Extended/releases).
    While the repository is private, sign in with an authorized account.
-   An empty releases page means no package has been published yet.
+   The first release is `launcher-v0.1.0` (pre-release).
 2. Select a **launcher** release tagged `launcher-v...` and download its
    attached ZIP. **Source code** archives are not ready-to-run packages.
    Tags starting with `db-` identify separate database releases.
@@ -204,3 +215,14 @@ Preserve the `.before-fmext-panels` XML backups.
 
 See the [English feature guide](EN.md) and
 [technical troubleshooting](DOCUMENTATION.md#13-rozwiazywanie-problemow).
+
+### 5. Separate 2026/27 database
+
+Download the package from `db-2026-27-v0.1.0`, not a Source code archive.
+Extract `FM08Extended_2026-27_0.1.0` into the FM08 database directory,
+alongside existing databases without overwriting them. Start a new career
+and select **FM08 Extended 2026/27 0.1.0 Preview (V21)**.
+
+This preview has known future-transfer/retirement conflicts.
+Read the [database installation and limitations](DATABASE.md#english).
+It does not update existing careers; the launcher does not install it.

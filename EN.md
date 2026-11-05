@@ -252,7 +252,7 @@ an event never happened.
 - [Ko-fi — support the project](https://ko-fi.com/ericaaurora)
 
 Please include **FM08Extended** in your support message.
-The application's Git icon remains inactive until a repository URL is set.
+The application's Git icon opens the [project repository](https://github.com/Bezimienny111/FM08-Extended).
 
 <a id="limitations"></a>
 ## Limitations and planned features
