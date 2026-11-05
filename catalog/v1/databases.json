@@ -2,5 +2,29 @@
   "$schema": "./databases.schema.json",
   "schemaVersion": 1,
   "recommendedDatabaseId": null,
-  "databases": []
+  "databases": [
+    {
+      "id": "db-2026-27-v0.1.0",
+      "version": "0.1.0",
+      "season": "2026/27",
+      "name": {
+        "pl": "FM08 Extended 2026/27 0.1.0 Preview (V21)",
+        "en": "FM08 Extended 2026/27 0.1.0 Preview (V21)"
+      },
+      "publishedAt": "2026-11-05T14:48:22Z",
+      "status": "preview",
+      "releaseTag": "db-2026-27-v0.1.0",
+      "releaseNotesUrl": "https://github.com/Bezimienny111/FM08-Extended/releases/tag/db-2026-27-v0.1.0",
+      "downloadUrl": "https://github.com/Bezimienny111/FM08-Extended/releases/download/db-2026-27-v0.1.0/FM08-Extended-DB-2026-27-0.1.0.zip",
+      "archiveSizeBytes": 77509712,
+      "installedSizeBytes": 110280596,
+      "sha256": "B17169A83632D17F9FD7C92A7885B840C9EFE4CC75758FB4E89F74213D03D643",
+      "installFolder": "FM08Extended_2026-27_0.1.0",
+      "minimumLauncherVersion": null,
+      "supportedGameHashes": [
+        "157F484BE2EAD4AB27006D1002C2C666A7228197B88B14C8D026E76F31B1D62D"
+      ],
+      "requiresNewCareer": true
+    }
+  ]
 }
