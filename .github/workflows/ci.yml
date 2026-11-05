@@ -1,0 +1,27 @@
+name: Launcher build and tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  launcher:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Build launcher
+        run: dotnet build .\src\FmLauncher\FmLauncher.csproj -c Release
+      - name: Run tests without game files
+        run: dotnet run --project .\tests\FmLauncher.Tests\FmLauncher.Tests.csproj -c Release
+      - name: Verify clean publication builds
+        run: dotnet publish .\src\FmLauncher\FmLauncher.csproj -c Release -r win-x64 --self-contained false -o .\publish

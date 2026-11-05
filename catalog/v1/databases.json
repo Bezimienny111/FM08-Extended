@@ -1,0 +1,6 @@
+{
+  "$schema": "./databases.schema.json",
+  "schemaVersion": 1,
+  "recommendedDatabaseId": null,
+  "databases": []
+}

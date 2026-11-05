@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>FmLauncher.Tests</RootNamespace>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="NativeFixture.cs" />
+    <Compile Remove="ModernNativeFixture.cs" />
+    <ProjectReference Include="..\..\src\FmLauncher\FmLauncher.csproj" />
+  </ItemGroup>
+  <Target Name="BuildNativeFixture" AfterTargets="Build">
+    <Exec Command="&quot;$(WINDIR)\Microsoft.NET\Framework\v4.0.30319\csc.exe&quot; /nologo /platform:x86 /target:exe /out:&quot;$(TargetDir)FmLauncher.NativeFixture.exe&quot; &quot;$(MSBuildProjectDirectory)\NativeFixture.cs&quot; &quot;$(MSBuildProjectDirectory)\ModernNativeFixture.cs&quot;" />
+  </Target>
+</Project>

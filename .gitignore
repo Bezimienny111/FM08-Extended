@@ -1,0 +1,40 @@
+# Local builds and installed application data
+**/bin/
+**/obj/
+/app/
+/publish/
+/artifacts/
+/packages/
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.pdb
+*.dll
+*.exe
+
+# Release packages, game files and backups belong outside Git
+*.zip
+*.7z
+*.rar
+*.fm
+*.bak
+*.before-fmext-panels
+
+# Player settings, career profiles and diagnostics
+FmLauncher.config.json
+**/profils/
+**/league-profiles/
+**/league-changes/
+**/league-observations/
+**/league-diagnostics/
+*.log
+
+# Credentials and local environment
+.env
+.env.*
+*.pfx
+*.p12
+*.pem
+*.key

@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FM08 Extended database catalog v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "recommendedDatabaseId", "databases"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": 1 },
+    "recommendedDatabaseId": {
+      "oneOf": [
+        { "$ref": "#/$defs/id" },
+        { "type": "null" }
+      ]
+    },
+    "databases": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/database" }
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^db-[0-9]{4}-[0-9]{2}-v[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "hash": {
+      "type": "string",
+      "pattern": "^[A-Fa-f0-9]{64}$"
+    },
+    "database": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "version", "season", "name", "publishedAt", "status",
+        "releaseTag", "releaseNotesUrl", "downloadUrl", "archiveSizeBytes",
+        "installedSizeBytes", "sha256", "installFolder",
+        "minimumLauncherVersion", "supportedGameHashes", "requiresNewCareer"
+      ],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "season": { "type": "string", "pattern": "^[0-9]{4}/[0-9]{2}$" },
+        "name": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["pl", "en"],
+          "properties": {
+            "pl": { "type": "string", "minLength": 1 },
+            "en": { "type": "string", "minLength": 1 }
+          }
+        },
+        "publishedAt": { "type": "string", "format": "date-time" },
+        "status": { "enum": ["stable", "preview", "withdrawn"] },
+        "releaseTag": { "$ref": "#/$defs/id" },
+        "releaseNotesUrl": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://github\\.com/Bezimienny111/FM08-Extended/releases/tag/db-[0-9]{4}-[0-9]{2}-v[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "downloadUrl": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://github\\.com/Bezimienny111/FM08-Extended/releases/download/db-[0-9]{4}-[0-9]{2}-v[0-9]+\\.[0-9]+\\.[0-9]+/[^/?#]+\\.zip$"
+        },
+        "archiveSizeBytes": { "type": "integer", "minimum": 1 },
+        "installedSizeBytes": { "type": "integer", "minimum": 1 },
+        "sha256": { "$ref": "#/$defs/hash" },
+        "installFolder": {
+          "type": "string",
+          "pattern": "^FM08Extended_[0-9]{4}-[0-9]{2}_[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "minimumLauncherVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "supportedGameHashes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/hash" }
+        },
+        "requiresNewCareer": { "const": true }
+      }
+    }
+  }
+}

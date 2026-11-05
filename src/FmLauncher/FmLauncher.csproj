@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AssemblyTitle>FM08 Extended</AssemblyTitle>
+    <Product>FM08 Extended</Product>
+    <Description>FM08 Extended game launcher</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FmLauncher.languages.json" />
+    <None Update="FmLauncher.languages.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <InternalsVisibleTo Include="FmLauncher.Tests" />
+  </ItemGroup>
+</Project>
