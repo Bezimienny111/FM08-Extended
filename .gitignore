@@ -38,3 +38,7 @@ FmLauncher.config.json
 *.p12
 *.pem
 *.key
+
+# Local database preparation and external player datasets
+/data/
+/fc27-players-*.csv

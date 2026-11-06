@@ -3,6 +3,33 @@
 [Projekt](README.md) · [Instalacja PL/EN](INSTALLATION.md) ·
 [Dokumentacja](DOCUMENTATION.md)
 
+## Przygotowywana baza V24.1
+
+[Gotowy opis zmian PL/EN](DATABASE_RELEASE_NOTES_V24_1.md) obejmuje etapy
+V22-V24.1. V24.1 jest robocza nazwa bazy (XML 0.24.1), nie nowym
+publicznym tagiem. Korekta natywna przeszla; przed pakowaniem/publikacja
+wymagane sa jeszcze kontrola SI, test nowej kariery oraz ustalenie numeru
+wydania. Nie zmieniono opublikowanej V21 ani katalogu pobierania.
+
+## Zabezpieczenie aktualnych plikow launchera
+
+Kontrola 2026-11-06: kod i testy launchera odpowiadaja tagowi
+`launcher-v0.1.0`; od tego wydania zmienil sie katalog baz i dokumentacja.
+Do zabezpieczenia takich zmian wystarczy commit i push, bez nowej paczki
+programu. Nowy release jest potrzebny po zmianie programu, gdy chcemy
+udostepnic uzytkownikom nowy gotowy build; nie podmieniamy starego ZIP.
+
+Lokalny `app` byl odbudowany po odzyskaniu projektu. Pliki binarne nie
+sa bajtowo identyczne z publikacja `win-x64`, ale kod zrodlowy jest ten sam,
+a JSON jezykow jest semantycznie identyczny. Nie deklarujemy identycznosci
+binariow na podstawie identycznego kodu. Opublikowany ZIP 0.1.0 ma
+zweryfikowana sume SHA256 z wydania.
+
+Nie dodawaj `app`, konfiguracji gracza, zrodlowych CSV ani katalogu
+lokalnych importow do repozytorium. Sam push dokumentacji nie zmienia
+zainstalowanego programu ani ustawien uzytkownika. Przy przyszlej
+aktualizacji programu zachowaj jego konfiguracje i profile.
+
 ## Zakres repozytorium
 
 Kod launchera, testy, dokumentacja i niewielki katalog wersji są w Git.

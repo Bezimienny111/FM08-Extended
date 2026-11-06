@@ -4,6 +4,19 @@
 [Releases](https://github.com/Bezimienny111/FM08-Extended/releases) ·
 [Report a bug / Zglos blad](https://github.com/Bezimienny111/FM08-Extended/issues)
 
+## Prepared update / Przygotowywana aktualizacja V24.1
+
+[V24.1 README/release copy, PL/EN](DATABASE_RELEASE_NOTES_V24_1.md)
+describes the local corrections and cumulative changes since V21.
+It is **not a published download**: V24.1 has native verification,
+but SI-editor acceptance and a new-career test remain pending.
+The published V21 package described below is unchanged.
+
+[Opis V24.1 do README/release, PL/EN](DATABASE_RELEASE_NOTES_V24_1.md)
+obejmuje korekty lokalnej bazy i zmiany od V21. **Nie jest opublikowana
+paczka**: pozostaja testy SI i nowej kariery. Ponizszy opis wydania V21
+pozostaje aktualny dla tamtej, niezmienionej paczki.
+
 ## English
 
 ### Preview 0.1.0 — based on V21

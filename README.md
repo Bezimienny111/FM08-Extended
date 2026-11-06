@@ -70,6 +70,9 @@ available or join clubs later. Do not treat this version as fully cleaned.
 See [database installation, validation and limitations](DATABASE.md#english).
 The launcher does not download or install databases automatically.
 
+Prepared, unpublished update:
+[V24.1 changes and remaining checks (PL/EN)](DATABASE_RELEASE_NOTES_V24_1.md).
+
 ### About the project
 
 **FM08 Extended is a launcher and optional extensions for Football Manager

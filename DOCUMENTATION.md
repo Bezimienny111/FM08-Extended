@@ -25,6 +25,7 @@ test kariery to różne poziomy potwierdzenia — nie zastępują się wzajemnie
 - [14. Budowanie, testowanie i publikacja](#14-budowanie-testowanie-i-publikacja)
 - [15. Mapa kodu](#15-mapa-kodu)
 - [16. Zakres poza aktualnym wydaniem](#16-zakres-poza-aktualnym-wydaniem)
+- [17. Przygotowanie aktualizacji kadr i oceny szacunkowe](#17-przygotowanie-kadr)
 
 <a id="1-wymagania-i-zgodnosc"></a>
 ## 1. Wymagania i zgodność
@@ -727,3 +728,78 @@ Poniższe prace nie są gotowymi funkcjami launchera:
 Istniejący [plan paneli zawodnika](PLAN_PANELI_ZAWODNIKA.md) opisuje przyszłe
 prace, nie listę zainstalowanych funkcji. Analizy importu baz i finansów
 nie oznaczają ich wdrożenia w launcherze.
+
+<a id="17-przygotowanie-kadr"></a>
+## 17. Przygotowanie aktualizacji kadr i oceny szacunkowe
+
+Polityka dla brakujących kadr sezonu 2026/27 jest opisana w
+[Oceny kadr 2026/27](../FMExt/OCENY_KADR_2026_27.md).
+Pierwszeństwo mają oceny z `fc27-players-2026-10-11.csv`; API Transfermarkt
+uzupełnia brakujące kadry i fakty. W tym CSV nie ma dat urodzenia ani
+wypełnionego PA, więc nie traktujemy go jako kompletnego wejścia importera.
+
+Przy znanym roku urodzenia bez dnia i miesiąca przyjmujemy 1 stycznia,
+z oznaczeniem przybliżenia. Dokładne daty pozostają bez zmian, a brak roku
+nadal blokuje przygotowanie zawodnika.
+
+Bez ocen FC27 szacujemy CA według ligi źródłowej i wieku, a PA według wieku.
+Zatwierdzona loteria daje uprawnionemu klubowi 20% szansy na jednego młodego
+talenta; rzadkie wyniki mogą sięgać PA 200. Dokładne zakresy, prawdopodobieństwa,
+powtarzalne ziarna oraz ograniczenia są w powyższej polityce i raportach.
+Nie jest to moduł Dynamiczne PA ani automatyczna funkcja launchera.
+
+Pakiet przygotowania trafia do `data\imports\SQUADS_GAPS_20261106`.
+CSV i manifest nie oznaczają wykonania importu. Baza V23.1 pozostaje
+nienaruszona, a konflikty i niepełne kluby blokują import danego klubu.
+
+Etap V24 został wykonany do nowej kopii `J:\FM08dev\Dane\db\2627_V24`:
+171 klubów, 3984 nowe profile i 172 zachowane istniejące rekordy.
+Na zatwierdzonej liście wykluczono 79 osób bez roku urodzenia.
+V24 przeszła weryfikację natywną, ale wymaga jeszcze zapisu i kontroli
+w oficjalnym edytorze SI oraz osobnego testu nowej kariery.
+Raport i ograniczenia są w powyższej polityce ocen.
+
+### Korekta V24.1: Polska U17 / PSM Makassar
+
+Nowa kopia `J:\FM08dev\Dane\db\2627_V24_1` naprawia 20 pozostalych
+przypisan Polski U17 do PSM (blad starego TM23136; PSM ma TM14104).
+18 osob przeniesiono do zweryfikowanych klubow lub zatwierdzonych
+odpowiednikow macierzystych. Dla Grygiera i Garwolinskiego, ktorych klubow
+brak w bazie, uzytkownik wybral techniczne emerytury 30.07.2007.
+Nie oznacza to rzeczywistych emerytur. Zachowano UID, CA/PA, atrybuty,
+osobowosci i DOB; data Kowalskiego pozostaje niepotwierdzona.
+Madej w Stali i jego drugi rekord w Resovii pozostaly bez zmian V24.1.
+
+PSM pozostaje bez kadry; rzeczywistego skladu nie importowano.
+Pilot trzech profili, cztery negatywne kontrole, pelny odczyt i niezalezna
+weryfikacja przeszly. Wszystkie 23397 klubow oraz chronione dane sprawdzono;
+V24 pozostala nienaruszona. V24.1 nadal wymaga zapisu/kontroli SI i testu
+nowej kariery. Nazwa/wersja XML wskazuja V24.1/0.24.1; odziedziczony opis
+i autorzy sa zachowani zgodnie z wczesniejsza decyzja.
+
+Opis do README i przyszlego release'u:
+[Zmiany V24.1](DATABASE_RELEASE_NOTES_V24_1.md).
+Nie utworzono ani nie opublikowano ZIP, tagu lub release'u.
+Pakiet dowodowy: `data\imports\POLAND_U17_REPAIR_20261106`;
+adapter `FMExt\scratch\RepairPolandU17Assignments.cs` jest ograniczony
+do jawnych 20 UID, nie jest uniwersalnym importerem.
+
+### Odzyskany sposób przygotowania facepacka
+
+Historyczne skrypty odnaleziono w lokalnej historii VS Code i odtworzono
+bez zmian w `FMExt\tools\facepack\legacy-recovered-20261106`:
+`build_facepack.py` i `pack_facepack_zip.py`.
+Portrety pobierano według identyfikatorów EA z CDN Futbin/Futwiz,
+**nie przez API Transfermarkt**. Skrypt tworzył PNG RGBA 180×180,
+wyśrodkowane poziomo i wyrównane do dołu, oraz `config.xml` wiążący
+`UID.png` z `graphics/pictures/person/UID/portrait`.
+
+To odzyskany kod historyczny, nie gotowa funkcja launchera. Nie uruchomiono
+pobierania ani pakowania: kod ma stare ścieżki D:, stary schemat FC27/V21
+i zbyt słabe dopasowanie tożsamości do bezpośredniego użycia z V24.
+API Transfermarkt udostępnia obecnie osobno `image_url` w danych zawodnika,
+ale nie dowodzi to użycia go w dawnym facepacku.
+
+Użytkownik zapowiedział dostarczenie starej paczki do
+`J:\FM08dev\Dane\graphics\pictures\faces\normal`.
+Grafiki i ich mapowania nie zostały nadpisane ani automatycznie przebudowane.
