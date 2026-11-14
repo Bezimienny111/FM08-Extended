@@ -1,0 +1,671 @@
+{
+  "SnapshotDate": "2026-11-14",
+  "EngineSHA256": "157f484be2ead4ab27006d1002c2c666a7228197b88b14c8d026e76f31b1d62d",
+  "OpenFM2007Commit": "8395779d64019385153ce2cf451a6621db6db393",
+  "NewNativeExperimentsRun": false,
+  "SourceGroups": 59,
+  "Sources": [
+    {
+      "SourceID": "ARCH",
+      "Description": "Historical consolidated engine research",
+      "WorkspacePath": "FMExt/fm08_compendium.md",
+      "Bytes": 216899,
+      "SHA256": "537ebd88d50eb5b7906af9e0e00cb3059022f9119f3fa66742d291569b21f96c",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "R5",
+      "Description": "Ghidra R5 project/export provenance",
+      "WorkspacePath": "FM08-Database-Tools/docs/GHIDRA_ENGINE_R5.md",
+      "Bytes": 4736,
+      "SHA256": "6d69a5bec883f1a7b6fa1c6913523a7590f65cdea1fbcf69753e4edd2dac70ce",
+      "ArchiveURL": "https://github.com/Bezimienny111/FM08-Database-Tools/blob/c3fa16fb63a416c2026062b441b8fca6af921774/docs/GHIDRA_ENGINE_R5.md"
+    },
+    {
+      "SourceID": "FM07-COMPARE",
+      "Description": "Controlled FM07/FM08 database and ABI comparison",
+      "WorkspacePath": "FM08-Database-Tools/docs/OPENFM2007_REFERENCE_COMPARISON.md",
+      "Bytes": 9147,
+      "SHA256": "6eb196a36d328469c565f09d0ace6acecec5189974d718f277cf646728189a5c",
+      "ArchiveURL": "https://github.com/Bezimienny111/FM08-Database-Tools/blob/c3fa16fb63a416c2026062b441b8fca6af921774/docs/OPENFM2007_REFERENCE_COMPARISON.md"
+    },
+    {
+      "SourceID": "NAMES",
+      "Description": "SI full competition-name controls and language container",
+      "WorkspacePath": "FM08-Database-Tools/docs/NATIVE_COMPETITION_NAMES.md",
+      "Bytes": 4427,
+      "SHA256": "cd86256c8979a77a6c6971730fe382800393a5f8f4b720d9a091d8f9a3374e3a",
+      "ArchiveURL": "https://github.com/Bezimienny111/FM08-Database-Tools/blob/c3fa16fb63a416c2026062b441b8fca6af921774/docs/NATIVE_COMPETITION_NAMES.md"
+    },
+    {
+      "SourceID": "PERSONALITY",
+      "Description": "Corrected personality codec and independent SI oracle",
+      "WorkspacePath": "FmLauncher/data/research/PERSONALITY_CODEC_REPAIR_20261111/RAPORT.md",
+      "Bytes": 6051,
+      "SHA256": "14c3ade434459e908f4e7c6a2acdddec8ef93e09bfe5c1047ff889a519668522",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "LOANS",
+      "Description": "Controlled loan record, recall, fee, shirt and wage-share samples",
+      "WorkspacePath": "FM08-Database-Tools/docs/NATIVE_LOANS.md",
+      "Bytes": 14989,
+      "SHA256": "892815a50948437a73ab751ed03a582fd71b95de6f8d3f12fb29d7d5b8c07c7f",
+      "ArchiveURL": "https://github.com/Bezimienny111/FM08-Database-Tools/blob/c3fa16fb63a416c2026062b441b8fca6af921774/docs/NATIVE_LOANS.md"
+    },
+    {
+      "SourceID": "CLUBS",
+      "Description": "Native club/stadium/family creation and relation findings",
+      "WorkspacePath": "FM08-Database-Tools/docs/NATIVE_CLUB_STADIUM_BC.md",
+      "Bytes": 2066,
+      "SHA256": "ec5e66226e2b39da6b4b0c2f26c0da2faa2d5704990ae99fbd815672067cfbbf",
+      "ArchiveURL": "https://github.com/Bezimienny111/FM08-Database-Tools/blob/c3fa16fb63a416c2026062b441b8fca6af921774/docs/NATIVE_CLUB_STADIUM_BC.md"
+    },
+    {
+      "SourceID": "CLUBS",
+      "Description": "Native club/stadium/family creation and relation findings",
+      "WorkspacePath": "FM08-Database-Tools/docs/NATIVE_STADIUM_RELATION_D.md",
+      "Bytes": 1364,
+      "SHA256": "edd06ce5ec392439dc4759b553f95725acee45efd3784431cc971941d2b4daf7",
+      "ArchiveURL": "https://github.com/Bezimienny111/FM08-Database-Tools/blob/c3fa16fb63a416c2026062b441b8fca6af921774/docs/NATIVE_STADIUM_RELATION_D.md"
+    },
+    {
+      "SourceID": "CLUBS",
+      "Description": "Native club/stadium/family creation and relation findings",
+      "WorkspacePath": "FM08-Database-Tools/docs/NATIVE_CLUB_STADIUM_N1.md",
+      "Bytes": 3494,
+      "SHA256": "4218826a25123278f95461b900d925bc42fd66ef57d529f0344386c29174987c",
+      "ArchiveURL": "https://github.com/Bezimienny111/FM08-Database-Tools/blob/c3fa16fb63a416c2026062b441b8fca6af921774/docs/NATIVE_CLUB_STADIUM_N1.md"
+    },
+    {
+      "SourceID": "BLANK-NAMES",
+      "Description": "Three club embedded-name diagnosis and carried repair",
+      "WorkspacePath": "FmLauncher/data/research/CLUB_NAME_LOOKUP_FIX_20261113/RAPORT.md",
+      "Bytes": 3717,
+      "SHA256": "e247b91fbeb7c47d3ddc4f99000800e68116b740b2cbe0098bee9f8206ebf53b",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "BLANK-NAMES",
+      "Description": "Three club embedded-name diagnosis and carried repair",
+      "WorkspacePath": "FmLauncher/data/research/COUNTRY_BATCH_ENGLAND_20261114/native-prep/root-structure/root-independent-verification.json",
+      "Bytes": 2646,
+      "SHA256": "ab9a0432b2f715d5321c7eeaea691f9771b3e05b493ee97904b74d33c84584ab",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "POLICY",
+      "Description": "Current database rules and user decisions",
+      "WorkspacePath": "FM08-Database-Tools/docs/DATABASE_UPDATE_RULES.md",
+      "Bytes": 24682,
+      "SHA256": "d1cde9423a8e351f932c6381ac46502b540a400e0a32a88933ff42b7c3bc215c",
+      "ArchiveURL": "https://github.com/Bezimienny111/FM08-Database-Tools/blob/c3fa16fb63a416c2026062b441b8fca6af921774/docs/DATABASE_UPDATE_RULES.md"
+    },
+    {
+      "SourceID": "POLICY",
+      "Description": "Current database rules and user decisions",
+      "WorkspacePath": "AGENTS.md",
+      "Bytes": 3466,
+      "SHA256": "23c85fb139940d586119ac21318760185f7f409e00def24b1d59d57735e4e27a",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "POLAND",
+      "Description": "R9.2 native group construction and season initialization",
+      "WorkspacePath": "FM08-Database-Tools/docs/POLAND_THIRD_TIER_GROUP_FIX_R92.md",
+      "Bytes": 3812,
+      "SHA256": "3c95569c6d32007fa16ec6374133928c85e8bb60eb9493e7d8644a300f905a69",
+      "ArchiveURL": "https://github.com/Bezimienny111/FM08-Database-Tools/blob/c3fa16fb63a416c2026062b441b8fca6af921774/docs/POLAND_THIRD_TIER_GROUP_FIX_R92.md"
+    },
+    {
+      "SourceID": "SWEDEN",
+      "Description": "X6 loader/alternate correction and user season acceptance",
+      "WorkspacePath": "FmLauncher/data/research/SWEDEN_SELECTION_REPAIR_X6_20261110/WZNOWIENIE.md",
+      "Bytes": 2941,
+      "SHA256": "4cf654239cc875de72c8d27ec60cc77c1870f291df7efb353aa29d47e24448fd",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "SINGAPORE",
+      "Description": "X8 dual-bank selection repair",
+      "WorkspacePath": "FmLauncher/data/research/SINGAPORE_SELECTION_REPAIR_X8_20261110/RAPORT.md",
+      "Bytes": 3040,
+      "SHA256": "e236775132a207a2c8099216e07191e8725ee9d2be2e9e0a615c245afbbf0a2a",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "CFA",
+      "Description": "CFA candidate/pruning runtime diagnosis",
+      "WorkspacePath": "FmLauncher/data/research/X18_RUNTIME_ERROR_20261113/RAPORT.md",
+      "Bytes": 3803,
+      "SHA256": "1bf0e494fa228bfaa5f75ea33681e3ca8f53284567fa391b03067a2a03183b72",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "CFA-REPAIR",
+      "Description": "CFA repair output and independent source protection",
+      "WorkspacePath": "FmLauncher/data/research/CFA_CONFIG_REPAIR_X19_20261113/native-ready-for-root-review.json",
+      "Bytes": 6337,
+      "SHA256": "bc67cb9cd21bebfc2df1cb3327113fb0a93d5ab0e8c907d552bfcec3f003e7c7",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "CFA-REPAIR",
+      "Description": "CFA repair output and independent source protection",
+      "WorkspacePath": "FmLauncher/data/research/CFA_CONFIG_REPAIR_X19_20261113/TEST_X19_TEST_STATUS_20261113.json",
+      "Bytes": 991,
+      "SHA256": "81e43481e4079e660740a5ab94f77e002d5dad11f166c5b14bc6e4fb9303a308",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "NETHERLANDS",
+      "Description": "Dutch playoff diagnosis and accepted twelve-move allocation",
+      "WorkspacePath": "FmLauncher/data/research/X19_RUNTIME_ERROR_20261113/RAPORT.md",
+      "Bytes": 1364,
+      "SHA256": "591ac02b14ce1482692d3635ca3f4710b57fbb7945b57ccc7a3d332cdec58dba",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "NETHERLANDS",
+      "Description": "Dutch playoff diagnosis and accepted twelve-move allocation",
+      "WorkspacePath": "FmLauncher/data/research/X19_RUNTIME_ERROR_20261113/reserve-eligibility-review/minimal-data-repair/REPORT-12.md",
+      "Bytes": 2912,
+      "SHA256": "643aea3f51f4d0b28fd30353d899aa591e6f255b761bb91b104315c6d59dfc41",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "NETHERLANDS",
+      "Description": "Dutch playoff diagnosis and accepted twelve-move allocation",
+      "WorkspacePath": "FmLauncher/data/research/WORK_20261114/TEST_X20_USER_STATUS_20261114.json",
+      "Bytes": 294,
+      "SHA256": "06193396b936d22979721fc35ac45ecd3026646615acd6ecbaf54da6c45f7ae3",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "BELGIUM",
+      "Description": "Belgian Cup out-of-bounds evidence and scoped X22 repair",
+      "WorkspacePath": "FmLauncher/data/research/FM_RUNTIME_ERROR_20261114/RAPORT_AWARII.md",
+      "Bytes": 1742,
+      "SHA256": "a20502f389c1bbbe30b9c89b6fbc57a9560e41b650d5e9a4ee0dfe0a6e559a1a",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "BELGIUM",
+      "Description": "Belgian Cup out-of-bounds evidence and scoped X22 repair",
+      "WorkspacePath": "FmLauncher/data/research/BELGIUM_CUP_REPAIR_X22_20261114/release-ready/TEST_X22/RAPORT_TEST_X22.txt",
+      "Bytes": 1028,
+      "SHA256": "3b5d57fafc93db16fbdc69c0d2bb8b59b53e655fe33cbbe27113b0a9997eec1c",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "X22-STATUS",
+      "Description": "User-confirmed X22 test through2011",
+      "WorkspacePath": "FmLauncher/data/research/WORK_20261114/TEST_X22_USER_STATUS_20261114.json",
+      "Bytes": 389,
+      "SHA256": "dbc751e20ac48fc71b32d07ddc326d7a2423a9486b570d55c2ba01daa848ece3",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "X23",
+      "Description": "England native readback and separately confirmed SI/new career",
+      "WorkspacePath": "FmLauncher/data/research/COUNTRY_BATCH_ENGLAND_20261114/native-prep/final-readback.json",
+      "Bytes": 8022,
+      "SHA256": "98d94ecff0fde976e5f9ea9e1a60db47373a6993b3149b41ae0c0371ab03d90a",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "X23",
+      "Description": "England native readback and separately confirmed SI/new career",
+      "WorkspacePath": "FmLauncher/data/research/COUNTRY_BATCH_ENGLAND_20261114/native-prep/publication-TEST_X23.json",
+      "Bytes": 4708,
+      "SHA256": "2780e659743f8b54fffd547f28e6375ee96288672a729a8f614821ea1e008641",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "X23",
+      "Description": "England native readback and separately confirmed SI/new career",
+      "WorkspacePath": "FmLauncher/data/research/WORK_20261114/TEST_X23_USER_STATUS_20261114.json",
+      "Bytes": 289,
+      "SHA256": "9e295f07348eaac7c81acd8dfe75fc74cb11f43c38ac80388aa2a79c5c505a6c",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "THAILAND",
+      "Description": "Failed isolated activation and missing discipline module",
+      "WorkspacePath": "FmLauncher/data/research/THAILAND_LEAGUE_REPLACEMENT_REVIEW_20261110/WZNOWIENIE.md",
+      "Bytes": 4349,
+      "SHA256": "45ce7a30a0221068ffb9f143d610cac125328edfe3593ccbe7bc260b322fb5f5",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "MATCH-RULES",
+      "Description": "Native29-code audit and scoped class/UID map",
+      "WorkspacePath": "FmLauncher/data/research/MATCH_RULES_ALL_LEAGUES_20261111/RAPORT.md",
+      "Bytes": 7991,
+      "SHA256": "dda20ed851461a6e110b1c6615d76c4ce851c3395df10cda95d90cfe9acf8185",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "MATCH-RULES",
+      "Description": "Native29-code audit and scoped class/UID map",
+      "WorkspacePath": "FmLauncher/data/research/MATCH_RULES_ALL_LEAGUES_20261111/native-getter-catalog.csv",
+      "Bytes": 6556,
+      "SHA256": "06c96a46149d6d0a498c4ad9a83e2675c773b4a5dce8423a614ad922222bbb09",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "RULES-UI",
+      "Description": "Complete native Rules-panel catalogue and applied-state design",
+      "WorkspacePath": "FmLauncher/data/research/LEAGUE_RULES_UI_LAUNCHER_VALUES_20261113/RAPORT_I_PROJEKT.md",
+      "Bytes": 19519,
+      "SHA256": "fa4d116280b5a2b15c1396fe25b096424437b7f430ea12f9458f50c53c7919c2",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "RULES-R12",
+      "Description": "R12 actual implementation and scoped visual acceptance",
+      "WorkspacePath": "FmLauncher/data/research/LEAGUE_RULES_UI_LAUNCHER_VALUES_20261113/implementation/ROOT_CHECKPOINT.md",
+      "Bytes": 2431,
+      "SHA256": "b61017f080da24c2c5a57582f25225fadf909d67dfd1ade504c8e241259082fd",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "RULES-R12",
+      "Description": "R12 actual implementation and scoped visual acceptance",
+      "WorkspacePath": "FmLauncher/data/research/LEAGUE_RULES_UI_LAUNCHER_VALUES_20261113/implementation/IMPLEMENTATION_REPORT.md",
+      "Bytes": 4811,
+      "SHA256": "d39deb30217155846a09d51819d1daf625aec7c966a4b02eee2d6305b9d4c5fa",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "FM07-WINDOWS",
+      "Description": "Reference window mechanism and static final-window counterexample",
+      "WorkspacePath": "FmLauncher/data/research/FM07_SUBSTITUTION_WINDOWS_REVIEW_20261111/RAPORT.md",
+      "Bytes": 8184,
+      "SHA256": "d455b16704e3cf196b2aebac5548ae9aaecb0fb6bcf4443882b6d12085390241",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "NEWGEN",
+      "Description": "Permanent/virtual player generation first static pass",
+      "WorkspacePath": "FmLauncher/data/research/NEW_PLAYER_GENERATION_20261112/RAPORT.md",
+      "Bytes": 19996,
+      "SHA256": "2604031a42163f3e11068ddcf244eceea12347cf851a705d8176cf7ad9d641d7",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "ABILITY",
+      "Description": "Later CA/PA arithmetic and normalizer erratum",
+      "WorkspacePath": "FmLauncher/data/research/CA_PA_CALCULATIONS_20261112/RAPORT.md",
+      "Bytes": 12539,
+      "SHA256": "aed25d465e590fd9be605edd9bd45443da85ded5c7447909f3701e64f449e9c0",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "ABILITY",
+      "Description": "Later CA/PA arithmetic and normalizer erratum",
+      "WorkspacePath": "FmLauncher/data/research/CA_PA_CALCULATIONS_20261112/ERRATA.md",
+      "Bytes": 865,
+      "SHA256": "71130e144d9eccac0c918147b7adf3f23cbf803f7068b0510b88491dcec91022",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "ABILITY",
+      "Description": "Later CA/PA arithmetic and normalizer erratum",
+      "WorkspacePath": "FmLauncher/data/research/CA_PA_CALCULATIONS_20261112/native-attribute-map.json",
+      "Bytes": 12488,
+      "SHA256": "ebf388b00c002f4edaecc525bb07dc6660698c979f655a5a57ca03761e862b7e",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "PA-POLICY",
+      "Description": "Actual optional PA chance model source",
+      "WorkspacePath": "FmLauncher/src/FmLauncher/PaGrowthPolicy.cs",
+      "Bytes": 2370,
+      "SHA256": "4337a85ace634247b4bd5ce526abc59910cd17214c068a7f8d097be60576ab0b",
+      "ArchiveURL": "https://github.com/Bezimienny111/FM08-Extended/blob/382b0eccfb8ae43b8560a06a28469036e05429e0/src/FmLauncher/PaGrowthPolicy.cs"
+    },
+    {
+      "SourceID": "PA-PATCH",
+      "Description": "Actual optional dynamic-PA payload source",
+      "WorkspacePath": "FmLauncher/src/FmLauncher/GamePaPatch.cs",
+      "Bytes": 12048,
+      "SHA256": "17ae426f92a9baaf5a4c16947bd9f77ba35b4bb80cac5808622151e9fff41415",
+      "ArchiveURL": "https://github.com/Bezimienny111/FM08-Extended/blob/382b0eccfb8ae43b8560a06a28469036e05429e0/src/FmLauncher/GamePaPatch.cs"
+    },
+    {
+      "SourceID": "SKIN-ARCH",
+      "Description": "Historical UI binding and training-panel architecture",
+      "WorkspacePath": "FMExt/SKIN_ARCHITECTURE_FM08.md",
+      "Bytes": 34627,
+      "SHA256": "df7d17eb9e5b22cdfbbebc11935332012ac93b6e407f531451bdd4b9aab80cd5",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "AGING-CODE",
+      "Description": "Actual optional delayed-aging patch source",
+      "WorkspacePath": "FmLauncher/src/FmLauncher/GameAgingPatch.cs",
+      "Bytes": 1986,
+      "SHA256": "aa576009877fae36a25aebf2a1c4bc015e220a0c3b43fb8697b9599d5c784547",
+      "ArchiveURL": "https://github.com/Bezimienny111/FM08-Extended/blob/382b0eccfb8ae43b8560a06a28469036e05429e0/src/FmLauncher/GameAgingPatch.cs"
+    },
+    {
+      "SourceID": "STAFF",
+      "Description": "Controlled existing/new staff records and release samples",
+      "WorkspacePath": "FM08-Database-Tools/docs/NATIVE_STAFF.md",
+      "Bytes": 8638,
+      "SHA256": "034ee598afea058ebfc3103c8755cfc9c5f5433727562afbf1eb12b2a649fae0",
+      "ArchiveURL": "https://github.com/Bezimienny111/FM08-Database-Tools/blob/c3fa16fb63a416c2026062b441b8fca6af921774/docs/NATIVE_STAFF.md"
+    },
+    {
+      "SourceID": "STAFF-COLLECTION",
+      "Description": "Partial coach/assistant modernization catalogue status",
+      "WorkspacePath": "FmLauncher/data/research/CLUB_COACHES_ASSISTANTS_20261112/WZNOWIENIE.md",
+      "Bytes": 1188,
+      "SHA256": "16312e1c7490147d39c07411a5d7a780d318a8e8e6097a792fdf15c83d1813aa",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "TALK-STATIC",
+      "Description": "Native team-talk entry/flags/executor findings",
+      "WorkspacePath": "FmLauncher/data/research/TEAM_TALK_ENGINE_AUDIT_20261110/RAPORT.md",
+      "Bytes": 11674,
+      "SHA256": "4c8c0d0f23ab2868dd3ac26ae9f433c9929c9c468e3cdb177b51de26be689c68",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "TALK-LIVE",
+      "Description": "Frozen live talk observations and private bounded provider",
+      "WorkspacePath": "FmLauncher/data/research/TEAM_TALK_RESUME_20261112/RAPORT.md",
+      "Bytes": 20823,
+      "SHA256": "e380b17905ebd560e198431c15479021bf80dffdb8292471b5fd42244f79e5d5",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "TALK-TEST",
+      "Description": "Unclosed completion fence and one-observation test plan",
+      "WorkspacePath": "FmLauncher/data/research/TEAM_TALK_TEST_20261113/RAPORT.md",
+      "Bytes": 7737,
+      "SHA256": "1d42eb0ed277152d1addc63629a8f57756ba1fa45d357fa100d9fd6fd1260726",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "TALK-RULES",
+      "Description": "Conditional talk action/effect branches and priorities",
+      "WorkspacePath": "FmLauncher/data/research/TEAM_TALK_RESUME_20261112/response-rules-report/RAPORT.md",
+      "Bytes": 14483,
+      "SHA256": "817d4067c32b36be2275340505aa06f3f3f5dfd842ddc4a4bbc72d12f258277a",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "SKINS",
+      "Description": "Ext variants and active catalogue",
+      "WorkspacePath": "FmLauncher/data/research/SKINS_EXT_VARIANTS_20261111/RAPORT.md",
+      "Bytes": 6765,
+      "SHA256": "db2ef480d0ba6079691a315b51f07a6cab3cbf0b7b308f78ec26f5e75bd46350",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "SKINS",
+      "Description": "Ext variants and active catalogue",
+      "WorkspacePath": "FmLauncher/src/FmLauncher/ExtSkinCatalog.cs",
+      "Bytes": 1770,
+      "SHA256": "7236df61e36e9a8e5fa39fd92c43da62c076b4ed4416a10337bff0bbead86c2d",
+      "ArchiveURL": "https://github.com/Bezimienny111/FM08-Extended/blob/382b0eccfb8ae43b8560a06a28469036e05429e0/src/FmLauncher/ExtSkinCatalog.cs"
+    },
+    {
+      "SourceID": "PANEL-R10",
+      "Description": "Accepted uniform highlighting and game-language policy",
+      "WorkspacePath": "FmLauncher/data/research/SKIN_PLAYER_PANELS_R10_20261111/RAPORT.md",
+      "Bytes": 7339,
+      "SHA256": "842bdb003a892ef07b893e65583a078e44fbc2ee829189722e11679648c70d75",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "NOCHE",
+      "Description": "NocheExt inheritance and supported installation scope",
+      "WorkspacePath": "FmLauncher/data/research/NOCHE_EXT_20261113/WZNOWIENIE.md",
+      "Bytes": 4925,
+      "SHA256": "c291fd2e1276764ca6be2d95cea69d66ad05c69796ea48971be4f821c39a1fbc",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "NOCHE",
+      "Description": "NocheExt inheritance and supported installation scope",
+      "WorkspacePath": "FmLauncher/NOCHE_EXT.md",
+      "Bytes": 1719,
+      "SHA256": "8dd17ce9419813947d9c4b77415ac40689e3b5600867b2968fa7ec5cf7ee2469",
+      "ArchiveURL": "https://github.com/Bezimienny111/FM08-Extended/blob/382b0eccfb8ae43b8560a06a28469036e05429e0/NOCHE_EXT.md"
+    },
+    {
+      "SourceID": "R2-FAIL",
+      "Description": "Constructor sentinel/reference failure",
+      "WorkspacePath": "FmLauncher/data/research/R2_RUNTIME_FAILURE_20261111/diagnostic/RAPORT.md",
+      "Bytes": 2269,
+      "SHA256": "ce38551c38897561cbd0a09bdbb7597b8eda37807d4b5c53a7a204d39731eeee",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "R3-FAIL",
+      "Description": "Incorrect global HUMAN/viewer source",
+      "WorkspacePath": "FmLauncher/data/research/R3_RUNTIME_FAILURE_20261111/diagnostic/RAPORT.md",
+      "Bytes": 2565,
+      "SHA256": "9ce8fee556d342ae64566c898820e2d34000275c3032ace7f4c07addf940526e",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "R3-BG",
+      "Description": "Actual STANDARD_COLUMN_LABEL proof",
+      "WorkspacePath": "FmLauncher/data/research/R3_RUNTIME_FAILURE_20261111/background/RAPORT.md",
+      "Bytes": 3892,
+      "SHA256": "737a481b49658ead17c9e367944a081b6e34e2ee5cfe7124efb3fa2cded477c8",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "FIRST-CLICK",
+      "Description": "Post-native-commit role synchronization",
+      "WorkspacePath": "FmLauncher/data/research/FIRST_ROLE_SELECTION_R6_20261111/RAPORT_R6_REPAIR.md",
+      "Bytes": 5989,
+      "SHA256": "a68afe7d07f99b2cf2655509f3869fb5501134454b6c02ba860c1902638a9f54",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "VALUE-BG",
+      "Description": "Name and number separate paint-path integration",
+      "WorkspacePath": "FmLauncher/data/research/ATTRIBUTE_VALUE_BACKGROUND_R9_20261111/RAPORT.md",
+      "Bytes": 4541,
+      "SHA256": "dfb7584a42149ec49d1e2d015e5dd14d040aa4739118e4ad72dbfb6aa0cd84ea",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "PANEL-R8",
+      "Description": "Single-frame compact legend acceptance",
+      "WorkspacePath": "FmLauncher/data/research/SKIN_PLAYER_PANELS_R8_20261111/RAPORT.md",
+      "Bytes": 3029,
+      "SHA256": "4506ad458023ae7034e5b594f57cba099b9c1d00ee306dd5012828d6cebb1339",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "GRAPHICS",
+      "Description": "Combined staged image counts, dimensions and hold",
+      "WorkspacePath": "FmLauncher/data/research/GRAPHICS_UPDATE_X21_20261114/combined-review/RAPORT.md",
+      "Bytes": 2235,
+      "SHA256": "e699a89d405d477940a70e166ae7ca7ef2d3c94c9e0da5be0e07b9a7b26caa7a",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "ENGLAND-FACES",
+      "Description": "Exact final UID face mapping and214-file plan",
+      "WorkspacePath": "FmLauncher/data/research/GRAPHICS_UPDATE_X21_20261114/england-extension/final-delta/WZNOWIENIE.md",
+      "Bytes": 627,
+      "SHA256": "93df928d3529f1ef3cf34b98844d80a94234633eaaeaba7e9f37500ebb92440f",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "ENGLAND-FACES",
+      "Description": "Exact final UID face mapping and214-file plan",
+      "WorkspacePath": "FmLauncher/data/research/GRAPHICS_UPDATE_X21_20261114/england-extension/final-delta/PLAN_READY_CHECKPOINT.json",
+      "Bytes": 1138,
+      "SHA256": "7de403ac5cd230392d6ae58ecadaa92daa9c0b9d8f28f40faea3c3d60e578481",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "FINANCE",
+      "Description": "SI Sugar Daddy, formats and historical sponsor review",
+      "WorkspacePath": "FM08-Database-Tools/docs/POLAND_CLUB_FINANCE_SPONSORS.md",
+      "Bytes": 6555,
+      "SHA256": "996ef12ede66af09b371470d18ee6a0145abd67456c91aab4d4e7a69c7184457",
+      "ArchiveURL": "https://github.com/Bezimienny111/FM08-Database-Tools/blob/c3fa16fb63a416c2026062b441b8fca6af921774/docs/POLAND_CLUB_FINANCE_SPONSORS.md"
+    },
+    {
+      "SourceID": "FINANCE-PLAN",
+      "Description": "Later finance/reputation semantics and remaining controls",
+      "WorkspacePath": "FmLauncher/data/research/CLUB_REPUTATION_STARTING_FINANCES_20261113/RAPORT.md",
+      "Bytes": 21977,
+      "SHA256": "8726e524a9e048714d677c312f1208d1b228d6e8c0186a705b064320ef4a88f6",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "LEGACY-STATUS",
+      "Description": "Runtime32-byte sponsorship record reader and older research",
+      "WorkspacePath": "FMExt/Status.md",
+      "Bytes": 110421,
+      "SHA256": "a8fbb55b131aac936ca8d54d497e99670ca2f86cadb1410e567212c168384548",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "REPUTATION-CODE",
+      "Description": "Actual-change reputation module distinct from observer mode",
+      "WorkspacePath": "FmLauncher/src/FmLauncher/GameLeagueChangesPatch.cs",
+      "Bytes": 5517,
+      "SHA256": "38dc8940c92b0b3b2670bc6c76f713b403826ac23ec09892226951d4cbda1411",
+      "ArchiveURL": "https://github.com/Bezimienny111/FM08-Extended/blob/382b0eccfb8ae43b8560a06a28469036e05429e0/src/FmLauncher/GameLeagueChangesPatch.cs"
+    },
+    {
+      "SourceID": "REPUTATION-CODE",
+      "Description": "Actual-change reputation module distinct from observer mode",
+      "WorkspacePath": "FmLauncher/src/FmLauncher/LeagueChanges.cs",
+      "Bytes": 11756,
+      "SHA256": "34bb5bde471cfd535971a593e02c024513782a6a593538d76947d720f42a24bf",
+      "ArchiveURL": "https://github.com/Bezimienny111/FM08-Extended/blob/382b0eccfb8ae43b8560a06a28469036e05429e0/src/FmLauncher/LeagueChanges.cs"
+    },
+    {
+      "SourceID": "CAREER",
+      "Description": "Native career identity component reader",
+      "WorkspacePath": "FmLauncher/src/FmLauncher/CareerIdentity.cs",
+      "Bytes": 1100,
+      "SHA256": "2cdc1f943a07c3bdd379fa92e1b322638e712af521e84327cddd882aed091578",
+      "ArchiveURL": "https://github.com/Bezimienny111/FM08-Extended/blob/382b0eccfb8ae43b8560a06a28469036e05429e0/src/FmLauncher/CareerIdentity.cs"
+    },
+    {
+      "SourceID": "COMPANION",
+      "Description": "Proposed save/load companion transaction and lifecycle correction",
+      "WorkspacePath": "FmLauncher/data/research/EUROPEAN_CUPS_FM07_GAP_REVIEW_20261110/SAVE_COMPANION_CONTRACT.md",
+      "Bytes": 14610,
+      "SHA256": "be14285401e34a1966d872cdb5cedf1a94637a52e8dfe48c2be9df8fd558f85a",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "FM07-README",
+      "Description": "Pinned upstream mechanisms, feature limits and negative experiments",
+      "WorkspacePath": "reference/OpenFM2007/README.md",
+      "Bytes": 149792,
+      "SHA256": "3518966232f0836cca4da2c72475764c5d6b1d9819f09de16b5cf211a4695490",
+      "ArchiveURL": "https://github.com/paokkerkir/OpenFM2007/blob/8395779d64019385153ce2cf451a6621db6db393/README.md"
+    },
+    {
+      "SourceID": "FM07-UEFA",
+      "Description": "Modern UEFA reference analysis and comparator results",
+      "WorkspacePath": "FM08-Database-Tools/docs/OPENFM2007_UEFA_ANALYSIS.md",
+      "Bytes": 15614,
+      "SHA256": "728aa24a1c8889b8cad6b579e832e981280697c16e7ab48de82dcd1c904391e2",
+      "ArchiveURL": "https://github.com/Bezimienny111/FM08-Database-Tools/blob/c3fa16fb63a416c2026062b441b8fca6af921774/docs/OPENFM2007_UEFA_ANALYSIS.md"
+    },
+    {
+      "SourceID": "UEFA-GAPS",
+      "Description": "FM08 port matrix and pinned T47.1 gaps",
+      "WorkspacePath": "FmLauncher/data/research/EUROPEAN_CUPS_FM07_GAP_REVIEW_20261110/RAPORT.md",
+      "Bytes": 19742,
+      "SHA256": "f61c57fd01e6910305ac93e1067b8b76f441ec4212935eeec6447bb4ad34edc5",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "UEFA-GAPS",
+      "Description": "FM08 port matrix and pinned T47.1 gaps",
+      "WorkspacePath": "reference/OpenFM2007/phase-ends/current/PHASE_PLAN.md",
+      "Bytes": 154143,
+      "SHA256": "0d30b7de8f908f0c9dfb606b72ede89124e16e60af154b667db04d2751f88346",
+      "ArchiveURL": "https://github.com/paokkerkir/OpenFM2007/blob/8395779d64019385153ce2cf451a6621db6db393/phase-ends/current/PHASE_PLAN.md"
+    },
+    {
+      "SourceID": "RATINGS",
+      "Description": "Earlier estimate audit, selective repairs and v2 model",
+      "WorkspacePath": "FmLauncher/data/research/CA_PA_AUDIT_20261111/R2/RAPORT_R2.md",
+      "Bytes": 8410,
+      "SHA256": "baca1e65461991b3cb73a513c575e552b7460edcf7277914833abb6eedc7bc55",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "RATINGS",
+      "Description": "Earlier estimate audit, selective repairs and v2 model",
+      "WorkspacePath": "FmLauncher/data/research/CA_PA_REPAIR_X11_20261111/RAPORT.md",
+      "Bytes": 4175,
+      "SHA256": "1cf6adc255886b05f69e9f350636e68f770a918bade6fa4e940cbe66999b1a63",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "RATINGS",
+      "Description": "Earlier estimate audit, selective repairs and v2 model",
+      "WorkspacePath": "FmLauncher/data/research/COUNTRY_BATCH_ENGLAND_20261114/native-prep/rating_model_v2.py",
+      "Bytes": 3663,
+      "SHA256": "8275a1ccd46acd25ab2ad37c8f495305cd83c991c0c7bb6da5eb5f8e17d31af2",
+      "ArchiveURL": "https://github.com/Bezimienny111/FM08-Extended/blob/382b0eccfb8ae43b8560a06a28469036e05429e0/data/research/COUNTRY_BATCH_ENGLAND_20261114/native-prep/rating_model_v2.py"
+    },
+    {
+      "SourceID": "NAZARYNA",
+      "Description": "Canonical duplicate correction and separately deferred Messi issue",
+      "WorkspacePath": "FmLauncher/data/research/SWEDEN_SWITZERLAND_X3_20261109/WZNOWIENIE.md",
+      "Bytes": 7684,
+      "SHA256": "699b457d4d7739b53b23fff9ff88c1b816f94e649f6a73f686f2c8ac696ccf4e",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "USER-DECISIONS",
+      "Description": "Explicit user instructions and superseded earlier proposals",
+      "WorkspacePath": "documentation/PROJECT_DECISIONS.md",
+      "Bytes": 2563,
+      "SHA256": "ad4167af970580b83263d5c5ec2ce7a4c75cc9616bf860d4437456b66d1f284a",
+      "ArchiveURL": null
+    },
+    {
+      "SourceID": "NATIVE-BUILDER",
+      "Description": "Current native roster/attribute writer and independent actual-disk checker",
+      "WorkspacePath": "FM08-Database-Tools/scratch/SerieAbNativeSquads.cs",
+      "Bytes": 52420,
+      "SHA256": "4d82e25a5e5ec9271983556fc81b1847a9f6396af1ad274fd0a1a45eca6c28a1",
+      "ArchiveURL": "https://github.com/Bezimienny111/FM08-Database-Tools/blob/c3fa16fb63a416c2026062b441b8fca6af921774/scratch/SerieAbNativeSquads.cs"
+    },
+    {
+      "SourceID": "NATIVE-BUILDER",
+      "Description": "Current native roster/attribute writer and independent actual-disk checker",
+      "WorkspacePath": "FmLauncher/data/research/COUNTRY_BATCH_ENGLAND_20261114/native-prep/verify_roster.py",
+      "Bytes": 9245,
+      "SHA256": "8bd23b3ce34a4bc2eae4cb1a9c8b174b0fab4e1608a3d0698512c511a707944a",
+      "ArchiveURL": "https://github.com/Bezimienny111/FM08-Extended/blob/382b0eccfb8ae43b8560a06a28469036e05429e0/data/research/COUNTRY_BATCH_ENGLAND_20261114/native-prep/verify_roster.py"
+    }
+  ],
+  "HistoricalInventoryRows": 194,
+  "UserX22Season": "PASS_THROUGH_2011",
+  "UserX23SI": "PASS",
+  "UserX23NewCareer": "PASS",
+  "UserX23Season": "PENDING",
+  "X24": "51602_PROVEN_UIDS_CONTRACT_AND_LOAN_AUDIT_PENDING",
+  "AdditionalDerivedCopies": [
+    {
+      "Path": "native-rules-display-catalogue.json",
+      "WorkspaceSource": "FmLauncher/data/research/LEAGUE_RULES_UI_LAUNCHER_VALUES_20261113/rule-display-model.json",
+      "SHA256": "ce7df37541a7705e7c40d1e460a0f4d0d2492527068ca8a47a788399ce4c9206"
+    }
+  ],
+  "DocumentationBranch": "backup/modern-2627-england-20261114"
+}

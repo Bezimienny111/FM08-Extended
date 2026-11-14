@@ -1,0 +1,531 @@
+{
+  "SnapshotDate": "2026-11-14",
+  "Scope": "Recorded project findings; not a claim of all undiscovered engine defects",
+  "Issues": [
+    {
+      "ID": "ENG-CFA-01",
+      "Category": "Competition precondition",
+      "Status": "Mitigated in X19; inherited later tests",
+      "Finding": "CFA selector counts passed, but scheduler pruning had67 candidates for72 places and needs N>need.",
+      "CorrectionOrNextStep": "Restore eligible direct candidates; preserve bounds checks and accepted reserve kinds.",
+      "Evidence": [
+        "CFA",
+        "CFA-REPAIR"
+      ],
+      "Chapter": "03_COMPETITIONS_AND_SEASONS.md"
+    },
+    {
+      "ID": "ENG-NLD-01",
+      "Category": "Competition qualification/data",
+      "Status": "Mitigated in X20; user season test through2011",
+      "Finding": "Dutch playoff template expected10; observed7, later8 entrants caused out-of-range TEAM access.",
+      "CorrectionOrNextStep": "Twelve Current edits remove incompatible Jong exposure and backfill first/lower teams; full refill mechanism remains partial.",
+      "Evidence": [
+        "NETHERLANDS"
+      ],
+      "Chapter": "03_COMPETITIONS_AND_SEASONS.md"
+    },
+    {
+      "ID": "ENG-BEL-01",
+      "Category": "First-season data exception",
+      "Status": "Resolved in X22; user through2011",
+      "Finding": "X21 Belgian Cup had110 entrants but referenced slot110; AV atDA729E.",
+      "CorrectionOrNextStep": "Restore first-season second tier19 through RFC Meux; cup111. New career required.",
+      "Evidence": [
+        "BELGIUM",
+        "X22-STATUS"
+      ],
+      "Chapter": "03_COMPETITIONS_AND_SEASONS.md"
+    },
+    {
+      "ID": "ENG-THA-01",
+      "Category": "Missing national module",
+      "Status": "Deferred by user",
+      "Finding": "X9 cannot find setup_discipline_rules; generic fixture XML is not a complete Thai module.",
+      "CorrectionOrNextStep": "Keep X9 failed; no discipline suppression, country impersonation or engine change without new scope.",
+      "Evidence": [
+        "THAILAND"
+      ],
+      "Chapter": "03_COMPETITIONS_AND_SEASONS.md"
+    },
+    {
+      "ID": "DATA-SEL-01",
+      "Category": "Country lower-pool allocation",
+      "Status": "Resolved in recorded X1 repair",
+      "Finding": "Wales/USA became unavailable after required feeder pools were depleted.",
+      "CorrectionOrNextStep": "Validate top and lower minima, both banks and cascade backfills.",
+      "Evidence": [
+        "POLICY"
+      ],
+      "Chapter": "03_COMPETITIONS_AND_SEASONS.md"
+    },
+    {
+      "ID": "DATA-SEL-02",
+      "Category": "Loader model",
+      "Status": "Resolved in X6; runtime/career/season accepted",
+      "Finding": "Swedish difference-only overlay missed a14th write when source already matched it.",
+      "CorrectionOrNextStep": "Use full observed loader write set; preserve Current and change scoped Alternate only.",
+      "Evidence": [
+        "SWEDEN"
+      ],
+      "Chapter": "03_COMPETITIONS_AND_SEASONS.md"
+    },
+    {
+      "ID": "DATA-SEL-03",
+      "Category": "Alternate assignment",
+      "Status": "Resolved in X8 selector",
+      "Finding": "Singapore Current12/Alternate13 exceeded maximum12.",
+      "CorrectionOrNextStep": "Scoped six-field repair; check both loaded forms.",
+      "Evidence": [
+        "SINGAPORE"
+      ],
+      "Chapter": "03_COMPETITIONS_AND_SEASONS.md"
+    },
+    {
+      "ID": "OUR-POL-01",
+      "Category": "Object identity",
+      "Status": "Resolved in R9.2 pilot",
+      "Finding": "A guard retained an allocation that XML-version replacement destroyed; crashDC412E.",
+      "CorrectionOrNextStep": "Resolve current UID/type instead of remembering the first address.",
+      "Evidence": [
+        "POLAND"
+      ],
+      "Chapter": "03_COMPETITIONS_AND_SEASONS.md"
+    },
+    {
+      "ID": "OUR-POL-02",
+      "Category": "Initialization order",
+      "Status": "Resolved in R9.2; season accepted",
+      "Finding": "Four groups existed but skipped native season-year initialization; dates in year0.",
+      "CorrectionOrNextStep": "Permit the earlier native season-init path; do not hardcode calendar year.",
+      "Evidence": [
+        "POLAND"
+      ],
+      "Chapter": "03_COMPETITIONS_AND_SEASONS.md"
+    },
+    {
+      "ID": "OUR-CONTRACT-01",
+      "Category": "Native reference interpretation",
+      "Status": "Corrected by SI controls",
+      "Finding": "Contract payload+31 had been treated as status instead of the contract FAMILY reference.",
+      "CorrectionOrNextStep": "Resolve proper owner family and consistent person/roster/contract links.",
+      "Evidence": [
+        "ARCH",
+        "STAFF"
+      ],
+      "Chapter": "02_NATIVE_DATABASE_FORMAT.md"
+    },
+    {
+      "ID": "OUR-LOAN-01",
+      "Category": "Reader assumption",
+      "Status": "Corrected; SI samples verified",
+      "Finding": "Loan parser required every entry UID footer to be-1 and rejected a real SI-created loan.",
+      "CorrectionOrNextStep": "Support unique positive entry UIDs while preserving all structural guards.",
+      "Evidence": [
+        "LOANS"
+      ],
+      "Chapter": "02_NATIVE_DATABASE_FORMAT.md"
+    },
+    {
+      "ID": "OUR-PERSONALITY-01",
+      "Category": "Shared reader/writer bug",
+      "Status": "Codec corrected; historical data audit separate",
+      "Finding": "Controversy at+3 shifted five traits; matching reader/writer could conceal the error.",
+      "CorrectionOrNextStep": "SI eight-distinct-values oracle; canonical order+1..8. Do not rotate all old data blindly.",
+      "Evidence": [
+        "PERSONALITY"
+      ],
+      "Chapter": "02_NATIVE_DATABASE_FORMAT.md"
+    },
+    {
+      "ID": "OUR-NAMES-01",
+      "Category": "Historical native-creation failure",
+      "Status": "Historical unresolved R6025 path",
+      "Finding": "Correcting a shared surname reference count did not make every old raw native-creation trial load.",
+      "CorrectionOrNextStep": "Preserve failed samples; name-country segmentation and independent SI acceptance matter.",
+      "Evidence": [
+        "ARCH"
+      ],
+      "Chapter": "02_NATIVE_DATABASE_FORMAT.md"
+    },
+    {
+      "ID": "OUR-NAMES-02",
+      "Category": "Missing embedded club names",
+      "Status": "Corrected by later shared writer; general lookup cause partial",
+      "Finding": "Three clubs had valid EN/PL names but empty embedded full/short names and blank UI rows.",
+      "CorrectionOrNextStep": "Fill six logical fields in SERVER/CLIENT; preserve UID/order; no universal fallback or global sort claim.",
+      "Evidence": [
+        "BLANK-NAMES"
+      ],
+      "Chapter": "02_NATIVE_DATABASE_FORMAT.md"
+    },
+    {
+      "ID": "OUR-EXPORT-01",
+      "Category": "Exporter search threshold",
+      "Status": "Corrected by full typed export",
+      "Finding": "Old22MiB scan start could omit early TEAM records in differently sized databases.",
+      "CorrectionOrNextStep": "Use whole-structure scan from8 with the same structural validation.",
+      "Evidence": [
+        "POLICY"
+      ],
+      "Chapter": "02_NATIVE_DATABASE_FORMAT.md"
+    },
+    {
+      "ID": "OUR-FAMILY-01",
+      "Category": "Identity/boundary assumption",
+      "Status": "Corrected in typed proof workflow",
+      "Finding": "Name FAMILY, contract FAMILY and an8-byte coincidence were not sufficient to identify every native family.",
+      "CorrectionOrNextStep": "Fresh typed TEAM tail, parent and materialized contract boundary; reject ambiguity.",
+      "Evidence": [
+        "X23",
+        "FINANCE-PLAN"
+      ],
+      "Chapter": "02_NATIVE_DATABASE_FORMAT.md"
+    },
+    {
+      "ID": "OUR-DPA-01",
+      "Category": "Virtual inheritance/hook",
+      "Status": "Corrected source and x86 cases; long run separately scoped",
+      "Finding": "Normal PLAYER name offsets dereferenced0x10 for a combined player/non-player; AV at01E00135.",
+      "CorrectionOrNextStep": "Native virtual-base conversion to PERSON; keep type-specific identity proof.",
+      "Evidence": [
+        "ARCH",
+        "PA-PATCH"
+      ],
+      "Chapter": "01_EVIDENCE_AND_ENGINE_ARCHITECTURE.md"
+    },
+    {
+      "ID": "OUR-AGING-01",
+      "Category": "Incoming branch/hook layout",
+      "Status": "Corrected and native-execution tested",
+      "Finding": "Original branches landed inside overwritten aging-hook bytes; AV atA359C1.",
+      "CorrectionOrNextStep": "Preserve A359C1/A3563E shared entries and test both incoming paths.",
+      "Evidence": [
+        "ARCH",
+        "AGING-CODE"
+      ],
+      "Chapter": "06_TRAINING_AGING_AND_STAFF.md"
+    },
+    {
+      "ID": "OUR-PANEL-01",
+      "Category": "UI lifecycle/reference",
+      "Status": "R2 failure corrected in successors",
+      "Finding": "A constructor reference sentinel-1 was treated as a live object.",
+      "CorrectionOrNextStep": "Validate typed reference and lifecycle; do not hide all faults with a generic pointer cutoff.",
+      "Evidence": [
+        "R2-FAIL"
+      ],
+      "Chapter": "08_PLAYER_PANELS_SKINS_AND_GRAPHICS.md"
+    },
+    {
+      "ID": "OUR-PANEL-02",
+      "Category": "Viewer context",
+      "Status": "Resolved in later working panels",
+      "Finding": "R3 used an empty global SERVER scratch Hhum rather than actual frontend viewer context.",
+      "CorrectionOrNextStep": "Typed PERSON_SCREEN/current connection route with own-club gates.",
+      "Evidence": [
+        "R3-FAIL",
+        "PANEL-R10"
+      ],
+      "Chapter": "08_PLAYER_PANELS_SKINS_AND_GRAPHICS.md"
+    },
+    {
+      "ID": "OUR-BG-01",
+      "Category": "Wrong widget class",
+      "Status": "Resolved in later working panels",
+      "Finding": "R3 registered LABEL, but all actual attribute cells were STANDARD_COLUMN_LABEL.",
+      "CorrectionOrNextStep": "Correct factory, draw path, destructor and scoped native fixtures.",
+      "Evidence": [
+        "R3-BG"
+      ],
+      "Chapter": "08_PLAYER_PANELS_SKINS_AND_GRAPHICS.md"
+    },
+    {
+      "ID": "OUR-BG-02",
+      "Category": "Event ordering",
+      "Status": "Resolved R6; user first-click acceptance",
+      "Finding": "R5 role symbol committed but background retained previous role until a second choice.",
+      "CorrectionOrNextStep": "Synchronize after native popup commit, then resolve current live popup.",
+      "Evidence": [
+        "FIRST-CLICK"
+      ],
+      "Chapter": "08_PLAYER_PANELS_SKINS_AND_GRAPHICS.md"
+    },
+    {
+      "ID": "OUR-BG-03",
+      "Category": "Cell geometry/paint order",
+      "Status": "Resolved R10; user acceptance",
+      "Finding": "Highlighting numeric text produced a separate badge; later cell BOX could cover a wider name band.",
+      "CorrectionOrNextStep": "Draw disjoint row bands after both native BOX paints; preserve numeric colour/font.",
+      "Evidence": [
+        "VALUE-BG",
+        "PANEL-R10"
+      ],
+      "Chapter": "08_PLAYER_PANELS_SKINS_AND_GRAPHICS.md"
+    },
+    {
+      "ID": "OUR-UI-01",
+      "Category": "Layout",
+      "Status": "Resolved R8; user acceptance",
+      "Finding": "Legend had duplicate framing/scrollbar and cramped hidden tables.",
+      "CorrectionOrNextStep": "Single skin-style legend; compact three-by-four hidden tables under attributes.",
+      "Evidence": [
+        "PANEL-R8",
+        "PANEL-R10"
+      ],
+      "Chapter": "08_PLAYER_PANELS_SKINS_AND_GRAPHICS.md"
+    },
+    {
+      "ID": "OUR-RULES-01",
+      "Category": "Display/enforcement mismatch",
+      "Status": "Resolved R12; scoped Serie A user acceptance",
+      "Finding": "Native Rules formatter had its own switch and still showed7/3 despite9/5 getters.",
+      "CorrectionOrNextStep": "Use installed effective-rule resolver and native localized string machinery.",
+      "Evidence": [
+        "RULES-UI",
+        "RULES-R12"
+      ],
+      "Chapter": "04_MATCH_RULES_AND_RULES_SCREEN.md"
+    },
+    {
+      "ID": "OUR-FIN-01",
+      "Category": "Inherited test flag",
+      "Status": "Corrected; X23 verifies756 project familiesOFF",
+      "Finding": "Wieczysta and Termalica inherited Sugar Daddy flags during tests.",
+      "CorrectionOrNextStep": "Explicit OFF/readback for every project-created family; not a global wipe of authentic clubs.",
+      "Evidence": [
+        "FINANCE",
+        "POLICY",
+        "X23"
+      ],
+      "Chapter": "09_FINANCES_REPUTATION_SPONSORS.md"
+    },
+    {
+      "ID": "POLICY-ABILITY-01",
+      "Category": "Estimate quality",
+      "Status": "Corrected selectively in X11 and later v2 batches",
+      "Finding": "Earlier imported estimates were too uniform and often left little development room.",
+      "CorrectionOrNextStep": "Stable individual spread and age-sensitive PA margins only for proven estimates; preserve credible ratings.",
+      "Evidence": [
+        "RATINGS",
+        "X23"
+      ],
+      "Chapter": "05_PLAYER_GENERATION_AND_ABILITY.md"
+    },
+    {
+      "ID": "DISPLAY-WAGE-01",
+      "Category": "Display/cache report",
+      "Status": "Withdrawn after user refresh",
+      "Finding": "Repeated extreme X16 wage displays returned to normal after currency/skin refresh.",
+      "CorrectionOrNextStep": "Do not rewrite contracts on this withdrawn report; audit stopped by user.",
+      "Evidence": [
+        "USER-DECISIONS"
+      ],
+      "Chapter": "08_PLAYER_PANELS_SKINS_AND_GRAPHICS.md"
+    },
+    {
+      "ID": "IDENTITY-MESSI-01",
+      "Category": "Reported game/editor discrepancy",
+      "Status": "Deferred by user",
+      "Finding": "Modern Messi appeared free at career start while editor assignment looked correct.",
+      "CorrectionOrNextStep": "No proven contract/MLS cause; user asked to skip. Do not label repaired.",
+      "Evidence": [
+        "NAZARYNA"
+      ],
+      "Chapter": "13_RESEARCH_BACKLOG.md"
+    },
+    {
+      "ID": "IDENTITY-NAZ-01",
+      "Category": "Duplicate person",
+      "Status": "Corrected in X3; native evidence",
+      "Finding": "Yehor/Yegor Nazaryna duplicates in Shakhtar.",
+      "CorrectionOrNextStep": "Keep canonical1612002632; remove/retire technical1689002224; preserve canonical CA/PA and attributes.",
+      "Evidence": [
+        "NAZARYNA"
+      ],
+      "Chapter": "02_NATIVE_DATABASE_FORMAT.md"
+    },
+    {
+      "ID": "IDENTITY-KOLDING-01",
+      "Category": "Club-family/role hazard",
+      "Status": "Bounded mapping corrected/protected",
+      "Finding": "Similar Kolding identities and a kind3/parent relationship could be conflated.",
+      "CorrectionOrNextStep": "Preserve typed roles/families; no broad name-only role conversion.",
+      "Evidence": [
+        "FINANCE-PLAN",
+        "X23"
+      ],
+      "Chapter": "02_NATIVE_DATABASE_FORMAT.md"
+    },
+    {
+      "ID": "DOC-CA-01",
+      "Category": "Research erratum",
+      "Status": "Corrected by later assembly audit",
+      "Finding": "AD2630 was called a CA normalizer; it only multiplies25..79 by5.",
+      "CorrectionOrNextStep": "Actual later normalizer A7A860; retain original report with explicit erratum.",
+      "Evidence": [
+        "ABILITY"
+      ],
+      "Chapter": "05_PLAYER_GENERATION_AND_ABILITY.md"
+    },
+    {
+      "ID": "DOC-UID-01",
+      "Category": "Research erratum",
+      "Status": "Superseded",
+      "Finding": "Old attribute-pid+1 shortcut was described as universal person UID.",
+      "CorrectionOrNextStep": "Use PERSON and typed table footer identities; indices/UIDs are independent.",
+      "Evidence": [
+        "ARCH"
+      ],
+      "Chapter": "02_NATIVE_DATABASE_FORMAT.md"
+    },
+    {
+      "ID": "DOC-SAVE-01",
+      "Category": "Overstated lifecycle event",
+      "Status": "Open proof gap",
+      "Finding": "A hook named SaveCompleted can fire through intermediate/refusal epilogues.",
+      "CorrectionOrNextStep": "Do not commit companion state without proved durable save completion.",
+      "Evidence": [
+        "COMPANION"
+      ],
+      "Chapter": "10_SAVE_LOAD_AND_COMPATIBILITY.md"
+    },
+    {
+      "ID": "DOC-RULEMAP-01",
+      "Category": "Mislabelled classes",
+      "Status": "Four bindings corrected",
+      "Finding": "Nearest-function labels misattributed Denmark, Belgium, Korea and Belarus rule examples.",
+      "CorrectionOrNextStep": "RTTI/vtable/constructor UID evidence; leave unresolved parameters unknown.",
+      "Evidence": [
+        "MATCH-RULES"
+      ],
+      "Chapter": "04_MATCH_RULES_AND_RULES_SCREEN.md"
+    },
+    {
+      "ID": "TOOLS-DECOMP-01",
+      "Category": "Analysis coverage limitation",
+      "Status": "Known limitation",
+      "Finding": "REA/Ghidra returned no function for three actual stage methods.",
+      "CorrectionOrNextStep": "Validate bytes, RTTI and true entry; failure to decompile is not absence of code.",
+      "Evidence": [
+        "MATCH-RULES",
+        "R5"
+      ],
+      "Chapter": "01_EVIDENCE_AND_ENGINE_ARCHITECTURE.md"
+    },
+    {
+      "ID": "UP-UEFA-01",
+      "Category": "OpenFM2007 lifecycle",
+      "Status": "Upstream snapshot open T47.1",
+      "Finding": "Qualification stalls in the second season of a second world despite prior fixes.",
+      "CorrectionOrNextStep": "Reset/rebuild bindings, sizes and caches; two-world/two-season matrix before port.",
+      "Evidence": [
+        "FM07-UEFA",
+        "UEFA-GAPS"
+      ],
+      "Chapter": "11_OPENFM2007_CAPABILITIES_AND_PORTING.md"
+    },
+    {
+      "ID": "UP-SAVE-01",
+      "Category": "OpenFM2007 persistence",
+      "Status": "Upstream snapshot open",
+      "Finding": "Current coefficient points/awarded bonuses are not fully serialized.",
+      "CorrectionOrNextStep": "Do not confuse tactical savearc blocks with UEFA persistence.",
+      "Evidence": [
+        "FM07-UEFA",
+        "COMPANION"
+      ],
+      "Chapter": "10_SAVE_LOAD_AND_COMPATIBILITY.md"
+    },
+    {
+      "ID": "UP-WINDOW-01",
+      "Category": "OpenFM2007 static counterexample",
+      "Status": "Unverified runtime; must test before port",
+      "Finding": "After first change consumes final window, used_up can reject another change in the same batch.",
+      "CorrectionOrNextStep": "Permit completion of current series but block a new stoppage; test real record ordering.",
+      "Evidence": [
+        "FM07-WINDOWS"
+      ],
+      "Chapter": "04_MATCH_RULES_AND_RULES_SCREEN.md"
+    },
+    {
+      "ID": "UP-WINDOW-02",
+      "Category": "OpenFM2007 state model",
+      "Status": "Reference limitation",
+      "Finding": "Window TEAM_STATE uses16 pointer-keyed entries and no demonstrated serialization.",
+      "CorrectionOrNextStep": "Stable match/side lifecycle and reload policy; do not copy pointer cache as persistence.",
+      "Evidence": [
+        "FM07-WINDOWS"
+      ],
+      "Chapter": "10_SAVE_LOAD_AND_COMPATIBILITY.md"
+    },
+    {
+      "ID": "UP-COEF-01",
+      "Category": "OpenFM2007 model coverage",
+      "Status": "Reference limitation",
+      "Finding": "club_ring10 parsed, native club history five; access-ranking lag and some bonus lines incomplete.",
+      "CorrectionOrNextStep": "Review data/execution separately and declare deliberate approximations.",
+      "Evidence": [
+        "FM07-UEFA"
+      ],
+      "Chapter": "11_OPENFM2007_CAPABILITIES_AND_PORTING.md"
+    },
+    {
+      "ID": "UP-RENDER-01",
+      "Category": "OpenFM2007 experiment",
+      "Status": "Withdrawn upstream experiment",
+      "Finding": "Off-screen text replay crashed; image caching/redraw throttling had adverse or unhelpful results.",
+      "CorrectionOrNextStep": "Keep removed experiments as lessons, not active capabilities or promised speedups.",
+      "Evidence": [
+        "FM07-README"
+      ],
+      "Chapter": "11_OPENFM2007_CAPABILITIES_AND_PORTING.md"
+    },
+    {
+      "ID": "EXT-SAVE-01",
+      "Category": "Persistence experiment",
+      "Status": "Not adopted",
+      "Finding": "An extra arbitrary FM archive member was lost on native resave.",
+      "CorrectionOrNextStep": "Design a verified companion transaction; native archive readability alone is insufficient.",
+      "Evidence": [
+        "ARCH",
+        "COMPANION"
+      ],
+      "Chapter": "10_SAVE_LOAD_AND_COMPATIBILITY.md"
+    },
+    {
+      "ID": "TOOL-MINISE-01",
+      "Category": "External compatibility report",
+      "Status": "Deferred; no stable reproduction",
+      "Finding": "User reported mini-SE stopped reading players, then asked to skip the issue.",
+      "CorrectionOrNextStep": "Do not conclude launcher corrupts player data without a repeatable target/build trace.",
+      "Evidence": [
+        "USER-DECISIONS"
+      ],
+      "Chapter": "13_RESEARCH_BACKLOG.md"
+    },
+    {
+      "ID": "DATA-RET-01",
+      "Category": "User-requested cleanup",
+      "Status": "X24 inventory in progress",
+      "Finding": "Project-scheduled dates must become1January2007; every target must be checked for surviving contracts/loans.",
+      "CorrectionOrNextStep": "Proven project UID scope only; preserve stock retirements, revived modern people and X23-after-SI source.",
+      "Evidence": [
+        "USER-DECISIONS"
+      ],
+      "Chapter": "13_RESEARCH_BACKLOG.md"
+    },
+    {
+      "ID": "DOC-ATTR-01",
+      "Category": "Historical offset-base ambiguity",
+      "Status": "Superseded by typed record proof",
+      "Finding": "Old compendium section3.2 labels an identity-prefixed89-byte reader window; it is not the typed attribute-record base used by current native creation.",
+      "CorrectionOrNextStep": "Use structural byte0, GK1, Crossing26, Concentration80 and footer index81/UID85; keep runtime and DAT indices separate.",
+      "Evidence": [
+        "ARCH",
+        "NATIVE-BUILDER"
+      ],
+      "Chapter": "02_NATIVE_DATABASE_FORMAT.md"
+    }
+  ]
+}
