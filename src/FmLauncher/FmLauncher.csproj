@@ -9,11 +9,12 @@
     <AssemblyTitle>FM08 Extended</AssemblyTitle>
     <Product>FM08 Extended</Product>
     <Description>FM08 Extended game launcher</Description>
-    <Version>0.1.0</Version>
-    <InformationalVersion>0.1.0-preview</InformationalVersion>
+    <Version>0.1.3</Version>
+    <InformationalVersion>0.1.3</InformationalVersion>
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="FmLauncher.languages.json" />
+    <EmbeddedResource Include="PositionAttributeWeights.csv" />
     <None Update="FmLauncher.languages.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
     <InternalsVisibleTo Include="FmLauncher.Tests" />
   </ItemGroup>

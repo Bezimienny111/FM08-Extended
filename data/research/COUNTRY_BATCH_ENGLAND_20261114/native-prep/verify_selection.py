@@ -1,0 +1,14 @@
+from pathlib import Path
+import json,sys,importlib.util,hashlib
+sys.dont_write_bytecode=True;sys.stdout.reconfigure(encoding='utf-8')
+ROOT=Path('J:/FM08dev');R=ROOT/'FmLauncher/data/research';B=Path(__file__).resolve().parent;S=B.parent;W=B/'root-structure';OLD=R/'COUNTRY_BATCH_CZE_CRO_CHN_CHI_BGR_BRA_20261113/native-prep'
+rd=lambda p:json.loads(p.read_text(encoding='utf-8-sig'));sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+spec=importlib.util.spec_from_file_location('verified_country_selection',OLD/'qa-root/selection_regression.py');qa=importlib.util.module_from_spec(spec);spec.loader.exec_module(qa)
+old,native,pins,overlays,summary=qa.definitions();priorpath=R/'COUNTRY_BATCH_BLR_BEL_AUT_AUS_ARG_20261114/competition-prep/native-competition-requirements-scoped-r2.json';native+=qa.normalize(rd(priorpath)['requirements']);pins[str(priorpath)]=sha(priorpath);new=qa.normalize(rd(S/'competition-prep/native-competition-requirements.json')['requirements']);assert len(new)==32 and len(old)+len(native)==589
+freeze=rd(B/'source-freeze.json');report=rd(W/'structure-report.json');relevant={q['uid']for q in old+native+new}
+source=qa.add_native_counts(qa.x18.profile(Path(freeze['frozen']),freeze['hashes'],B/'native-structure.json',overlays,relevant));target=qa.add_native_counts(qa.x18.profile(Path(report['output']),report['output_hashes'],W/'native-structure-after.json',overlays,relevant))
+legacybefore=qa.x18.checks_for(old,source);legacyafter=qa.x18.checks_for(old,target);nativebefore=qa.native_checks(native,source);nativeafter=qa.native_checks(native,target);current=qa.native_checks(new,target)
+regress=[dict(UID=a['uid'],Form=a['form'],Before=a['Count'],After=z['Count'])for a,z in zip(legacybefore+nativebefore,legacyafter+nativeafter)if a['Passed']and not z['Passed']];failed=[q for q in current if not q['Passed']]
+assert source['nations']==target['nations'] and list(source['names'])==list(target['names']) and set(source['raw'])<=set(target['raw'])
+out=dict(Status='PASS_ALL_CURRENT_AND_INHERITED_SELECTION'if not regress and not failed else'SELECTION_FAILURE',Evaluations=len(old)+len(native)+len(new),NewConditions=len(new),PriorRegressions=regress,NewFailures=failed,InheritedFailures=[q for q in legacyafter+nativeafter if not q['Passed']],CurrentChecks=current,SourceAndTargetCountryAndCompCataloguesPreserved=True,SourceTEAM=len(source['raw']),TargetTEAM=len(target['raw']),LoaderOverlaysPreserved=True,TargetHashes=report['output_hashes'],SourcePins=pins,SourceDatabaseUnchanged=True,SI=False,NewCareer=False,Season=False)
+(B/'selection-readback.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8');print(json.dumps({k:v for k,v in out.items()if k in ['Status','Evaluations','PriorRegressions','NewFailures','InheritedFailures']}),flush=True);assert not regress and not failed

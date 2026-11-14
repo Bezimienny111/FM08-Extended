@@ -1,0 +1,31 @@
+{
+  "LauncherVersion": "0.1.3_R12",
+  "Files": [
+    {
+      "Name": "FmLauncher.deps.json",
+      "SHA256": "076fdfb70d6f8da0b69382a7cb0dba668049e39fd41c25262ad5ea0a72811c58"
+    },
+    {
+      "Name": "FmLauncher.dll",
+      "SHA256": "5b767a19bca1c1ddb55a9a8da6fb5fdd6ff3ff1782020d4c5c07e0e17a41ab55"
+    },
+    {
+      "Name": "FmLauncher.exe",
+      "SHA256": "096da11522350d106bd21f6eefb22f36bfdf0b519ad38ff9d9e8463cdb84fa70"
+    },
+    {
+      "Name": "FmLauncher.languages.json",
+      "SHA256": "cc06238a541ae744c45bf83352b13709e84693c4008c6172b48f11461824ecd6"
+    },
+    {
+      "Name": "FmLauncher.runtimeconfig.json",
+      "SHA256": "e1e0974d0e8833375024eb7c78521b3b5cad4228aad22b23d506cbe702445844"
+    },
+    {
+      "Name": "README_R12.txt",
+      "SHA256": "0d9bacfe3f247fa2809c03b3c96723e80ce1e2888d1ed071c52e777dbdea587e"
+    }
+  ],
+  "PersonalConfigurationExcluded": true,
+  "PdbExcluded": true
+}

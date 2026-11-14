@@ -1,0 +1,5212 @@
+[
+  {
+    "SourceTMID": "131",
+    "CanonicalMainTMID": "131",
+    "Name": "FC Barcelona",
+    "SourceCountry": "Spain",
+    "NativeCountryIndex": 170,
+    "ReferenceNativeClubUID": 1708,
+    "Decision": "prior_confirmed_TM_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": false,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 1708,
+        "Names": [
+          "FC Barcelona",
+          "Barcelona",
+          "Barça"
+        ],
+        "Country": 170
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "131",
+    "NativeClubUID": 1708,
+    "NativeContractFamilyIndex": 1293
+  },
+  {
+    "SourceTMID": "631",
+    "CanonicalMainTMID": "631",
+    "Name": "Chelsea FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 630,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 630,
+        "Names": [
+          "Chelsea",
+          "Chels",
+          "The Blues"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "631",
+    "NativeClubUID": 630,
+    "NativeContractFamilyIndex": 416
+  },
+  {
+    "SourceTMID": "281",
+    "CanonicalMainTMID": "281",
+    "Name": "Manchester City",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 679,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 679,
+        "Names": [
+          "Manchester City",
+          "Man City",
+          "Man C"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "281",
+    "NativeClubUID": 679,
+    "NativeContractFamilyIndex": 464
+  },
+  {
+    "SourceTMID": "3948",
+    "CanonicalMainTMID": "3948",
+    "Name": "Union Saint-Gilloise",
+    "SourceCountry": "Belgium",
+    "NativeCountryIndex": 131,
+    "ReferenceNativeClubUID": 288,
+    "Decision": "prior_confirmed_TM_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": false,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 288,
+        "Names": [
+          "Royale Union Saint-Gilloise",
+          "Union SG",
+          "Union"
+        ],
+        "Country": 131
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "3948",
+    "NativeClubUID": 288,
+    "NativeContractFamilyIndex": 167
+  },
+  {
+    "SourceTMID": "379",
+    "CanonicalMainTMID": "379",
+    "Name": "West Ham United",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 735,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 735,
+        "Names": [
+          "West Ham United",
+          "West Ham",
+          "W Ham"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "379",
+    "NativeClubUID": 735,
+    "NativeContractFamilyIndex": 519
+  },
+  {
+    "SourceTMID": "506",
+    "CanonicalMainTMID": "506",
+    "Name": "Juventus FC",
+    "SourceCountry": "Italy",
+    "NativeCountryIndex": 150,
+    "ReferenceNativeClubUID": 1139,
+    "Decision": "unique_source_name_country_reference_requires_fresh_native_validation",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": false,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 1139,
+        "Names": [
+          "Juventus",
+          "Juve",
+          "Bianconeri"
+        ],
+        "Country": 150
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "506",
+    "NativeClubUID": 1139,
+    "NativeContractFamilyIndex": 818
+  },
+  {
+    "SourceTMID": "800",
+    "CanonicalMainTMID": "800",
+    "Name": "Atalanta BC",
+    "SourceCountry": "Italy",
+    "NativeCountryIndex": 150,
+    "ReferenceNativeClubUID": 1106,
+    "Decision": "unique_source_name_country_reference_requires_fresh_native_validation",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": false,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 1106,
+        "Names": [
+          "Atalanta",
+          "Atalan",
+          "Orobici"
+        ],
+        "Country": 150
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "800",
+    "NativeClubUID": 1106,
+    "NativeContractFamilyIndex": 786
+  },
+  {
+    "SourceTMID": "865",
+    "CanonicalMainTMID": "865",
+    "Name": "FC Midtjylland",
+    "SourceCountry": "Denmark",
+    "NativeCountryIndex": 138,
+    "ReferenceNativeClubUID": 526,
+    "Decision": "prior_confirmed_TM_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": false,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 526,
+        "Names": [
+          "FC Midtjylland",
+          "Midtjylland",
+          "FCM"
+        ],
+        "Country": 138
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "865",
+    "NativeClubUID": 526,
+    "NativeContractFamilyIndex": 341
+  },
+  {
+    "SourceTMID": "405",
+    "CanonicalMainTMID": "405",
+    "Name": "Aston Villa",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 603,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 603,
+        "Names": [
+          "Aston Villa",
+          "Villa",
+          "The Villans"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "405",
+    "NativeClubUID": 603,
+    "NativeContractFamilyIndex": 389
+  },
+  {
+    "SourceTMID": "148",
+    "CanonicalMainTMID": "148",
+    "Name": "Tottenham Hotspur",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 728,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 728,
+        "Names": [
+          "Tottenham Hotspur",
+          "Tottenham",
+          "Spurs"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "148",
+    "NativeClubUID": 728,
+    "NativeContractFamilyIndex": 513
+  },
+  {
+    "SourceTMID": "417",
+    "CanonicalMainTMID": "417",
+    "Name": "OGC Nice",
+    "SourceCountry": "France",
+    "NativeCountryIndex": 143,
+    "ReferenceNativeClubUID": 862,
+    "Decision": "prior_confirmed_TM_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": false,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 862,
+        "Names": [
+          "OGC Nice",
+          "Nice",
+          "NICE"
+        ],
+        "Country": 143
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "417",
+    "NativeClubUID": 862,
+    "NativeContractFamilyIndex": 582
+  },
+  {
+    "SourceTMID": "24",
+    "CanonicalMainTMID": "24",
+    "Name": "Eintracht Frankfurt",
+    "SourceCountry": "Germany",
+    "NativeCountryIndex": 145,
+    "ReferenceNativeClubUID": 912,
+    "Decision": "unique_source_name_country_reference_requires_fresh_native_validation",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": false,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 912,
+        "Names": [
+          "Eintracht Frankfurt",
+          "Frankfurt",
+          "EinFra"
+        ],
+        "Country": 145
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "24",
+    "NativeClubUID": 912,
+    "NativeContractFamilyIndex": 623
+  },
+  {
+    "SourceTMID": "9265",
+    "CanonicalMainTMID": "281",
+    "Name": "Manchester City",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 679,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 679,
+        "Names": [
+          "Manchester City",
+          "Man City",
+          "Man C"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "9265",
+    "NativeClubUID": 679,
+    "NativeContractFamilyIndex": 464
+  },
+  {
+    "SourceTMID": "12",
+    "CanonicalMainTMID": "12",
+    "Name": "AS Roma",
+    "SourceCountry": "Italy",
+    "NativeCountryIndex": 150,
+    "ReferenceNativeClubUID": 1100,
+    "Decision": "unique_source_name_country_reference_requires_fresh_native_validation",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": false,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 1100,
+        "Names": [
+          "AS Roma",
+          "Roma",
+          "Giallorossi"
+        ],
+        "Country": 150
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "12",
+    "NativeClubUID": 1100,
+    "NativeContractFamilyIndex": 780
+  },
+  {
+    "SourceTMID": "703",
+    "CanonicalMainTMID": "703",
+    "Name": "Nottingham Forest",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 692,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 692,
+        "Names": [
+          "Nottingham Forest",
+          "Nottm Forest",
+          "Forest"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "703",
+    "NativeClubUID": 692,
+    "NativeContractFamilyIndex": 477
+  },
+  {
+    "SourceTMID": "621",
+    "CanonicalMainTMID": "621",
+    "Name": "Athletic Bilbao",
+    "SourceCountry": "Spain",
+    "NativeCountryIndex": 170,
+    "ReferenceNativeClubUID": 1664,
+    "Decision": "prior_confirmed_TM_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": false,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 1664,
+        "Names": [
+          "Athletic Bilbao",
+          "Athletic Club",
+          "Athltc"
+        ],
+        "Country": 170
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "621",
+    "NativeClubUID": 1664,
+    "NativeContractFamilyIndex": 1264
+  },
+  {
+    "SourceTMID": "399",
+    "CanonicalMainTMID": "399",
+    "Name": "Leeds United",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 671,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 671,
+        "Names": [
+          "Leeds United",
+          "Leeds",
+          "United"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "399",
+    "NativeClubUID": 671,
+    "NativeContractFamilyIndex": 456
+  },
+  {
+    "SourceTMID": "273",
+    "CanonicalMainTMID": "273",
+    "Name": "Stade Rennais FC",
+    "SourceCountry": "France",
+    "NativeCountryIndex": 143,
+    "ReferenceNativeClubUID": 884,
+    "Decision": "prior_confirmed_TM_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": false,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 884,
+        "Names": [
+          "Stade Rennais FC",
+          "Rennes",
+          "RENNES"
+        ],
+        "Country": 143
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "273",
+    "NativeClubUID": 884,
+    "NativeContractFamilyIndex": 602
+  },
+  {
+    "SourceTMID": "9253",
+    "CanonicalMainTMID": "762",
+    "Name": "Newcastle United",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 688,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 688,
+        "Names": [
+          "Newcastle United",
+          "Newcastle",
+          "Newc"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "9253",
+    "NativeClubUID": 688,
+    "NativeContractFamilyIndex": 473
+  },
+  {
+    "SourceTMID": "124",
+    "CanonicalMainTMID": "124",
+    "Name": "Rangers FC",
+    "SourceCountry": "Scotland",
+    "NativeCountryIndex": 167,
+    "ReferenceNativeClubUID": 1570,
+    "Decision": "unique_source_name_country_reference_requires_fresh_native_validation",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": false,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 1570,
+        "Names": [
+          "Rangers FC",
+          "Rangers",
+          "Gers"
+        ],
+        "Country": 167
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "124",
+    "NativeClubUID": 1570,
+    "NativeContractFamilyIndex": 1192
+  },
+  {
+    "SourceTMID": "1237",
+    "CanonicalMainTMID": "1237",
+    "Name": "Brighton & Hove Albion",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 618,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 618,
+        "Names": [
+          "Brighton and Hove Albion",
+          "Brighton",
+          "Brghtn"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "1237",
+    "NativeClubUID": 618,
+    "NativeContractFamilyIndex": 404
+  },
+  {
+    "SourceTMID": "289",
+    "CanonicalMainTMID": "289",
+    "Name": "Sunderland AFC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 722,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 722,
+        "Names": [
+          "Sunderland",
+          "S’land",
+          "The Black Cats"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "289",
+    "NativeClubUID": 722,
+    "NativeContractFamilyIndex": 507
+  },
+  {
+    "SourceTMID": "10330",
+    "CanonicalMainTMID": "294",
+    "Name": "SL Benfica",
+    "SourceCountry": "Portugal",
+    "NativeCountryIndex": 162,
+    "ReferenceNativeClubUID": 1487,
+    "Decision": "explicit_primary_SL_Benfica_not_Clube_Futebol_Benfica",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": false,
+    "SourceClubTypeID": 2,
+    "Candidates": [
+      {
+        "UID": 1487,
+        "Names": [
+          "SL Benfica",
+          "Benfica",
+          "SLB"
+        ],
+        "Country": 162
+      },
+      {
+        "UID": 2476,
+        "Names": [
+          "Clube Futebol Benfica",
+          "Fut. Benfica",
+          "CFB"
+        ],
+        "Country": 162
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "10330",
+    "NativeClubUID": 1487,
+    "NativeContractFamilyIndex": 1114
+  },
+  {
+    "SourceTMID": "990",
+    "CanonicalMainTMID": "990",
+    "Name": "Coventry City",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 639,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 639,
+        "Names": [
+          "Coventry City",
+          "Coventry",
+          "Cov"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "990",
+    "NativeClubUID": 639,
+    "NativeContractFamilyIndex": 425
+  },
+  {
+    "SourceTMID": "1148",
+    "CanonicalMainTMID": "1148",
+    "Name": "Brentford FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 617,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 617,
+        "Names": [
+          "Brentford",
+          "Brent",
+          "The Bees"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "1148",
+    "NativeClubUID": 617,
+    "NativeContractFamilyIndex": 403
+  },
+  {
+    "SourceTMID": "180",
+    "CanonicalMainTMID": "180",
+    "Name": "Southampton FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 713,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 713,
+        "Names": [
+          "Southampton",
+          "Soton",
+          "The Saints"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "180",
+    "NativeClubUID": 713,
+    "NativeContractFamilyIndex": 498
+  },
+  {
+    "SourceTMID": "609",
+    "CanonicalMainTMID": "609",
+    "Name": "Cruzeiro Esporte Clube",
+    "SourceCountry": "Brazil",
+    "NativeCountryIndex": 189,
+    "ReferenceNativeClubUID": 321,
+    "Decision": "prior_confirmed_TM_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": false,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 321,
+        "Names": [
+          "Cruzeiro Esporte Clube",
+          "Cruzeiro",
+          "Cru"
+        ],
+        "Country": 189
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "609",
+    "NativeClubUID": 321,
+    "NativeContractFamilyIndex": 196
+  },
+  {
+    "SourceTMID": "36",
+    "CanonicalMainTMID": "36",
+    "Name": "Fenerbahce",
+    "SourceCountry": "Türkiye",
+    "NativeCountryIndex": 173,
+    "ReferenceNativeClubUID": 1870,
+    "Decision": "prior_verified_TM_Turkey_country_mapping",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": false,
+    "SourceClubTypeID": 1,
+    "Candidates": [],
+    "FutureFreshNativeRequired": false,
+    "PriorMappingFile": "J:\\FM08dev\\FmLauncher\\data\\research\\UKRAINE_TURKEY_X2_20261109\\club-map.csv",
+    "PriorMappingSHA256": "9bb318bd07ad83bb550aa80e1b91e63838a7161ea520ead43e5505aba3d3b231",
+    "TMID": "36",
+    "NativeClubUID": 1870,
+    "NativeContractFamilyIndex": 1413
+  },
+  {
+    "SourceTMID": "677",
+    "CanonicalMainTMID": "677",
+    "Name": "Ipswich Town",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 667,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 667,
+        "Names": [
+          "Ipswich Town",
+          "Ipswich",
+          "Ipswch"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "677",
+    "NativeClubUID": 667,
+    "NativeContractFamilyIndex": 452
+  },
+  {
+    "SourceTMID": "3008",
+    "CanonicalMainTMID": "3008",
+    "Name": "Hull City",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 665,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 665,
+        "Names": [
+          "Hull City",
+          "Hull",
+          "The Tigers"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "3008",
+    "NativeClubUID": 665,
+    "NativeContractFamilyIndex": 450
+  },
+  {
+    "SourceTMID": "667",
+    "CanonicalMainTMID": "667",
+    "Name": "RC Strasbourg Alsace",
+    "SourceCountry": "France",
+    "NativeCountryIndex": 143,
+    "ReferenceNativeClubUID": 872,
+    "Decision": "prior_confirmed_TM_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": false,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 872,
+        "Names": [
+          "RC Strasbourg Alsace",
+          "R. Strasbourg",
+          "RCS"
+        ],
+        "Country": 143
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "667",
+    "NativeClubUID": 872,
+    "NativeContractFamilyIndex": 592
+  },
+  {
+    "SourceTMID": "410",
+    "CanonicalMainTMID": "410",
+    "Name": "Udinese Calcio",
+    "SourceCountry": "Italy",
+    "NativeCountryIndex": 150,
+    "ReferenceNativeClubUID": 1178,
+    "Decision": "unique_source_name_country_reference_requires_fresh_native_validation",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": false,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 1178,
+        "Names": [
+          "Udinese",
+          "Udines",
+          "Zebrette"
+        ],
+        "Country": 150
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "410",
+    "NativeClubUID": 1178,
+    "NativeContractFamilyIndex": 855
+  },
+  {
+    "SourceTMID": "1003",
+    "CanonicalMainTMID": "1003",
+    "Name": "Leicester City",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 673,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 673,
+        "Names": [
+          "Leicester City",
+          "Leicester",
+          "Leics"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "1003",
+    "NativeClubUID": 673,
+    "NativeContractFamilyIndex": 458
+  },
+  {
+    "SourceTMID": "873",
+    "CanonicalMainTMID": "873",
+    "Name": "Crystal Palace",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 642,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 642,
+        "Names": [
+          "Crystal Palace",
+          "Palace",
+          "The Eagles"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "873",
+    "NativeClubUID": 642,
+    "NativeContractFamilyIndex": 428
+  },
+  {
+    "SourceTMID": "988",
+    "CanonicalMainTMID": "988",
+    "Name": "Oxford United",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 695,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 695,
+        "Names": [
+          "Oxford United",
+          "Oxford",
+          "Oxfd U"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "988",
+    "NativeClubUID": 695,
+    "NativeContractFamilyIndex": 480
+  },
+  {
+    "SourceTMID": "4172",
+    "CanonicalMainTMID": "4172",
+    "Name": "Pisa Sporting Club",
+    "SourceCountry": "Italy",
+    "NativeCountryIndex": 150,
+    "ReferenceNativeClubUID": 2215,
+    "Decision": "unique_source_name_country_reference_requires_fresh_native_validation",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": false,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 2215,
+        "Names": [
+          "Pisa",
+          "Neroazzurri",
+          "Pisani"
+        ],
+        "Country": 150
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "4172",
+    "NativeClubUID": 2215,
+    "NativeContractFamilyIndex": 1734
+  },
+  {
+    "SourceTMID": "1123",
+    "CanonicalMainTMID": "1123",
+    "Name": "Norwich City",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 691,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 691,
+        "Names": [
+          "Norwich City",
+          "Norwich",
+          "Norwch"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "1123",
+    "NativeClubUID": 691,
+    "NativeContractFamilyIndex": 476
+  },
+  {
+    "SourceTMID": "641",
+    "CanonicalMainTMID": "641",
+    "Name": "Middlesbrough FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 685,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 685,
+        "Names": [
+          "Middlesbrough",
+          "M'boro",
+          "Boro"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "641",
+    "NativeClubUID": 685,
+    "NativeContractFamilyIndex": 470
+  },
+  {
+    "SourceTMID": "1184",
+    "CanonicalMainTMID": "1184",
+    "Name": "KRC Genk",
+    "SourceCountry": "Belgium",
+    "NativeCountryIndex": 131,
+    "ReferenceNativeClubUID": 258,
+    "Decision": "prior_confirmed_TM_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": false,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 258,
+        "Names": [
+          "K Racing Club Genk",
+          "Genk"
+        ],
+        "Country": 131
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "1184",
+    "NativeClubUID": 258,
+    "NativeContractFamilyIndex": 141
+  },
+  {
+    "SourceTMID": "1112",
+    "CanonicalMainTMID": "1112",
+    "Name": "Wrexham AFC",
+    "SourceCountry": "Wales",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 741,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [],
+    "FutureFreshNativeRequired": false,
+    "TMID": "1112",
+    "NativeClubUID": 741,
+    "NativeContractFamilyIndex": 525
+  },
+  {
+    "SourceTMID": "62",
+    "CanonicalMainTMID": "62",
+    "Name": "SK Slavia Prague",
+    "SourceCountry": "Czech Republic",
+    "NativeCountryIndex": 137,
+    "ReferenceNativeClubUID": 474,
+    "Decision": "prior_confirmed_TM_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": false,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 474,
+        "Names": [
+          "SK Slavia Prague",
+          "Slavia Prague",
+          "Slavia"
+        ],
+        "Country": 137
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "62",
+    "NativeClubUID": 474,
+    "NativeContractFamilyIndex": 299
+  },
+  {
+    "SourceTMID": "9250",
+    "CanonicalMainTMID": "631",
+    "Name": "Chelsea FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 630,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 630,
+        "Names": [
+          "Chelsea",
+          "Chels",
+          "The Blues"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "9250",
+    "NativeClubUID": 630,
+    "NativeContractFamilyIndex": 416
+  },
+  {
+    "SourceTMID": "167",
+    "CanonicalMainTMID": "167",
+    "Name": "FC Augsburg",
+    "SourceCountry": "Germany",
+    "NativeCountryIndex": 145,
+    "ReferenceNativeClubUID": 2238,
+    "Decision": "unique_source_name_country_reference_requires_fresh_native_validation",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": false,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 2238,
+        "Names": [
+          "FC Augsburg",
+          "Augsburg",
+          "FCA"
+        ],
+        "Country": 145
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "167",
+    "NativeClubUID": 2238,
+    "NativeContractFamilyIndex": 1754
+  },
+  {
+    "SourceTMID": "290",
+    "CanonicalMainTMID": "290",
+    "Name": "AJ Auxerre",
+    "SourceCountry": "France",
+    "NativeCountryIndex": 143,
+    "ReferenceNativeClubUID": 824,
+    "Decision": "prior_confirmed_TM_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": false,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 824,
+        "Names": [
+          "AJ Auxerre",
+          "AJA",
+          "L'A.J.A"
+        ],
+        "Country": 143
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "290",
+    "NativeClubUID": 824,
+    "NativeContractFamilyIndex": 551
+  },
+  {
+    "SourceTMID": "9252",
+    "CanonicalMainTMID": "31",
+    "Name": "Liverpool FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 676,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 676,
+        "Names": [
+          "Liverpool",
+          "L'pool",
+          "The Reds"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "9252",
+    "NativeClubUID": 676,
+    "NativeContractFamilyIndex": 461
+  },
+  {
+    "SourceTMID": "9254",
+    "CanonicalMainTMID": "148",
+    "Name": "Tottenham Hotspur",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 728,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 728,
+        "Names": [
+          "Tottenham Hotspur",
+          "Tottenham",
+          "Spurs"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "9254",
+    "NativeClubUID": 728,
+    "NativeContractFamilyIndex": 513
+  },
+  {
+    "SourceTMID": "358",
+    "CanonicalMainTMID": "358",
+    "Name": "Charlton Athletic",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 628,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 628,
+        "Names": [
+          "Charlton Athletic",
+          "Charlton",
+          "Charlt"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "358",
+    "NativeClubUID": 628,
+    "NativeContractFamilyIndex": 414
+  },
+  {
+    "SourceTMID": "9251",
+    "CanonicalMainTMID": "985",
+    "Name": "Manchester United",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 680,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 680,
+        "Names": [
+          "Manchester United",
+          "Man Utd",
+          "Man U"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "9251",
+    "NativeClubUID": 680,
+    "NativeContractFamilyIndex": 465
+  },
+  {
+    "SourceTMID": "39336",
+    "CanonicalMainTMID": "1237",
+    "Name": "Brighton & Hove Albion",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 618,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 618,
+        "Names": [
+          "Brighton and Hove Albion",
+          "Brighton",
+          "Brghtn"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "39336",
+    "NativeClubUID": 618,
+    "NativeContractFamilyIndex": 404
+  },
+  {
+    "SourceTMID": "762",
+    "CanonicalMainTMID": "762",
+    "Name": "Newcastle United",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 688,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 688,
+        "Names": [
+          "Newcastle United",
+          "Newcastle",
+          "Newc"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "762",
+    "NativeClubUID": 688,
+    "NativeContractFamilyIndex": 473
+  },
+  {
+    "SourceTMID": "26117",
+    "CanonicalMainTMID": "677",
+    "Name": "Ipswich Town",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 667,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 667,
+        "Names": [
+          "Ipswich Town",
+          "Ipswich",
+          "Ipswch"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "26117",
+    "NativeClubUID": 667,
+    "NativeContractFamilyIndex": 452
+  },
+  {
+    "SourceTMID": "20116",
+    "CanonicalMainTMID": "399",
+    "Name": "Leeds United",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 671,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 671,
+        "Names": [
+          "Leeds United",
+          "Leeds",
+          "United"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "20116",
+    "NativeClubUID": 671,
+    "NativeContractFamilyIndex": 456
+  },
+  {
+    "SourceTMID": "984",
+    "CanonicalMainTMID": "984",
+    "Name": "West Bromwich Albion",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 734,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 734,
+        "Names": [
+          "West Bromwich Albion",
+          "West Brom",
+          "WBA"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "984",
+    "NativeClubUID": 734,
+    "NativeContractFamilyIndex": 518
+  },
+  {
+    "SourceTMID": "9264",
+    "CanonicalMainTMID": "289",
+    "Name": "Sunderland AFC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 722,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 722,
+        "Names": [
+          "Sunderland",
+          "S’land",
+          "The Black Cats"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "9264",
+    "NativeClubUID": 722,
+    "NativeContractFamilyIndex": 507
+  },
+  {
+    "SourceTMID": "12124",
+    "CanonicalMainTMID": "405",
+    "Name": "Aston Villa",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 603,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 603,
+        "Names": [
+          "Aston Villa",
+          "Villa",
+          "The Villans"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "12124",
+    "NativeClubUID": 603,
+    "NativeContractFamilyIndex": 389
+  },
+  {
+    "SourceTMID": "9261",
+    "CanonicalMainTMID": "29",
+    "Name": "Everton FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 650,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 650,
+        "Names": [
+          "Everton",
+          "Evrton",
+          "The Toffees"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "9261",
+    "NativeClubUID": 650,
+    "NativeContractFamilyIndex": 435
+  },
+  {
+    "SourceTMID": "1020",
+    "CanonicalMainTMID": "1020",
+    "Name": "Portsmouth FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 699,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 699,
+        "Names": [
+          "Portsmouth",
+          "Pompey"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "1020",
+    "NativeClubUID": 699,
+    "NativeContractFamilyIndex": 484
+  },
+  {
+    "SourceTMID": "1031",
+    "CanonicalMainTMID": "1031",
+    "Name": "Luton Town",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 677,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 677,
+        "Names": [
+          "Luton Town",
+          "Luton",
+          "The Hatters"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "1031",
+    "NativeClubUID": 677,
+    "NativeContractFamilyIndex": 462
+  },
+  {
+    "SourceTMID": "1110",
+    "CanonicalMainTMID": "1110",
+    "Name": "Huddersfield Town",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 664,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 664,
+        "Names": [
+          "Huddersfield Town",
+          "Huddersfield",
+          "Hudd"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "1110",
+    "NativeClubUID": 664,
+    "NativeContractFamilyIndex": 449
+  },
+  {
+    "SourceTMID": "698",
+    "CanonicalMainTMID": "698",
+    "Name": "Bristol City",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 619,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 619,
+        "Names": [
+          "Bristol City",
+          "Bris C",
+          "The Robins"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "698",
+    "NativeClubUID": 619,
+    "NativeContractFamilyIndex": 405
+  },
+  {
+    "SourceTMID": "1039",
+    "CanonicalMainTMID": "1039",
+    "Name": "Queens Park Rangers",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 701,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 701,
+        "Names": [
+          "Queens Park Rangers",
+          "Q.P.R.",
+          "QPR"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "1039",
+    "NativeClubUID": 701,
+    "NativeContractFamilyIndex": 486
+  },
+  {
+    "SourceTMID": "9262",
+    "CanonicalMainTMID": "931",
+    "Name": "Fulham FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 654,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 654,
+        "Names": [
+          "Fulham",
+          "The Cottagers"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "9262",
+    "NativeClubUID": 654,
+    "NativeContractFamilyIndex": 439
+  },
+  {
+    "SourceTMID": "1150",
+    "CanonicalMainTMID": "1150",
+    "Name": "Leyton Orient",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 674,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 674,
+        "Names": [
+          "Leyton Orient",
+          "Orient",
+          "The O's"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "1150",
+    "NativeClubUID": 674,
+    "NativeContractFamilyIndex": 459
+  },
+  {
+    "SourceTMID": "2288",
+    "CanonicalMainTMID": "2288",
+    "Name": "Swansea City",
+    "SourceCountry": "Wales",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 724,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [],
+    "FutureFreshNativeRequired": false,
+    "TMID": "2288",
+    "NativeClubUID": 724,
+    "NativeContractFamilyIndex": 509
+  },
+  {
+    "SourceTMID": "1098",
+    "CanonicalMainTMID": "1098",
+    "Name": "Stockport County",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 720,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 720,
+        "Names": [
+          "Stockport County",
+          "Stockport",
+          "Stkpt"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "1098",
+    "NativeClubUID": 720,
+    "NativeContractFamilyIndex": 505
+  },
+  {
+    "SourceTMID": "512",
+    "CanonicalMainTMID": "512",
+    "Name": "Stoke City",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 721,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 721,
+        "Names": [
+          "Stoke City",
+          "Stoke",
+          "The Potters"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "512",
+    "NativeClubUID": 721,
+    "NativeContractFamilyIndex": 506
+  },
+  {
+    "SourceTMID": "164",
+    "CanonicalMainTMID": "164",
+    "Name": "Blackburn Rovers",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 612,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 612,
+        "Names": [
+          "Blackburn Rovers",
+          "Blackburn",
+          "Bburn"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "164",
+    "NativeClubUID": 612,
+    "NativeContractFamilyIndex": 398
+  },
+  {
+    "SourceTMID": "11",
+    "CanonicalMainTMID": "11",
+    "Name": "Arsenal FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 602,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 602,
+        "Names": [
+          "Arsenal",
+          "Arsnl",
+          "The Gunners"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "11",
+    "NativeClubUID": 602,
+    "NativeContractFamilyIndex": 388
+  },
+  {
+    "SourceTMID": "6890",
+    "CanonicalMainTMID": "6890",
+    "Name": "Basaksehir FK",
+    "SourceCountry": "Türkiye",
+    "NativeCountryIndex": 173,
+    "ReferenceNativeClubUID": 130343,
+    "Decision": "prior_verified_TM_Turkey_country_mapping",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": false,
+    "SourceClubTypeID": 1,
+    "Candidates": [],
+    "FutureFreshNativeRequired": false,
+    "PriorMappingFile": "J:\\FM08dev\\FmLauncher\\data\\research\\UKRAINE_TURKEY_X2_20261109\\club-map.csv",
+    "PriorMappingSHA256": "9bb318bd07ad83bb550aa80e1b91e63838a7161ea520ead43e5505aba3d3b231",
+    "TMID": "6890",
+    "NativeClubUID": 130343,
+    "NativeContractFamilyIndex": 3182
+  },
+  {
+    "SourceTMID": "6945",
+    "CanonicalMainTMID": "873",
+    "Name": "Crystal Palace",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 642,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 642,
+        "Names": [
+          "Crystal Palace",
+          "Palace",
+          "The Eagles"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "6945",
+    "NativeClubUID": 642,
+    "NativeContractFamilyIndex": 428
+  },
+  {
+    "SourceTMID": "2760",
+    "CanonicalMainTMID": "2760",
+    "Name": "Partick Thistle FC",
+    "SourceCountry": "Scotland",
+    "NativeCountryIndex": 167,
+    "ReferenceNativeClubUID": 1586,
+    "Decision": "unique_source_name_country_reference_requires_fresh_native_validation",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": false,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 1586,
+        "Names": [
+          "Partick Thistle FC",
+          "Partick Thistle",
+          "Par Th"
+        ],
+        "Country": 167
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "2760",
+    "NativeClubUID": 1586,
+    "NativeContractFamilyIndex": 1206
+  },
+  {
+    "SourceTMID": "1198",
+    "CanonicalMainTMID": "1198",
+    "Name": "Lincoln City",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 675,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 675,
+        "Names": [
+          "Lincoln City",
+          "Lincoln",
+          "Linc C"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "1198",
+    "NativeClubUID": 675,
+    "NativeContractFamilyIndex": 460
+  },
+  {
+    "SourceTMID": "200",
+    "CanonicalMainTMID": "200",
+    "Name": "FC Utrecht",
+    "SourceCountry": "Netherlands",
+    "NativeCountryIndex": 158,
+    "ReferenceNativeClubUID": 1010,
+    "Decision": "prior_confirmed_TM_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": false,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 1010,
+        "Names": [
+          "FC Utrecht",
+          "Utrecht",
+          "Utrech"
+        ],
+        "Country": 158
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "200",
+    "NativeClubUID": 1010,
+    "NativeContractFamilyIndex": 697
+  },
+  {
+    "SourceTMID": "991",
+    "CanonicalMainTMID": "991",
+    "Name": "Milton Keynes Dons",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 151027,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 151027,
+        "Names": [
+          "Milton Keynes Dons",
+          "MK Dons",
+          "MKDons"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "991",
+    "NativeClubUID": 151027,
+    "NativeContractFamilyIndex": 4147
+  },
+  {
+    "SourceTMID": "38588",
+    "CanonicalMainTMID": "703",
+    "Name": "Nottingham Forest",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 692,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 692,
+        "Names": [
+          "Nottingham Forest",
+          "Nottm Forest",
+          "Forest"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "38588",
+    "NativeClubUID": 692,
+    "NativeContractFamilyIndex": 477
+  },
+  {
+    "SourceTMID": "355",
+    "CanonicalMainTMID": "355",
+    "Name": "Bolton Wanderers",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 614,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 614,
+        "Names": [
+          "Bolton Wanderers",
+          "Bolton",
+          "The Wanderers"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "355",
+    "NativeClubUID": 614,
+    "NativeContractFamilyIndex": 400
+  },
+  {
+    "SourceTMID": "1028",
+    "CanonicalMainTMID": "1028",
+    "Name": "Millwall FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 686,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 686,
+        "Names": [
+          "Millwall",
+          "Mill",
+          "The Lions"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "1028",
+    "NativeClubUID": 686,
+    "NativeContractFamilyIndex": 471
+  },
+  {
+    "SourceTMID": "32636",
+    "CanonicalMainTMID": "990",
+    "Name": "Coventry City",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 639,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 639,
+        "Names": [
+          "Coventry City",
+          "Coventry",
+          "Cov"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "32636",
+    "NativeClubUID": 639,
+    "NativeContractFamilyIndex": 425
+  },
+  {
+    "SourceTMID": "350",
+    "CanonicalMainTMID": "350",
+    "Name": "Sheffield United",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 708,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 708,
+        "Names": [
+          "Sheffield United",
+          "Sheff Utd",
+          "Shef U"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "350",
+    "NativeClubUID": 708,
+    "NativeContractFamilyIndex": 493
+  },
+  {
+    "SourceTMID": "2805",
+    "CanonicalMainTMID": "2805",
+    "Name": "Wycombe Wanderers",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 742,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 742,
+        "Names": [
+          "Wycombe Wanderers",
+          "Wycombe",
+          "Wycmbe"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "2805",
+    "NativeClubUID": 742,
+    "NativeContractFamilyIndex": 526
+  },
+  {
+    "SourceTMID": "1071",
+    "CanonicalMainTMID": "1071",
+    "Name": "Wigan Athletic",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 737,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 737,
+        "Names": [
+          "Wigan Athletic",
+          "Wigan",
+          "The Latics"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "1071",
+    "NativeClubUID": 737,
+    "NativeContractFamilyIndex": 521
+  },
+  {
+    "SourceTMID": "39339",
+    "CanonicalMainTMID": "1028",
+    "Name": "Millwall FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 686,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 686,
+        "Names": [
+          "Millwall",
+          "Mill",
+          "The Lions"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "39339",
+    "NativeClubUID": 686,
+    "NativeContractFamilyIndex": 471
+  },
+  {
+    "SourceTMID": "8824",
+    "CanonicalMainTMID": "350",
+    "Name": "Sheffield United",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 708,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 708,
+        "Names": [
+          "Sheffield United",
+          "Sheff Utd",
+          "Shef U"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "8824",
+    "NativeClubUID": 708,
+    "NativeContractFamilyIndex": 493
+  },
+  {
+    "SourceTMID": "1072",
+    "CanonicalMainTMID": "1072",
+    "Name": "Peterborough United",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 696,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 696,
+        "Names": [
+          "Peterborough United",
+          "Peterborough",
+          "P'boro"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "1072",
+    "NativeClubUID": 696,
+    "NativeContractFamilyIndex": 481
+  },
+  {
+    "SourceTMID": "1027",
+    "CanonicalMainTMID": "1027",
+    "Name": "Bradford City",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 616,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 616,
+        "Names": [
+          "Bradford City",
+          "Bradford",
+          "Bradfd"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "1027",
+    "NativeClubUID": 616,
+    "NativeContractFamilyIndex": 402
+  },
+  {
+    "SourceTMID": "33727",
+    "CanonicalMainTMID": "1039",
+    "Name": "Queens Park Rangers",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 701,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 701,
+        "Names": [
+          "Queens Park Rangers",
+          "Q.P.R.",
+          "QPR"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "33727",
+    "NativeClubUID": 701,
+    "NativeContractFamilyIndex": 486
+  },
+  {
+    "SourceTMID": "39341",
+    "CanonicalMainTMID": "1003",
+    "Name": "Leicester City",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 673,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 673,
+        "Names": [
+          "Leicester City",
+          "Leicester",
+          "Leics"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "39341",
+    "NativeClubUID": 673,
+    "NativeContractFamilyIndex": 458
+  },
+  {
+    "SourceTMID": "9043",
+    "CanonicalMainTMID": "371",
+    "Name": "Celtic FC",
+    "SourceCountry": "Scotland",
+    "NativeCountryIndex": 167,
+    "ReferenceNativeClubUID": 1569,
+    "Decision": "unique_source_name_country_reference_requires_fresh_native_validation",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": false,
+    "SourceClubTypeID": 2,
+    "Candidates": [
+      {
+        "UID": 1569,
+        "Names": [
+          "Celtic FC",
+          "Celtic",
+          "The Bhoys"
+        ],
+        "Country": 167
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "9043",
+    "NativeClubUID": 1569,
+    "NativeContractFamilyIndex": 1191
+  },
+  {
+    "SourceTMID": "1035",
+    "CanonicalMainTMID": "1035",
+    "Name": "Sheffield Wednesday",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 709,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 709,
+        "Names": [
+          "Sheffield Wednesday",
+          "Sheff Wed",
+          "Sh Wed"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "1035",
+    "NativeClubUID": 709,
+    "NativeContractFamilyIndex": 494
+  },
+  {
+    "SourceTMID": "19715",
+    "CanonicalMainTMID": "3008",
+    "Name": "Hull City",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 665,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 665,
+        "Names": [
+          "Hull City",
+          "Hull",
+          "The Tigers"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "19715",
+    "NativeClubUID": 665,
+    "NativeContractFamilyIndex": 450
+  },
+  {
+    "SourceTMID": "3684",
+    "CanonicalMainTMID": "3684",
+    "Name": "Stevenage FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 719,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 719,
+        "Names": [
+          "Stevenage Borough",
+          "Stevenage",
+          "Stvnge"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "3684",
+    "NativeClubUID": 719,
+    "NativeContractFamilyIndex": 504
+  },
+  {
+    "SourceTMID": "36546",
+    "CanonicalMainTMID": "180",
+    "Name": "Southampton FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 713,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 713,
+        "Names": [
+          "Southampton",
+          "Soton",
+          "The Saints"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "36546",
+    "NativeClubUID": 713,
+    "NativeContractFamilyIndex": 498
+  },
+  {
+    "SourceTMID": "24226",
+    "CanonicalMainTMID": "543",
+    "Name": "Wolverhampton Wanderers",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 740,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 740,
+        "Names": [
+          "Wolverhampton Wanderers",
+          "Wolves"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "24226",
+    "NativeClubUID": 740,
+    "NativeContractFamilyIndex": 524
+  },
+  {
+    "SourceTMID": "2454",
+    "CanonicalMainTMID": "2454",
+    "Name": "Doncaster Rovers",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 646,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 646,
+        "Names": [
+          "Doncaster Rovers",
+          "Doncaster",
+          "Doncas"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "2454",
+    "NativeClubUID": 646,
+    "NativeContractFamilyIndex": 432
+  },
+  {
+    "SourceTMID": "33614",
+    "CanonicalMainTMID": "1123",
+    "Name": "Norwich City",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 691,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 691,
+        "Names": [
+          "Norwich City",
+          "Norwich",
+          "Norwch"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "33614",
+    "NativeClubUID": 691,
+    "NativeContractFamilyIndex": 476
+  },
+  {
+    "SourceTMID": "24214",
+    "CanonicalMainTMID": "1132",
+    "Name": "Burnley FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 622,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 622,
+        "Names": [
+          "Burnley",
+          "Burnly",
+          "The Clarets"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "24214",
+    "NativeClubUID": 622,
+    "NativeContractFamilyIndex": 408
+  },
+  {
+    "SourceTMID": "38967",
+    "CanonicalMainTMID": "989",
+    "Name": "AFC Bournemouth",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 600,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 600,
+        "Names": [
+          "AFC Bournemouth",
+          "Bournemouth",
+          "Bmouth"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "38967",
+    "NativeClubUID": 600,
+    "NativeContractFamilyIndex": 386
+  },
+  {
+    "SourceTMID": "603",
+    "CanonicalMainTMID": "603",
+    "Name": "Cardiff City",
+    "SourceCountry": "Wales",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 625,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 351000,
+        "Names": [
+          "Cardiff Civil Service",
+          "Cardiff CS",
+          "CIVILS"
+        ],
+        "Country": 175
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "603",
+    "NativeClubUID": 625,
+    "NativeContractFamilyIndex": 411
+  },
+  {
+    "SourceTMID": "1010",
+    "CanonicalMainTMID": "1010",
+    "Name": "Watford FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 732,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 732,
+        "Names": [
+          "Watford",
+          "Watfd",
+          "The Hornets"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "1010",
+    "NativeClubUID": 732,
+    "NativeContractFamilyIndex": 516
+  },
+  {
+    "SourceTMID": "3884",
+    "CanonicalMainTMID": "3884",
+    "Name": "AFC Wimbledon",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 5110769,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 5110769,
+        "Names": [
+          "AFC Wimbledon",
+          "Wimble",
+          "The Wombles"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "3884",
+    "NativeClubUID": 5110769,
+    "NativeContractFamilyIndex": 11108
+  },
+  {
+    "SourceTMID": "1252",
+    "CanonicalMainTMID": "1252",
+    "Name": "York City",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 744,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 744,
+        "Names": [
+          "York City",
+          "York",
+          "The Minstermen"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "1252",
+    "NativeClubUID": 744,
+    "NativeContractFamilyIndex": 528
+  },
+  {
+    "SourceTMID": "1045",
+    "CanonicalMainTMID": "1045",
+    "Name": "Notts County",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 693,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 693,
+        "Names": [
+          "Notts County",
+          "Notts Co",
+          "Notts"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "1045",
+    "NativeClubUID": 693,
+    "NativeContractFamilyIndex": 478
+  },
+  {
+    "SourceTMID": "9256",
+    "CanonicalMainTMID": "641",
+    "Name": "Middlesbrough FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 685,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 685,
+        "Names": [
+          "Middlesbrough",
+          "M'boro",
+          "Boro"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "9256",
+    "NativeClubUID": 685,
+    "NativeContractFamilyIndex": 470
+  },
+  {
+    "SourceTMID": "9258",
+    "CanonicalMainTMID": "164",
+    "Name": "Blackburn Rovers",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 612,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 612,
+        "Names": [
+          "Blackburn Rovers",
+          "Blackburn",
+          "Bburn"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "9258",
+    "NativeClubUID": 612,
+    "NativeContractFamilyIndex": 398
+  },
+  {
+    "SourceTMID": "9260",
+    "CanonicalMainTMID": "358",
+    "Name": "Charlton Athletic",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 628,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 628,
+        "Names": [
+          "Charlton Athletic",
+          "Charlton",
+          "Charlt"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "9260",
+    "NativeClubUID": 628,
+    "NativeContractFamilyIndex": 414
+  },
+  {
+    "SourceTMID": "22",
+    "CanonicalMainTMID": "22",
+    "Name": "Derby County",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 645,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 645,
+        "Names": [
+          "Derby County",
+          "Derby",
+          "The Rams"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "22",
+    "NativeClubUID": 645,
+    "NativeContractFamilyIndex": 431
+  },
+  {
+    "SourceTMID": "33616",
+    "CanonicalMainTMID": "2288",
+    "Name": "Swansea City",
+    "SourceCountry": "Wales",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 724,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [],
+    "FutureFreshNativeRequired": false,
+    "TMID": "33616",
+    "NativeClubUID": 724,
+    "NativeContractFamilyIndex": 509
+  },
+  {
+    "SourceTMID": "899",
+    "CanonicalMainTMID": "899",
+    "Name": "Walsall FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 731,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 731,
+        "Names": [
+          "Walsall",
+          "Walsll",
+          "The Saddlers"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "899",
+    "NativeClubUID": 731,
+    "NativeContractFamilyIndex": 515
+  },
+  {
+    "SourceTMID": "7609",
+    "CanonicalMainTMID": "7609",
+    "Name": "Waterford FC",
+    "SourceCountry": "Ireland",
+    "NativeCountryIndex": 163,
+    "ReferenceNativeClubUID": 120533,
+    "Decision": "prior_confirmed_TM_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": false,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 120533,
+        "Names": [
+          "Waterford FC",
+          "Watr U",
+          "United"
+        ],
+        "Country": 163
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "7609",
+    "NativeClubUID": 120533,
+    "NativeContractFamilyIndex": 2739
+  },
+  {
+    "SourceTMID": "39304",
+    "CanonicalMainTMID": "698",
+    "Name": "Bristol City",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 619,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 619,
+        "Names": [
+          "Bristol City",
+          "Bris C",
+          "The Robins"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "39304",
+    "NativeClubUID": 619,
+    "NativeContractFamilyIndex": 405
+  },
+  {
+    "SourceTMID": "24219",
+    "CanonicalMainTMID": "512",
+    "Name": "Stoke City",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 721,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 721,
+        "Names": [
+          "Stoke City",
+          "Stoke",
+          "The Potters"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "24219",
+    "NativeClubUID": 721,
+    "NativeContractFamilyIndex": 506
+  },
+  {
+    "SourceTMID": "352",
+    "CanonicalMainTMID": "352",
+    "Name": "Swindon Town",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 725,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 725,
+        "Names": [
+          "Swindon Town",
+          "Swindon",
+          "Swindn"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "352",
+    "NativeClubUID": 725,
+    "NativeContractFamilyIndex": 510
+  },
+  {
+    "SourceTMID": "1032",
+    "CanonicalMainTMID": "1032",
+    "Name": "Reading FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 702,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 702,
+        "Names": [
+          "Reading",
+          "Readng",
+          "The Royals"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "1032",
+    "NativeClubUID": 702,
+    "NativeContractFamilyIndex": 487
+  },
+  {
+    "SourceTMID": "2455",
+    "CanonicalMainTMID": "2455",
+    "Name": "Bristol Rovers",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 620,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 620,
+        "Names": [
+          "Bristol Rovers",
+          "Bris R",
+          "The Gas"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "2455",
+    "NativeClubUID": 620,
+    "NativeContractFamilyIndex": 406
+  },
+  {
+    "SourceTMID": "349",
+    "CanonicalMainTMID": "349",
+    "Name": "Barnsley FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 606,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 606,
+        "Names": [
+          "Barnsley",
+          "Brnsly",
+          "The Reds"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "349",
+    "NativeClubUID": 606,
+    "NativeContractFamilyIndex": 392
+  },
+  {
+    "SourceTMID": "29990",
+    "CanonicalMainTMID": "984",
+    "Name": "West Bromwich Albion",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 734,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 734,
+        "Names": [
+          "West Bromwich Albion",
+          "West Brom",
+          "WBA"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "29990",
+    "NativeClubUID": 734,
+    "NativeContractFamilyIndex": 518
+  },
+  {
+    "SourceTMID": "8981",
+    "CanonicalMainTMID": "8981",
+    "Name": "Bromley FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 5100153,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 5100153,
+        "Names": [
+          "Bromley",
+          "The Lilywhites",
+          "The Ravens"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "8981",
+    "NativeClubUID": 5100153,
+    "NativeContractFamilyIndex": 10785
+  },
+  {
+    "SourceTMID": "92433",
+    "CanonicalMainTMID": "1031",
+    "Name": "Luton Town",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 677,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 677,
+        "Names": [
+          "Luton Town",
+          "Luton",
+          "The Hatters"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "92433",
+    "NativeClubUID": 677,
+    "NativeContractFamilyIndex": 462
+  },
+  {
+    "SourceTMID": "11177",
+    "CanonicalMainTMID": "11177",
+    "Name": "Fleetwood Town",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 5103834,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 5103834,
+        "Names": [
+          "Fleetwood Town",
+          "Fleetwood"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "11177",
+    "NativeClubUID": 5103834,
+    "NativeContractFamilyIndex": 11015
+  },
+  {
+    "SourceTMID": "3054",
+    "CanonicalMainTMID": "3054",
+    "Name": "Shrewsbury Town",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 710,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 710,
+        "Names": [
+          "Shrewsbury Town",
+          "Shrewsbury",
+          "Shrews"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "3054",
+    "NativeClubUID": 710,
+    "NativeContractFamilyIndex": 495
+  },
+  {
+    "SourceTMID": "2814",
+    "CanonicalMainTMID": "2814",
+    "Name": "Gillingham FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 656,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 656,
+        "Names": [
+          "Gillingham",
+          "Gillm",
+          "The Gills"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "2814",
+    "NativeClubUID": 656,
+    "NativeContractFamilyIndex": 441
+  },
+  {
+    "SourceTMID": "1042",
+    "CanonicalMainTMID": "1042",
+    "Name": "Crewe Alexandra",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 641,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 641,
+        "Names": [
+          "Crewe Alexandra",
+          "Crewe",
+          "The Railwaymen"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "1042",
+    "NativeClubUID": 641,
+    "NativeContractFamilyIndex": 427
+  },
+  {
+    "SourceTMID": "9267",
+    "CanonicalMainTMID": "379",
+    "Name": "West Ham United",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 735,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 735,
+        "Names": [
+          "West Ham United",
+          "West Ham",
+          "W Ham"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "9267",
+    "NativeClubUID": 735,
+    "NativeContractFamilyIndex": 519
+  },
+  {
+    "SourceTMID": "3455",
+    "CanonicalMainTMID": "3455",
+    "Name": "Forest Green Rovers ",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 109206,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 109206,
+        "Names": [
+          "Forest Green Rovers",
+          "Forest Green",
+          "Fst Gr"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "3455",
+    "NativeClubUID": 109206,
+    "NativeContractFamilyIndex": 2663
+  },
+  {
+    "SourceTMID": "1211",
+    "CanonicalMainTMID": "1211",
+    "Name": "Port Vale FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 698,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 698,
+        "Names": [
+          "Port Vale",
+          "P Vale",
+          "The Valiants"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "1211",
+    "NativeClubUID": 698,
+    "NativeContractFamilyIndex": 483
+  },
+  {
+    "SourceTMID": "3537",
+    "CanonicalMainTMID": "3537",
+    "Name": "Crawley Town",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 640,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 640,
+        "Names": [
+          "Crawley Town",
+          "Crawley",
+          "Craw"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "3537",
+    "NativeClubUID": 640,
+    "NativeContractFamilyIndex": 426
+  },
+  {
+    "SourceTMID": "34888",
+    "CanonicalMainTMID": "34888",
+    "Name": "Salford City",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 5103842,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 5103842,
+        "Names": [
+          "Salford City",
+          "Salford",
+          "The Ammies"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "34888",
+    "NativeClubUID": 5103842,
+    "NativeContractFamilyIndex": 11023
+  },
+  {
+    "SourceTMID": "2262",
+    "CanonicalMainTMID": "2262",
+    "Name": "Plymouth Argyle",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 697,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 697,
+        "Names": [
+          "Plymouth Argyle",
+          "Plymouth",
+          "Plymth"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "2262",
+    "NativeClubUID": 697,
+    "NativeContractFamilyIndex": 482
+  },
+  {
+    "SourceTMID": "1034",
+    "CanonicalMainTMID": "1034",
+    "Name": "Grimsby Town",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 658,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 658,
+        "Names": [
+          "Grimsby Town",
+          "Grimsby",
+          "Grims"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "1034",
+    "NativeClubUID": 658,
+    "NativeContractFamilyIndex": 443
+  },
+  {
+    "SourceTMID": "6168",
+    "CanonicalMainTMID": "6168",
+    "Name": "Barrow AFC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 607,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 607,
+        "Names": [
+          "Barrow",
+          "The Bluebirds"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "6168",
+    "NativeClubUID": 607,
+    "NativeContractFamilyIndex": 393
+  },
+  {
+    "SourceTMID": "12335",
+    "CanonicalMainTMID": "12335",
+    "Name": "Solihull Moors",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 30010181,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 30010181,
+        "Names": [
+          "Solihull Moors",
+          "Solihl",
+          "The Moors"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "12335",
+    "NativeClubUID": 30010181,
+    "NativeContractFamilyIndex": 20654
+  },
+  {
+    "SourceTMID": "1219",
+    "CanonicalMainTMID": "1219",
+    "Name": "Chesterfield FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 634,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 634,
+        "Names": [
+          "Chesterfield",
+          "Chstfd",
+          "The Spireites"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "1219",
+    "NativeClubUID": 634,
+    "NativeContractFamilyIndex": 420
+  },
+  {
+    "SourceTMID": "972",
+    "CanonicalMainTMID": "972",
+    "Name": "Yeovil Town",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 743,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 743,
+        "Names": [
+          "Yeovil Town",
+          "Yeovil",
+          "The Glovers"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "972",
+    "NativeClubUID": 743,
+    "NativeContractFamilyIndex": 527
+  },
+  {
+    "SourceTMID": "1181",
+    "CanonicalMainTMID": "1181",
+    "Name": "Blackpool FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 613,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 613,
+        "Names": [
+          "Blackpool",
+          "Blckpl",
+          "The Seasiders"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "1181",
+    "NativeClubUID": 613,
+    "NativeContractFamilyIndex": 399
+  },
+  {
+    "SourceTMID": "2963",
+    "CanonicalMainTMID": "2963",
+    "Name": "Burton Albion",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 4001706,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 4001706,
+        "Names": [
+          "Burton Albion",
+          "Burton",
+          "The Brewers"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "2963",
+    "NativeClubUID": 4001706,
+    "NativeContractFamilyIndex": 10407
+  },
+  {
+    "SourceTMID": "37993",
+    "CanonicalMainTMID": "1010",
+    "Name": "Watford FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 732,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 732,
+        "Names": [
+          "Watford",
+          "Watfd",
+          "The Hornets"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "37993",
+    "NativeClubUID": 732,
+    "NativeContractFamilyIndex": 516
+  },
+  {
+    "SourceTMID": "29793",
+    "CanonicalMainTMID": "603",
+    "Name": "Cardiff City",
+    "SourceCountry": "Wales",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 625,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 2,
+    "Candidates": [
+      {
+        "UID": 351000,
+        "Names": [
+          "Cardiff Civil Service",
+          "Cardiff CS",
+          "CIVILS"
+        ],
+        "Country": 175
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "29793",
+    "NativeClubUID": 625,
+    "NativeContractFamilyIndex": 411
+  },
+  {
+    "SourceTMID": "3456",
+    "CanonicalMainTMID": "3456",
+    "Name": "Gateshead FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 655,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 655,
+        "Names": [
+          "Gateshead",
+          "Gatehd",
+          "The Tynesiders"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "3456",
+    "NativeClubUID": 655,
+    "NativeContractFamilyIndex": 440
+  },
+  {
+    "SourceTMID": "2793",
+    "CanonicalMainTMID": "2793",
+    "Name": "Southend United",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 714,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 714,
+        "Names": [
+          "Southend United",
+          "Southend",
+          "Sthend"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "2793",
+    "NativeClubUID": 714,
+    "NativeContractFamilyIndex": 499
+  },
+  {
+    "SourceTMID": "986",
+    "CanonicalMainTMID": "986",
+    "Name": "Cambridge United",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 624,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 624,
+        "Names": [
+          "Cambridge United",
+          "Cambridge",
+          "Camb U"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "986",
+    "NativeClubUID": 624,
+    "NativeContractFamilyIndex": 410
+  },
+  {
+    "SourceTMID": "36123",
+    "CanonicalMainTMID": "1032",
+    "Name": "Reading FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 702,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 702,
+        "Names": [
+          "Reading",
+          "Readng",
+          "The Royals"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "36123",
+    "NativeClubUID": 702,
+    "NativeContractFamilyIndex": 487
+  },
+  {
+    "SourceTMID": "3867",
+    "CanonicalMainTMID": "3867",
+    "Name": "Boreham Wood FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 109212,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 109212,
+        "Names": [
+          "Boreham Wood",
+          "B Wood",
+          "Wood"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "3867",
+    "NativeClubUID": 109212,
+    "NativeContractFamilyIndex": 2666
+  },
+  {
+    "SourceTMID": "39337",
+    "CanonicalMainTMID": "22",
+    "Name": "Derby County",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 645,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 2,
+    "Candidates": [
+      {
+        "UID": 645,
+        "Names": [
+          "Derby County",
+          "Derby",
+          "The Rams"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "39337",
+    "NativeClubUID": 645,
+    "NativeContractFamilyIndex": 431
+  },
+  {
+    "SourceTMID": "1078",
+    "CanonicalMainTMID": "1078",
+    "Name": "Oldham Athletic",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 694,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 694,
+        "Names": [
+          "Oldham Athletic",
+          "Oldham",
+          "The Latics"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "1078",
+    "NativeClubUID": 694,
+    "NativeContractFamilyIndex": 479
+  },
+  {
+    "SourceTMID": "12805",
+    "CanonicalMainTMID": "1039",
+    "Name": "Queens Park Rangers",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 701,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 6,
+    "Candidates": [
+      {
+        "UID": 701,
+        "Names": [
+          "Queens Park Rangers",
+          "Q.P.R.",
+          "QPR"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "12805",
+    "NativeClubUID": 701,
+    "NativeContractFamilyIndex": 486
+  },
+  {
+    "SourceTMID": "92267",
+    "CanonicalMainTMID": "1098",
+    "Name": "Stockport County",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 720,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 720,
+        "Names": [
+          "Stockport County",
+          "Stockport",
+          "Stkpt"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "92267",
+    "NativeClubUID": 720,
+    "NativeContractFamilyIndex": 505
+  },
+  {
+    "SourceTMID": "53088",
+    "CanonicalMainTMID": "11177",
+    "Name": "Fleetwood Town",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 5103834,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 5103834,
+        "Names": [
+          "Fleetwood Town",
+          "Fleetwood"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "53088",
+    "NativeClubUID": 5103834,
+    "NativeContractFamilyIndex": 11015
+  },
+  {
+    "SourceTMID": "11310",
+    "CanonicalMainTMID": "11310",
+    "Name": "Slough Town",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 712,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 712,
+        "Names": [
+          "Slough Town",
+          "Slough",
+          "The Rebels"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "11310",
+    "NativeClubUID": 712,
+    "NativeContractFamilyIndex": 497
+  },
+  {
+    "SourceTMID": "3724",
+    "CanonicalMainTMID": "3724",
+    "Name": "Hednesford Town",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 106580,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 106580,
+        "Names": [
+          "Hednesford Town",
+          "Hednesford",
+          "Hednes"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "3724",
+    "NativeClubUID": 106580,
+    "NativeContractFamilyIndex": 2425
+  },
+  {
+    "SourceTMID": "3717",
+    "CanonicalMainTMID": "3717",
+    "Name": "Aldershot Town",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 573,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 573,
+        "Names": [
+          "Aldershot Town",
+          "Aldershot",
+          "Aldsht"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "3717",
+    "NativeClubUID": 573,
+    "NativeContractFamilyIndex": 368
+  },
+  {
+    "SourceTMID": "130650",
+    "CanonicalMainTMID": "1110",
+    "Name": "Huddersfield Town",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 664,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 2,
+    "Candidates": [
+      {
+        "UID": 664,
+        "Names": [
+          "Huddersfield Town",
+          "Huddersfield",
+          "Hudd"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "130650",
+    "NativeClubUID": 664,
+    "NativeContractFamilyIndex": 449
+  },
+  {
+    "SourceTMID": "24212",
+    "CanonicalMainTMID": "337",
+    "Name": "Birmingham City",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 609,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 609,
+        "Names": [
+          "Birmingham City",
+          "Birmingham",
+          "Birm"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "24212",
+    "NativeClubUID": 609,
+    "NativeContractFamilyIndex": 395
+  },
+  {
+    "SourceTMID": "37758",
+    "CanonicalMainTMID": "1035",
+    "Name": "Sheffield Wednesday",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 709,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 709,
+        "Names": [
+          "Sheffield Wednesday",
+          "Sheff Wed",
+          "Sh Wed"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "37758",
+    "NativeClubUID": 709,
+    "NativeContractFamilyIndex": 494
+  },
+  {
+    "SourceTMID": "69299",
+    "CanonicalMainTMID": "3820",
+    "Name": "Mansfield Town",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 681,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 2,
+    "Candidates": [
+      {
+        "UID": 681,
+        "Names": [
+          "Mansfield Town",
+          "Mansfield",
+          "Mansfd"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "69299",
+    "NativeClubUID": 681,
+    "NativeContractFamilyIndex": 466
+  },
+  {
+    "SourceTMID": "3682",
+    "CanonicalMainTMID": "3682",
+    "Name": "Bedford Town",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 5103635,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 5103635,
+        "Names": [
+          "Bedford Town",
+          "Bedford",
+          "Bedfrd"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "3682",
+    "NativeClubUID": 5103635,
+    "NativeContractFamilyIndex": 10833
+  },
+  {
+    "SourceTMID": "15095",
+    "CanonicalMainTMID": "1112",
+    "Name": "Wrexham AFC",
+    "SourceCountry": "Wales",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 741,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 5,
+    "Candidates": [],
+    "FutureFreshNativeRequired": false,
+    "TMID": "15095",
+    "NativeClubUID": 741,
+    "NativeContractFamilyIndex": 525
+  },
+  {
+    "SourceTMID": "3489",
+    "CanonicalMainTMID": "3489",
+    "Name": "Boston United",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 615,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 615,
+        "Names": [
+          "Boston United",
+          "Boston Utd",
+          "Boston"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "3489",
+    "NativeClubUID": 615,
+    "NativeContractFamilyIndex": 401
+  },
+  {
+    "SourceTMID": "3716",
+    "CanonicalMainTMID": "3716",
+    "Name": "Newport County",
+    "SourceCountry": "Wales",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 581,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [],
+    "FutureFreshNativeRequired": false,
+    "TMID": "3716",
+    "NativeClubUID": 581,
+    "NativeContractFamilyIndex": 371
+  },
+  {
+    "SourceTMID": "3371",
+    "CanonicalMainTMID": "3371",
+    "Name": "Cheltenham Town",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 631,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 631,
+        "Names": [
+          "Cheltenham Town",
+          "Cheltenham",
+          "Chelt"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "3371",
+    "NativeClubUID": 631,
+    "NativeContractFamilyIndex": 417
+  },
+  {
+    "SourceTMID": "16192",
+    "CanonicalMainTMID": "1045",
+    "Name": "Notts County",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 693,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 6,
+    "Candidates": [
+      {
+        "UID": 693,
+        "Names": [
+          "Notts County",
+          "Notts Co",
+          "Notts"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "16192",
+    "NativeClubUID": 693,
+    "NativeContractFamilyIndex": 478
+  },
+  {
+    "SourceTMID": "79586",
+    "CanonicalMainTMID": "1045",
+    "Name": "Notts County",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 693,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 693,
+        "Names": [
+          "Notts County",
+          "Notts Co",
+          "Notts"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "79586",
+    "NativeClubUID": 693,
+    "NativeContractFamilyIndex": 478
+  },
+  {
+    "SourceTMID": "1218",
+    "CanonicalMainTMID": "1218",
+    "Name": "Torquay United",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 727,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 727,
+        "Names": [
+          "Torquay United",
+          "Torquay",
+          "Torq"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "1218",
+    "NativeClubUID": 727,
+    "NativeContractFamilyIndex": 512
+  },
+  {
+    "SourceTMID": "12020",
+    "CanonicalMainTMID": "12020",
+    "Name": "Harrogate Town",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 5100047,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 5100047,
+        "Names": [
+          "Harrogate Town",
+          "Harrogate",
+          "Harr T"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "12020",
+    "NativeClubUID": 5100047,
+    "NativeContractFamilyIndex": 10736
+  },
+  {
+    "SourceTMID": "1195",
+    "CanonicalMainTMID": "1195",
+    "Name": "Kidderminster Harriers",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 669,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 669,
+        "Names": [
+          "Kidderminster Harriers",
+          "Kidderminster",
+          "Kidder"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "1195",
+    "NativeClubUID": 669,
+    "NativeContractFamilyIndex": 454
+  },
+  {
+    "SourceTMID": "79429",
+    "CanonicalMainTMID": "34888",
+    "Name": "Salford City",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 5103842,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 5103842,
+        "Names": [
+          "Salford City",
+          "Salford",
+          "The Ammies"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "79429",
+    "NativeClubUID": 5103842,
+    "NativeContractFamilyIndex": 11023
+  },
+  {
+    "SourceTMID": "9268",
+    "CanonicalMainTMID": "1071",
+    "Name": "Wigan Athletic",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 737,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 737,
+        "Names": [
+          "Wigan Athletic",
+          "Wigan",
+          "The Latics"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "9268",
+    "NativeClubUID": 737,
+    "NativeContractFamilyIndex": 521
+  },
+  {
+    "SourceTMID": "2577",
+    "CanonicalMainTMID": "2577",
+    "Name": "Hartlepool United",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 661,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 661,
+        "Names": [
+          "Hartlepool United",
+          "Hartlepool",
+          "H'pool"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "2577",
+    "NativeClubUID": 661,
+    "NativeContractFamilyIndex": 446
+  },
+  {
+    "SourceTMID": "31367",
+    "CanonicalMainTMID": "31367",
+    "Name": "Chester FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": null,
+    "Decision": "within_core_distinct_new_logical",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 633,
+        "Names": [
+          "Chester City",
+          "Chester",
+          "Chestr"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "31367",
+    "NativeClubUID": 1800280007,
+    "NativeContractFamilyIndex": 24146
+  },
+  {
+    "SourceTMID": "466",
+    "CanonicalMainTMID": "466",
+    "Name": "Preston North End",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 700,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 700,
+        "Names": [
+          "Preston North End",
+          "Preston",
+          "Prestn"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "466",
+    "NativeClubUID": 700,
+    "NativeContractFamilyIndex": 485
+  },
+  {
+    "SourceTMID": "362",
+    "CanonicalMainTMID": "362",
+    "Name": "Akademisk Boldklub",
+    "SourceCountry": "Denmark",
+    "NativeCountryIndex": 138,
+    "ReferenceNativeClubUID": 480,
+    "Decision": "prior_confirmed_TM_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": false,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 480,
+        "Names": [
+          "Akademisk Boldklub",
+          "Akademisk BK",
+          "AB"
+        ],
+        "Country": 138
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "362",
+    "NativeClubUID": 480,
+    "NativeContractFamilyIndex": 304
+  },
+  {
+    "SourceTMID": "3688",
+    "CanonicalMainTMID": "3688",
+    "Name": "Accrington Stanley",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 109210,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 109210,
+        "Names": [
+          "Accrington Stanley",
+          "Accrington",
+          "Accrng"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "3688",
+    "NativeClubUID": 109210,
+    "NativeContractFamilyIndex": 2664
+  },
+  {
+    "SourceTMID": "10895",
+    "CanonicalMainTMID": "10895",
+    "Name": "Buxton FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 5100031,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 5100031,
+        "Names": [
+          "Buxton",
+          "The Bucks"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "10895",
+    "NativeClubUID": 5100031,
+    "NativeContractFamilyIndex": 10728
+  },
+  {
+    "SourceTMID": "1241",
+    "CanonicalMainTMID": "1241",
+    "Name": "Livingston FC",
+    "SourceCountry": "Scotland",
+    "NativeCountryIndex": 167,
+    "ReferenceNativeClubUID": 1581,
+    "Decision": "unique_source_name_country_reference_requires_fresh_native_validation",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": false,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 1581,
+        "Names": [
+          "Livingston FC",
+          "Livi",
+          "Livi Lions"
+        ],
+        "Country": 167
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "1241",
+    "NativeClubUID": 1581,
+    "NativeContractFamilyIndex": 1201
+  },
+  {
+    "SourceTMID": "12804",
+    "CanonicalMainTMID": "1042",
+    "Name": "Crewe Alexandra",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 641,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 6,
+    "Candidates": [
+      {
+        "UID": 641,
+        "Names": [
+          "Crewe Alexandra",
+          "Crewe",
+          "The Railwaymen"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "12804",
+    "NativeClubUID": 641,
+    "NativeContractFamilyIndex": 427
+  },
+  {
+    "SourceTMID": "3539",
+    "CanonicalMainTMID": "3539",
+    "Name": "Tamworth FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 5100078,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 5100078,
+        "Names": [
+          "Tamworth",
+          "Tamwth",
+          "The Lambs"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "3539",
+    "NativeClubUID": 5100078,
+    "NativeContractFamilyIndex": 10749
+  },
+  {
+    "SourceTMID": "6950",
+    "CanonicalMainTMID": "873",
+    "Name": "Crystal Palace",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 642,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 6,
+    "Candidates": [
+      {
+        "UID": 642,
+        "Names": [
+          "Crystal Palace",
+          "Palace",
+          "The Eagles"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "6950",
+    "NativeClubUID": 642,
+    "NativeContractFamilyIndex": 428
+  },
+  {
+    "SourceTMID": "2796",
+    "CanonicalMainTMID": "2796",
+    "Name": "Woking FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 739,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 739,
+        "Names": [
+          "Woking",
+          "The Cardinals",
+          "The Cards"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "2796",
+    "NativeClubUID": 739,
+    "NativeContractFamilyIndex": 523
+  },
+  {
+    "SourceTMID": "68756",
+    "CanonicalMainTMID": "988",
+    "Name": "Oxford United",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 695,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 695,
+        "Names": [
+          "Oxford United",
+          "Oxford",
+          "Oxfd U"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "68756",
+    "NativeClubUID": 695,
+    "NativeContractFamilyIndex": 480
+  },
+  {
+    "SourceTMID": "3696",
+    "CanonicalMainTMID": "3696",
+    "Name": "Dagenham & Redbridge FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 643,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 643,
+        "Names": [
+          "Dagenham and Redbridge",
+          "Dag & Red",
+          "D&R"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "3696",
+    "NativeClubUID": 643,
+    "NativeContractFamilyIndex": 429
+  },
+  {
+    "SourceTMID": "6699",
+    "CanonicalMainTMID": "6699",
+    "Name": "Exeter City",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 651,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 651,
+        "Names": [
+          "Exeter City",
+          "Exeter",
+          "The Grecians"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "6699",
+    "NativeClubUID": 651,
+    "NativeContractFamilyIndex": 436
+  },
+  {
+    "SourceTMID": "4117",
+    "CanonicalMainTMID": "4117",
+    "Name": "Wealdstone FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 5100217,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 5100217,
+        "Names": [
+          "Wealdstone",
+          "Wealds",
+          "The Stones"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "4117",
+    "NativeClubUID": 5100217,
+    "NativeContractFamilyIndex": 10815
+  },
+  {
+    "SourceTMID": "2804",
+    "CanonicalMainTMID": "2804",
+    "Name": "Barnet FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 605,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 605,
+        "Names": [
+          "Barnet",
+          "The Bees"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "2804",
+    "NativeClubUID": 605,
+    "NativeContractFamilyIndex": 391
+  },
+  {
+    "SourceTMID": "8123",
+    "CanonicalMainTMID": "8123",
+    "Name": "Worthing FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 5100210,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 5100210,
+        "Names": [
+          "Worthing",
+          "Wrthng",
+          "The Rebels"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "8123",
+    "NativeClubUID": 5100210,
+    "NativeContractFamilyIndex": 10812
+  },
+  {
+    "SourceTMID": "47026",
+    "CanonicalMainTMID": "47026",
+    "Name": "Fisher FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": null,
+    "Decision": "new_distinct_foreign_owner_Fisher_FC_2009",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": false,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 5100128,
+        "Names": [
+          "Fisher Athletic",
+          "Fisher",
+          "The Fish"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "ParentUID": null,
+    "Kind": 0,
+    "SugarDaddy": false,
+    "FutureOwnerCurrentCompetitionUID": 1301432,
+    "PreserveHistoricalUIDs": [
+      5100128
+    ],
+    "OfficialContinuityURL": "https://www.fisherfc.org/history/",
+    "AffectedPlayerTMIDs": [
+      "1243177"
+    ],
+    "NoFullFisherSquadFetch": true,
+    "TMID": "47026",
+    "NativeClubUID": 1800280010,
+    "NativeContractFamilyIndex": 24149
+  },
+  {
+    "SourceTMID": "25136",
+    "CanonicalMainTMID": "3884",
+    "Name": "AFC Wimbledon",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 5110769,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 6,
+    "Candidates": [
+      {
+        "UID": 5110769,
+        "Names": [
+          "AFC Wimbledon",
+          "Wimble",
+          "The Wombles"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "25136",
+    "NativeClubUID": 5110769,
+    "NativeContractFamilyIndex": 11108
+  },
+  {
+    "SourceTMID": "3868",
+    "CanonicalMainTMID": "3868",
+    "Name": "Hornchurch FC",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 30002707,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 30002707,
+        "Names": [
+          "AFC Hornchurch",
+          "Hornch",
+          "The Urchins"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "3868",
+    "NativeClubUID": 30002707,
+    "NativeContractFamilyIndex": 20631
+  },
+  {
+    "SourceTMID": "3052",
+    "CanonicalMainTMID": "3052",
+    "Name": "Sutton United",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 723,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": false,
+    "WithinCore": true,
+    "SourceClubTypeID": 1,
+    "Candidates": [
+      {
+        "UID": 723,
+        "Names": [
+          "Sutton United",
+          "Sutton Utd",
+          "Sutton"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "3052",
+    "NativeClubUID": 723,
+    "NativeContractFamilyIndex": 508
+  },
+  {
+    "SourceTMID": "45633",
+    "CanonicalMainTMID": "1060",
+    "Name": "Colchester United",
+    "SourceCountry": "England",
+    "NativeCountryIndex": 139,
+    "ReferenceNativeClubUID": 636,
+    "Decision": "within_core_reference",
+    "SourceMainRawPresent": true,
+    "ReserveCanonicalized": true,
+    "WithinCore": true,
+    "SourceClubTypeID": 3,
+    "Candidates": [
+      {
+        "UID": 636,
+        "Names": [
+          "Colchester United",
+          "Colchester",
+          "Colch"
+        ],
+        "Country": 139
+      }
+    ],
+    "FutureFreshNativeRequired": false,
+    "TMID": "45633",
+    "NativeClubUID": 636,
+    "NativeContractFamilyIndex": 422
+  }
+]

@@ -68,6 +68,7 @@ internal sealed class FeatureSection : UserControl
     private readonly Control content;
     private readonly ToggleSwitch toggle;
     private bool expanded;
+    internal bool DarkMode { get; set; }
     internal bool Expanded
     {
         get => expanded;
@@ -89,8 +90,9 @@ internal sealed class FeatureSection : UserControl
         AutoSize = true;
         AutoSizeMode = AutoSizeMode.GrowAndShrink;
         Dock = DockStyle.Top;
-        Padding = new Padding(10, 4, 10, 4);
-        Margin = new Padding(0, 2, 0, 2);
+        Padding = new Padding(12, 7, 12, 7);
+        Margin = new Padding(2, 5, 2, 5);
+        DoubleBuffered = true;
         BackColor = Color.White;
         var stack = new TableLayoutPanel
         {
@@ -130,6 +132,14 @@ internal sealed class FeatureSection : UserControl
         stack.RowStyles.Add(new RowStyle(SizeType.AutoSize));
         Controls.Add(stack);
         Expanded = expanded;
+    }
+
+    protected override void OnPaint(PaintEventArgs e)
+    {
+        base.OnPaint(e);
+        if (Width < 4 || Height < 4) return;
+        using var pen = new Pen(LauncherTheme.SectionBorder(DarkMode), Math.Max(2, 2 * DeviceDpi / 96f));
+        e.Graphics.DrawRectangle(pen, 1, 1, Width - 3, Height - 3);
     }
 
     internal void RefreshLanguage()
@@ -360,5 +370,38 @@ internal sealed class SocialLinkButton : Button
                 break;
         }
         g.Restore(state);
+    }
+}
+
+
+internal sealed class ThemedListView : ListView
+{
+    internal bool DarkMode { get; set; }
+    internal ThemedListView()
+    {
+        OwnerDraw = true;
+        DrawColumnHeader += (_, e) =>
+        {
+            using var background = new SolidBrush(LauncherTheme.Surface(DarkMode));
+            e.Graphics.FillRectangle(background, e.Bounds);
+            TextRenderer.DrawText(e.Graphics, e.Header?.Text ?? "", Font,
+                Rectangle.Inflate(e.Bounds, -4, -2), LauncherTheme.Text(DarkMode),
+                TextFormatFlags.VerticalCenter | TextFormatFlags.EndEllipsis);
+            using var border = new Pen(LauncherTheme.Border(DarkMode));
+            e.Graphics.DrawLine(border, e.Bounds.Left, e.Bounds.Bottom - 1, e.Bounds.Right, e.Bounds.Bottom - 1);
+        };
+        DrawItem += (_, e) =>
+        {
+            if (View != View.Details) e.DrawDefault = true;
+        };
+        DrawSubItem += (_, e) =>
+        {
+            var selected = e.Item?.Selected == true;
+            using var background = new SolidBrush(selected ? Color.FromArgb(32, 113, 207) : LauncherTheme.Input(DarkMode));
+            e.Graphics.FillRectangle(background, e.Bounds);
+            TextRenderer.DrawText(e.Graphics, e.SubItem?.Text ?? "", Font,
+                Rectangle.Inflate(e.Bounds, -4, 0), selected ? Color.White : LauncherTheme.Text(DarkMode),
+                TextFormatFlags.VerticalCenter | TextFormatFlags.EndEllipsis);
+        };
     }
 }

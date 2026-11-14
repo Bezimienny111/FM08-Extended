@@ -1,0 +1,10 @@
+{
+  "UserExplicitlyAuthorizedPrepareEnglandOnX22": true,
+  "UserX22Description": "looks OK; test continues",
+  "LongSeasonTest": "IN_PROGRESS_TARGET_2010",
+  "LastReportedProgress": "October2008",
+  "NoClaim2010PASS": true,
+  "Source": "Dane/db/TEST_X22",
+  "NewOutputNameCandidate": "TEST_X23_if_absent",
+  "ExistingX22Protected": true
+}

@@ -11,6 +11,7 @@ internal static class LauncherTheme
     internal static Color Text(bool dark) => dark ? Color.FromArgb(220, 229, 240) : SystemColors.ControlText;
     internal static Color Muted(bool dark) => dark ? Color.FromArgb(157, 173, 194) : SystemColors.ControlDarkDark;
     internal static Color Border(bool dark) => dark ? Color.FromArgb(57, 70, 88) : SystemColors.ControlDark;
+    internal static Color SectionBorder(bool dark) => dark ? Color.FromArgb(112, 137, 171) : Color.FromArgb(104, 129, 162);
     internal static Color Hover(bool dark) => dark ? Color.FromArgb(43, 57, 76) : Color.FromArgb(230, 239, 249);
     internal static Color Accent(bool dark) => dark ? Color.FromArgb(135, 186, 250) : Color.FromArgb(32, 99, 180);
     internal static Color Warning(bool dark) => dark ? Color.FromArgb(48, 44, 36) : Color.LemonChiffon;
@@ -29,6 +30,16 @@ internal static class LauncherTheme
                     ? Surface(dark) : control.Parent?.BackColor ?? Surface(dark);
             switch (control)
             {
+                case FeatureSection section:
+                    section.DarkMode = dark;
+                    section.Invalidate();
+                    break;
+                case ThemedListView list:
+                    list.DarkMode = dark;
+                    list.BackColor = Input(dark);
+                    list.ForeColor = Text(dark);
+                    list.Invalidate();
+                    break;
                 case InputFrame frame:
                     frame.DarkMode = dark;
                     frame.Invalidate();

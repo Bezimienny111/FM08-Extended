@@ -4,6 +4,11 @@
 V24.1 to identyfikator roboczej bazy; nie oznacza utworzonego publicznego
 tagu. Wersja XML: 0.24.1. Launcher ma osobna numeracje i paczke.
 
+**Wstrzymac publikacje: audyt 2026-11-06 ujawnil bledy starych kadr.**
+Ponizsze zmiany V22-V24.1 nie oznaczaja poprawnosci wszystkich
+wczesniejszych importow. / **Publication on hold: the 2026-11-06 audit
+identified incorrect legacy squad mappings.**
+
 ## Polski
 
 ### Najwazniejsze zmiany od poprzedniej paczki V21
@@ -47,6 +52,20 @@ tagu. Wersja XML: 0.24.1. Launcher ma osobna numeracje i paczke.
 
 ### Wazne ograniczenia
 
+- **Stare kadry Ameryki Poludniowej wymagaja naprawy.** W partii
+  109 klubow / 3093 obecnych profili potwierdzono bledne zrodlo
+  30 kadr obejmujacych 733 profile, m.in. Strasbourg w Internacional
+  oraz zrodlo SC V/W Billstedt w Alianzie Lima. Dodatkowo trzy
+  przypisania obejmujace 86 profili maja konflikt z nazwa natywnego
+  klubu. Dwie historyczne reprezentacje klubow (68 profili) wymagaja
+  osobnej oceny. **Nie wykonano jeszcze tych napraw.** To nie jest
+  globalny audyt wszystkich zawodnikow bazy.
+- Dalszy przesiew 991 mapowan ujawnil **kolejne 49 klubow / 1234 profile**
+  z blednym zrodlem (Azja/Afryka i Europa). Lacznie potwierdzono
+  **79 roznych klubow / 1967 UID**. Pozostaja tez nierozstrzygniete
+  reprezentacje, nazwy natywne i przypisania; wyniki nie oznaczaja
+  poprawnosci wszystkich pozostalych kadr. Zadnej z tych nowych napraw
+  jeszcze nie wykonano.
 - **PSM nie ma teraz kadry zawodniczej.** Ta poprawka nie dodaje jego
   rzeczywistego skladu. Zespoly mlodziezowe/rezerwy bez odpowiednika
   zostaly odwzorowane przez istniejace kluby macierzyste.
@@ -114,6 +133,20 @@ reported 160 date conflicts and Madej's other existing Resovia record
 were not removed. Staff, stadiums and graphics are not updated.
 The engine still starts in 2007, with player dates shifted by 19 years.
 Requires FM08 8.0.2 and a **new career**; the launcher is separate/optional.
+
+**Known legacy mapping defects / publication blocker:** the read-only
+South America audit covered 109 clubs and 3093 current imported profiles.
+30 squads containing 733 profiles use incorrect source entities, including
+Strasbourg for Internacional and SC V/W Billstedt for Alianza Lima.
+Three further native-target identity conflicts involve 86 profiles;
+two documented historical club representations involve 68 profiles.
+These have **not been repaired**. This is not a global player audit.
+
+The wider 991-mapping screen found **49 additional clubs / 1234 profiles**
+with incorrect source entities in Asia/Africa and Europe. Combined:
+**79 distinct clubs / 1967 current UIDs**. These additional findings are
+also **unrepaired**; unresolved aliases, representations, native names and
+source attribution prevent any claim that all remaining squads are correct.
 
 **Validation:** three-profile pilot, four native rejection tests, full and
 independent verification of all 20 edits, the PERSON buffer outside

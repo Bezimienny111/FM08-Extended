@@ -22,19 +22,22 @@ internal sealed class SkinGuidePage : TabPage
     };
     private readonly Button copy = new() { Name = "CopySkinSnippet", AutoSize = true };
     private readonly Button install = new() { Name = "InstallSkinPanels", AutoSize = true };
+    private readonly Button uninstall = new() { Name = "UninstallSkinPanels", AutoSize = true };
+    private readonly Func<PlayerProfilePanelOptions> profileOptions;
     private readonly Label result = new() { AutoSize = true, Dock = DockStyle.Bottom };
     private PanelStatistics? statistics;
     private bool running;
 
     internal SkinGuidePage(Localizer localizer, Func<string> gamePath, Func<string> userDataPath, Action<Action> execute,
-        Func<bool>? isDarkMode = null)
+        Func<bool>? isDarkMode = null, Func<PlayerProfilePanelOptions>? profileOptions = null)
     {
         this.localizer = localizer;
+        this.profileOptions = profileOptions ?? (() => new());
         this.isDarkMode = isDarkMode ?? (() => false);
         Name = "SkinGuide";
         Padding = new Padding(12);
         var actions = new FlowLayoutPanel { Dock = DockStyle.Top, AutoSize = true, WrapContents = true };
-        actions.Controls.AddRange([snippets, copy, install]);
+        actions.Controls.AddRange([snippets, copy, install, uninstall]);
         Controls.Add(xml);
         Controls.Add(result);
         Controls.Add(actions);
@@ -60,8 +63,22 @@ internal sealed class SkinGuidePage : TabPage
             };
             if (dialog.ShowDialog(this) != DialogResult.OK) return;
             using var verified = MatchRulePatch.OpenVerifiedGame(gamePath());
-            var count = SkinPanelInstaller.Install(gamePath(), dialog.SelectedPath, localizer.Text("PanelFatigueTitle"));
+            var panels = GameLanguageResolver.CreatePanelLocalizer(localizer);
+            var count = SkinPanelInstaller.InstallExt(gamePath(), dialog.SelectedPath, panels.Text("PanelFatigueTitle"),
+                this.profileOptions(), panels);
             result.Text = localizer.Text("SkinInstalled", count, dialog.SelectedPath);
+        });
+        uninstall.Click += (_, _) => execute(() =>
+        {
+            using var dialog = new FolderBrowserDialog
+            {
+                Description = localizer.Text("SkinChooseDirectory"),
+                InitialDirectory = InitialSkinDirectory(gamePath(), userDataPath()),
+                ShowNewFolderButton = false
+            };
+            if (dialog.ShowDialog(this) != DialogResult.OK) return;
+            var count = SkinPanelInstaller.Uninstall(gamePath(), dialog.SelectedPath);
+            result.Text = localizer.Text("SkinUninstalled", count);
         });
         SizeChanged += (_, _) =>
         {
@@ -88,9 +105,11 @@ internal sealed class SkinGuidePage : TabPage
         instructions.Text = localizer.Text("SkinRefreshNotice") + Environment.NewLine + Environment.NewLine
             + localizer.Text("SkinInstructions") + Environment.NewLine + Environment.NewLine
             + localizer.Text("SkinEditViews") + Environment.NewLine + Environment.NewLine
-            + localizer.Text("SkinColumnRegistryInstructions");
+            + localizer.Text("SkinColumnRegistryInstructions") + Environment.NewLine + Environment.NewLine
+            + localizer.Text("SkinExtOnlyNotice", string.Join(", ", SkinPanelInstaller.ExtSkins));
         copy.Text = localizer.Text("SkinCopy");
         install.Text = localizer.Text("SkinInstall");
+        uninstall.Text = localizer.Text("SkinUninstall");
         var selected = snippets.SelectedIndex;
         for (var i = 0; i < snippets.Items.Count; i++) snippets.Items[i] = localizer.Text("SkinSnippet" + i);
         snippets.SelectedIndex = selected;
@@ -99,21 +118,25 @@ internal sealed class SkinGuidePage : TabPage
         UpdateRuntime(statistics, running);
     }
 
-    private void UpdateSnippet() => xml.Text = snippets.SelectedIndex switch
+    private void UpdateSnippet()
     {
+        var panels = GameLanguageResolver.CreatePanelLocalizer(localizer);
+        xml.Text = snippets.SelectedIndex switch
+        {
         0 => SkinPanelInstaller.TrainingFragment.Replace("Zmęczenie sezonowe",
-            SecurityElement.Escape(localizer.Text("PanelFatigueTitle")), StringComparison.Ordinal),
+            SecurityElement.Escape(panels.Text("PanelFatigueTitle")), StringComparison.Ordinal),
         1 => SkinPanelInstaller.SquadFragment,
         2 => SkinPanelInstaller.TacticsFragment,
-        3 => SkinPanelInstaller.ColumnRegistryFragment(localizer.Text("PanelFatigueTitle")),
+        3 => SkinPanelInstaller.ColumnRegistryFragment(panels.Text("PanelFatigueTitle")),
         _ => throw new InvalidOperationException("No skin snippet selected.")
-    };
+        };
+    }
 
     internal void UpdateRuntime(PanelStatistics? value, bool isRunning)
     {
         statistics = value;
         running = isRunning;
-        install.Enabled = !running;
+        install.Enabled = uninstall.Enabled = !running;
         runtime.Text = value is null ? localizer.Text(running ? "PanelNotActive" : "PanelNotRunning")
             : localizer.Text("PanelStatistics", value.Reads, value.Hidden, value.Invalid, value.TrainingUpdates);
         runtime.ForeColor = value is { Invalid: > 0 } ? LauncherTheme.Error(isDarkMode()) : LauncherTheme.Text(isDarkMode());

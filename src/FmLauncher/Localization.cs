@@ -1,4 +1,4 @@
-using System.Globalization;
+﻿using System.Globalization;
 using System.Reflection;
 using System.Text;
 using System.Text.Json;
@@ -48,6 +48,16 @@ public sealed class Localizer
             Warning = new LauncherException("LanguageFileWarning", ex.Message);
         }
     }
+
+    private Localizer(Localizer source, string code)
+    {
+        fallback = source.fallback;
+        Languages = source.Languages;
+        Warning = source.Warning;
+        Select(code);
+    }
+
+    internal Localizer Fork(string code) => new(this, code);
 
     private static void Validate(LanguageFile file, LanguageDefinition fallback)
     {

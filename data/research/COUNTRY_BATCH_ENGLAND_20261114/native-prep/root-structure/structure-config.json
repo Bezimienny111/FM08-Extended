@@ -1,0 +1,187 @@
+{
+  "moves": [
+    {
+      "ClubUID": 633,
+      "Before": 587,
+      "After": -1,
+      "Reason": "reviewed_England_membership_historical_ALT_and_lower_pools"
+    },
+    {
+      "ClubUID": 647,
+      "Before": 1118,
+      "After": 580,
+      "Reason": "reviewed_England_membership_historical_ALT_and_lower_pools"
+    },
+    {
+      "ClubUID": 660,
+      "Before": 99,
+      "After": -1,
+      "Reason": "reviewed_England_membership_historical_ALT_and_lower_pools"
+    },
+    {
+      "ClubUID": 678,
+      "Before": 587,
+      "After": -1,
+      "Reason": "reviewed_England_membership_historical_ALT_and_lower_pools"
+    },
+    {
+      "ClubUID": 684,
+      "Before": 587,
+      "After": -1,
+      "Reason": "reviewed_England_membership_historical_ALT_and_lower_pools"
+    },
+    {
+      "ClubUID": 113522,
+      "Before": 581,
+      "After": -1,
+      "Reason": "reviewed_England_membership_historical_ALT_and_lower_pools"
+    },
+    {
+      "ClubUID": 5100076,
+      "Before": 588,
+      "After": -1,
+      "Reason": "reviewed_England_membership_historical_ALT_and_lower_pools"
+    },
+    {
+      "ClubUID": 5103927,
+      "Before": 588,
+      "After": 550,
+      "Reason": "reviewed_England_membership_historical_ALT_and_lower_pools"
+    },
+    {
+      "ClubUID": 8325070,
+      "Before": 587,
+      "After": 550,
+      "Reason": "reviewed_England_membership_historical_ALT_and_lower_pools"
+    },
+    {
+      "ClubUID": 30015287,
+      "Before": 1120,
+      "After": 581,
+      "Reason": "reviewed_England_membership_historical_ALT_and_lower_pools"
+    }
+  ],
+  "alternate_moves": [
+    {
+      "ClubUID": 659,
+      "Before": 587,
+      "After": -1,
+      "Reason": "reviewed_England_membership_historical_ALT_and_lower_pools"
+    },
+    {
+      "ClubUID": 698,
+      "Before": 9,
+      "After": -1,
+      "Reason": "reviewed_England_membership_historical_ALT_and_lower_pools"
+    },
+    {
+      "ClubUID": 707,
+      "Before": 8,
+      "After": -1,
+      "Reason": "reviewed_England_membership_historical_ALT_and_lower_pools"
+    },
+    {
+      "ClubUID": 4001706,
+      "Before": 99,
+      "After": -1,
+      "Reason": "reviewed_England_membership_historical_ALT_and_lower_pools"
+    }
+  ],
+  "regional_moves": [],
+  "requirements": [
+    {
+      "index": 7,
+      "min": 20,
+      "max": 20
+    },
+    {
+      "index": 8,
+      "min": 24,
+      "max": 24
+    },
+    {
+      "index": 9,
+      "min": 24,
+      "max": 24
+    },
+    {
+      "index": 10,
+      "min": 24,
+      "max": 24
+    },
+    {
+      "index": 99,
+      "min": 24,
+      "max": 24
+    },
+    {
+      "index": 550,
+      "min": 2442,
+      "max": 2442
+    },
+    {
+      "index": 580,
+      "min": 23,
+      "max": 23
+    },
+    {
+      "index": 581,
+      "min": 24,
+      "max": 24
+    },
+    {
+      "index": 582,
+      "min": 21,
+      "max": 21
+    },
+    {
+      "index": 587,
+      "min": 22,
+      "max": 22
+    },
+    {
+      "index": 588,
+      "min": 22,
+      "max": 22
+    },
+    {
+      "index": 1117,
+      "min": 22,
+      "max": 22
+    },
+    {
+      "index": 1118,
+      "min": 21,
+      "max": 21
+    },
+    {
+      "index": 1119,
+      "min": 21,
+      "max": 21
+    },
+    {
+      "index": 1120,
+      "min": 21,
+      "max": 21
+    },
+    {
+      "index": 1136,
+      "min": 18,
+      "max": 18
+    },
+    {
+      "index": 1137,
+      "min": 17,
+      "max": 17
+    }
+  ],
+  "expected_count_deltas": {
+    "550": 3,
+    "580": 1,
+    "581": 2,
+    "1118": -1,
+    "1120": -1,
+    "-1": 6
+  },
+  "first_new_stadium_uid": 1800290001
+}

@@ -16,6 +16,7 @@ internal sealed class SuspendedGameProcess : IDisposable
     private bool resumed;
     internal int ProcessId { get; }
     internal uint LeagueChangesState { get; private set; }
+    internal uint PositionBackgroundState { get; private set; }
 
     internal SuspendedGameProcess(string path, string? arguments = null, bool dpiAware = false)
     {
@@ -34,16 +35,50 @@ internal sealed class SuspendedGameProcess : IDisposable
         ProcessId = checked((int)info.ProcessId);
     }
 
-    internal void ApplyRuleLimits(IReadOnlyList<RuleSettings> rules, FileStream verifiedGame)
+    internal RuleHookSession CreateRuleSession(string imageHash)
     {
-        foreach (var limit in Enum.GetValues<RuleLimit>())
-        {
-            if (rules.Any(rule => MatchRulePatch.Enabled(rule, limit)))
-                ApplyGetter(rules, verifiedGame, limit);
-        }
+        using var instance = Process.GetProcessById(ProcessId);
+        return new(ProcessId, instance.StartTime.ToUniversalTime().Ticks, imageHash);
     }
 
-    private void ApplyGetter(IReadOnlyList<RuleSettings> rules, FileStream verifiedGame, RuleLimit limit)
+    // Compatibility entry for existing native fixtures. Production compiles once in GameLauncher.
+    internal void ApplyRuleLimits(IReadOnlyList<RuleSettings> rules, FileStream verifiedGame,
+        Action<RuleLimit, RuleHookStatus>? report = null)
+    {
+        var previous = verifiedGame.Position;
+        verifiedGame.Position = 0;
+        var imageHash = Convert.ToHexString(SHA256.HashData(verifiedGame));
+        verifiedGame.Position = previous;
+        ApplyRuleLimits(EffectiveRuleResolver.Compile(rules), verifiedGame, CreateRuleSession(imageHash), report);
+    }
+
+    internal AppliedRuleSnapshot ApplyRuleLimits(EffectiveRulePolicy policy, FileStream verifiedGame,
+        RuleHookSession session, Action<RuleLimit, RuleHookStatus>? report = null)
+    {
+        if (session.ProcessId != ProcessId) throw new LauncherException("UnexpectedGameMemory");
+        var snapshot = AppliedRuleSnapshot.Begin(session, policy);
+        foreach (var limit in Enum.GetValues<RuleLimit>())
+        {
+            if (!policy.HasOverrides(limit)) continue;
+            snapshot = snapshot.WithInstalling(limit);
+            report?.Invoke(limit, RuleHookStatus.Installing);
+            try
+            {
+                var receipt = ApplyGetter(policy, verifiedGame, limit);
+                snapshot = snapshot.WithVerified(limit, receipt);
+                report?.Invoke(limit, RuleHookStatus.Verified);
+            }
+            catch
+            {
+                snapshot = snapshot.WithFailed(limit);
+                report?.Invoke(limit, RuleHookStatus.Failed);
+                throw;
+            }
+        }
+        return snapshot;
+    }
+
+    private RuleInstallationReceipt ApplyGetter(EffectiveRulePolicy policy, FileStream verifiedGame, RuleLimit limit)
     {
         // Compare the whole original getter, not only the displaced instruction.
         var getter = MatchRulePatch.GetterAddress(limit);
@@ -53,7 +88,7 @@ internal sealed class SuspendedGameProcess : IDisposable
         if (!Read(getter, original.Length).SequenceEqual(original))
             throw new LauncherException("UnexpectedGameMemory");
         var address = Allocate(4096);
-        var payload = MatchRulePatch.BuildPayload(address, rules, limit);
+        var payload = MatchRulePatch.BuildPayload(address, policy, limit);
         Write(address, payload);
         Protect(address, payload.Length, 0x20);
         Flush(address, payload.Length);
@@ -62,6 +97,53 @@ internal sealed class SuspendedGameProcess : IDisposable
         Write(getter, jump);
         Protect(getter, jump.Length, oldProtection);
         Flush(getter, jump.Length);
+        // The receipt owns copies, and is created only after the complete readback.
+        return RuleInstallationReceipt.CreateVerified(limit, address, payload, jump, Read);
+    }
+
+    internal RuleDisplayInstallation? ApplyRuleDisplay(AppliedRuleSnapshot snapshot, FileStream verifiedGame,
+        string imageHash)
+    {
+        var activeCodes = snapshot.ActiveCodesMask29;
+        if (!activeCodes.Any(value => value != 0) || imageHash != MatchRulePatch.SupportedHash) return null;
+        if (snapshot.Session.ProcessId != ProcessId || snapshot.Session.ImageSha256 != imageHash)
+            throw new LauncherException("UnexpectedGameMemory");
+        if (!RuleDisplayInstallation.SupportsAppliedState(snapshot))
+            throw new LauncherException("UnexpectedGameMemory");
+        var fresh = snapshot.Revalidate(CreateRuleSession(imageHash), true, Read);
+        // Equal union masks can hide loss of one of two overrides on the same code.
+        if (!ReferenceEquals(fresh, snapshot))
+            throw new LauncherException("UnexpectedGameMemory");
+
+        // The display ABI has been established only for the primary image hash.
+        var original = new byte[GameRuleDisplayPatch.NativeFormatterLength];
+        verifiedGame.Position = GameRuleDisplayPatch.EntryAddress - 0x400000;
+        verifiedGame.ReadExactly(original);
+        if (!original.AsSpan(0, GameRuleDisplayPatch.EntryLength).SequenceEqual(GameRuleDisplayPatch.OriginalEntry)
+            || !Read(GameRuleDisplayPatch.EntryAddress, original.Length).SequenceEqual(original))
+            throw new LauncherException("UnexpectedGameMemory");
+        var address = Allocate(4096);
+        var payload = GameRuleDisplayPatch.BuildPayload(address, activeCodes);
+        if (payload.Length > 4096) throw new LauncherException("UnexpectedGameMemory");
+        Write(address, payload);
+        Protect(address, payload.Length, 0x20);
+        Flush(address, payload.Length);
+        var entry = GameRuleDisplayPatch.BuildEntryJump(address);
+        var oldProtection = Protect(GameRuleDisplayPatch.EntryAddress, entry.Length, 0x40);
+        Write(GameRuleDisplayPatch.EntryAddress, entry);
+        Protect(GameRuleDisplayPatch.EntryAddress, entry.Length, oldProtection);
+        Flush(GameRuleDisplayPatch.EntryAddress, entry.Length);
+        var receipt = new RuleDisplayInstallation(address, payload, entry);
+        if (!receipt.MatchesFreshRead(Read)) throw new LauncherException("UnexpectedGameMemory");
+        return receipt;
+    }
+
+    internal static void VerifyRuleInstallation(uint address, byte[] payload, byte[] jump, RuleLimit limit,
+        Func<uint, int, byte[]> read)
+    {
+        if (!read(MatchRulePatch.GetterAddress(limit), jump.Length).SequenceEqual(jump)
+            || !read(address, payload.Length).SequenceEqual(payload))
+            throw new LauncherException("UnexpectedGameMemory");
     }
 
     internal uint ApplyDisplay(DisplayLaunchSettings settings, FileStream verifiedGame)
@@ -99,27 +181,81 @@ internal sealed class SuspendedGameProcess : IDisposable
         return state;
     }
 
-    internal uint ApplyPanelInformation(FileStream verifiedGame, Localizer localizer)
+    internal uint ApplyPanelInformation(FileStream verifiedGame, Localizer localizer,
+        PlayerProfilePanelOptions? profileOptions = null, bool legacyEnabled = true)
     {
         var integerVtable = new byte[0x70];
         verifiedGame.Position = GamePanelPatch.IntegerVtable - 0x400000;
         verifiedGame.ReadExactly(integerVtable);
         if (!Read(GamePanelPatch.IntegerVtable, integerVtable.Length).SequenceEqual(integerVtable))
             throw new LauncherException("UnexpectedGameMemory");
+        profileOptions ??= new();
+        uint positionSetRole = 0;
+        if (profileOptions.PositionHighlightsEnabled)
+        {
+            var positionCode = Allocate(4096);
+            var positionState = Allocate(GamePositionBackgroundPatch.DataSize);
+            var classes = new byte[12 * 47];
+            for (var role = 0; role < PositionHighlightModel.Roles.Count; role++)
+            for (var attribute = 0; attribute < GamePositionBackgroundPatch.NativeAttributes.Count; attribute++)
+                classes[(role + 1) * 47 + attribute] = (byte)PositionHighlightModel.Emphasis(
+                    PositionHighlightModel.Roles[role].Code, GamePositionBackgroundPatch.NativeAttributes[attribute]);
+            var position = GamePositionBackgroundPatch.Build(positionCode, positionState, classes, true);
+            Write(positionState, position.Data); Write(positionCode, position.Code);
+            if (!Read(positionState, position.Data.Length).SequenceEqual(position.Data)
+                || !Read(positionCode, position.Code.Length).SequenceEqual(position.Code))
+                throw new LauncherException("UnexpectedGameMemory");
+            Protect(positionCode, position.Code.Length, 0x20); Flush(positionCode, position.Code.Length);
+            InstallPanelEntry(GamePositionBackgroundPatch.NumericCreatedAddress,
+                GamePositionBackgroundPatch.NumericCreatedOriginal, position.NativeValueCreatedEntry, call: true);
+            InstallPanelEntry(GamePositionBackgroundPatch.NameCreatedAddress,
+                GamePositionBackgroundPatch.NameCreatedOriginal, position.NativeNameCreatedEntry, call: true);
+            InstallPanelEntry(GamePositionBackgroundPatch.DrawAddress,
+                GamePositionBackgroundPatch.DrawOriginal, position.LabelDrawEntry);
+            InstallPanelEntry(GamePositionBackgroundPatch.RebuildAddress,
+                GamePositionBackgroundPatch.RebuildOriginal, position.BeginGenerationHookEntry);
+            InstallPanelEntry(GamePositionBackgroundPatch.DestructorAddress,
+                GamePositionBackgroundPatch.DestructorOriginal, position.LabelDestructorEntry);
+            InstallPanelEntry(GamePositionBackgroundPatch.FontCopyAddress,
+                GamePositionBackgroundPatch.FontCopyOriginal, position.FontCopyEntry);
+            InstallPanelEntry(GamePositionBackgroundPatch.PopupCommitAddress,
+                GamePositionBackgroundPatch.PopupCommitOriginal, position.PopupCommitEntry);
+            positionSetRole = position.SetRoleEntry;
+            PositionBackgroundState = positionState;
+        }
         var code = Allocate(GamePanelPatch.CodeCapacity);
         var data = Allocate(GamePanelPatch.DataCapacity);
-        var payload = GamePanelPatch.Build(code, data, integerVtable, localizer);
+        var payload = GamePanelPatch.Build(code, data, integerVtable, localizer, profileOptions, legacyEnabled, positionSetRole);
         Write(data, payload.Data);
         Write(code, payload.Code);
+        if (positionSetRole != 0)
+        {
+            if (payload.ProfileRoleEntry == 0) throw new LauncherException("UnexpectedGameMemory");
+            // Written/read back while the main thread remains suspended. Native Fill
+            // invokes this only after its rebuild, reading the current popup afresh.
+            Write(PositionBackgroundState + (uint)GamePositionBackgroundPatch.RoleSynchronizeOffset, BitConverter.GetBytes(payload.ProfileRoleEntry));
+            if (!Read(PositionBackgroundState + (uint)GamePositionBackgroundPatch.RoleSynchronizeOffset, 4)
+                .SequenceEqual(BitConverter.GetBytes(payload.ProfileRoleEntry)))
+                throw new LauncherException("UnexpectedGameMemory");
+        }
+        if (!Read(data, payload.Data.Length).SequenceEqual(payload.Data)
+            || !Read(code, payload.Code.Length).SequenceEqual(payload.Code))
+            throw new LauncherException("UnexpectedGameMemory");
         Protect(code, payload.Code.Length, 0x20);
         Flush(code, payload.Code.Length);
         InstallPanelEntry(GamePanelPatch.PropertyAddress, GamePanelPatch.PropertyOriginal, payload.PropertyEntry);
         InstallPanelEntry(GamePanelPatch.TitleAddress, GamePanelPatch.TitleOriginal, payload.TitleEntry);
         InstallPanelEntry(GamePanelPatch.TrainingAddress, GamePanelPatch.TrainingOriginal, payload.TrainingEntry);
         InstallPanelEntry(GamePanelPatch.LabelAddress, GamePanelPatch.LabelOriginal, payload.LabelEntry);
+        if (profileOptions.HiddenAttributesEnabled || profileOptions.PositionHighlightsEnabled)
+        {
+            InstallPanelEntry(GamePanelPatch.ProfileSetAddress, GamePanelPatch.ProfileSetOriginal, payload.ProfileSetEntry);
+            InstallPanelEntry(GamePanelPatch.ProfileEventAddress, GamePanelPatch.ProfileEventOriginal, payload.ProfileEventEntry);
+            InstallPanelEntry(GamePanelPatch.ProfileInitAddress, GamePanelPatch.ProfileInitOriginal, payload.ProfileInitEntry);
+        }
         return data;
 
-        void InstallPanelEntry(uint site, ReadOnlySpan<byte> expected, uint destination)
+        void InstallPanelEntry(uint site, ReadOnlySpan<byte> expected, uint destination, bool call = false)
         {
             var original = new byte[expected.Length];
             verifiedGame.Position = site - 0x400000;
@@ -127,9 +263,13 @@ internal sealed class SuspendedGameProcess : IDisposable
             if (!original.AsSpan().SequenceEqual(expected) || !Read(site, original.Length).SequenceEqual(original))
                 throw new LauncherException("UnexpectedGameMemory");
             var oldProtection = Protect(site, original.Length, 0x40);
-            Write(site, BuildJump(site, destination, original.Length));
+            var jump = BuildJump(site, destination, original.Length);
+            if (call) jump[0] = 0xE8;
+            Write(site, jump);
             Protect(site, original.Length, oldProtection);
             Flush(site, original.Length);
+            if (!Read(site, jump.Length).SequenceEqual(jump))
+                throw new LauncherException("UnexpectedGameMemory");
         }
     }
 

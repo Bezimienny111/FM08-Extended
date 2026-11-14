@@ -1,0 +1,25 @@
+[
+  {
+    "Country": "England",
+    "Name": "Fisher FC",
+    "TMID": "47026",
+    "RealLevel": 8,
+    "Role": "loan_owner_only",
+    "NativeClubUID": null,
+    "NativeCountryIndex": 139,
+    "SourceCountryIndex": 139,
+    "NativeParentUID": null,
+    "ParentTMID": "",
+    "ProfileFile": "J:\\FM08dev\\FmLauncher\\data\\research\\COUNTRY_BATCH_ENGLAND_20261114\\native-prep\\Fisher-FC-profile-from-cached-SDK.json",
+    "ProjectedClubUID": 1800280010,
+    "ProjectedTeamIndex": 24501,
+    "ProjectedFamilyIndex": 24149,
+    "ExistingStadiumIndex": -1,
+    "DesiredDivision": 550,
+    "DesiredAlternative": -1,
+    "RegionalDivision": -1,
+    "YearFounded": 2009,
+    "IdentityDecision": "new_distinct_foreign_owner_Fisher_FC_2009",
+    "SugarDaddy": false
+  }
+]

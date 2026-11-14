@@ -35,6 +35,8 @@ public sealed class LauncherConfiguration
     // Schema 1 compatibility only; preserved on save, ignored by the current PA model.
     public required int PaChance { get; set; }
     public bool PanelInformationEnabled { get; set; } = true;
+    public bool PositionHighlightsEnabled { get; set; }
+    public bool HiddenAttributesEnabled { get; set; }
     public bool LeagueReputationEnabled { get; set; }
     public bool LeagueDiagnosticsEnabled { get; set; }
     public bool AgingDelayEnabled { get; set; }

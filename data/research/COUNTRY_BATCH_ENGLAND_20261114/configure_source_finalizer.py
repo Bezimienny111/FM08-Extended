@@ -1,0 +1,17 @@
+﻿from pathlib import Path
+import json,sys,hashlib,ast
+sys.dont_write_bytecode=True
+B=Path(__file__).resolve().parent;R=B.parent;source=R/'COUNTRY_BATCH_BLR_BEL_AUT_AUS_ARG_20261114/finish_source_collection.py'
+s=source.read_text(encoding='utf-8-sig');assert s.count("COUNTRIES=['Belarus','Belgium','Austria','Australia','Argentina']")==1
+s=s.replace("COUNTRIES=['Belarus','Belgium','Austria','Australia','Argentina']","COUNTRIES=['England']").replace('AngliaExcluded=True','AngliaExcluded=False')
+prefix=s[:s.index('lines=')];suffix=s[s.index("manifest=read(B/'manifest.json')"):]
+text='''lines=['# Dane źródłowe Anglii — 164 kluby','', 'Zakończono zbiór danych dla zamkniętej listy. To nie jest import DAT ani nowa wersja bazy. Test Belgii X22 pozostaje osobnym zadaniem.','', '| Kraj | Kluby | Karty | Potwierdzone wiersze | Wypożyczenia |','|---|---:|---:|---:|---:|']
+for c in summary['countries']:lines.append('| '+c['Country']+' | '+str(c['CollectedClubs'])+' | '+str(c['Cards'])+' | '+str(c['ConfirmedCandidateRows'])+' | '+str(c['AcceptedLoanRows'])+' |')
+lines+=['', 'Potwierdzone unikalne osoby: '+str(len(players))+'. Jawne luki: '+str(summary['source_gaps'])+'. Kandydatury wieloklubowe: '+str(summary['multi_club_candidates'])+'; rozstrzygnąć przed przyszłym importem bez tworzenia duplikatów.', '', 'Klasycznie160grywalnych:20/24/24/24/24/22/22. Zebrano wszystkie164współczesne kluby. Cztery spadki techniczne według finished25/26:Hereford iKingsLynn zNorth orazFarnborough zSouth doSouthernPremier;Dover zSouth doIsthmian. Nie wybierano klubów według bieżącej tabeli26/27.', '', '164potwierdzone profile klubowe mająclubtype1 i brak rodziców.5physicalWales191 nie oznacza automatycznie zmiany native sportingcountry: obowiązuje typedreference root i zachowanie istniejących powiązań.', '', 'NativeWriterAllowed=False. Nie wykonano DAT/freeze/UID/CA/PA/wersjiTEST. Root ma osobne prognozy32warunków i4jawne historyczne ALTcleanup; nie wyłączano kontroli. Pełne przyszłe mapowanie wymaganych9dolnych pul i obu banków pozostaje bramką importu. Nowa podstawa wymaga akceptacjiX22.', '', 'Cache zachowuje surowe odpowiedzi, URL, oryginalny czas i SHA256. Nie wyszukiwano na siłę brakujących osób/GK/DOB. Daty pozostają rzeczywiste bez przesunięcia19lat. API-football:0. Bazy, SI, FM, launcher i grafiki niezmienione.']
+(B/'SOURCE_RAPORT.md').write_text('\\n'.join(lines)+'\\n',encoding='utf-8')
+(B/'WZNOWIENIE.md').write_text('# Anglia:164kluby zebrane, source-only\\n\\nHandoff:source-ready-for-root-review.json/source-qa.json/SOURCE_RAPORT.md. Nie ponawiać7katalogów,164profilów ani ukończonych kadr.160grywalnych+4down,0rodziców. BezDAT/freeze/UID/CA_PA/wersji.\\n\\nDalszy import tylko po zaakceptowanej podstawie(X22test osobno), rozstrzygnięciu multi-club candidate queue, pełnym nativeCurrent/ALT/regional i9dolnych pulach. Nativeanalizy iidentitymap należą do root. Nie odnawiać budżetu pustych wyszukiwańStep3.\\n',encoding='utf-8')
+'''
+s=prefix+text+suffix
+ast.parse(s);(B/'finish_source_collection.py').write_text(s,encoding='utf-8')
+(B/'source-finalizer-configuration-pins.json').write_text(json.dumps(dict(Original=str(source),OriginalSHA256=hashlib.sha256(source.read_bytes()).hexdigest(),ConfiguredSHA256=hashlib.sha256(s.encode()).hexdigest(),Configuration='Existing standard finalizer guards/analysis unchanged; country England, report/checkpoint prose only',DBWrite=False),indent=2)+'\n',encoding='utf-8')
+print('PREPARED_EXISTING_FACTS_FINALIZER_ENGLAND; NOT_EXECUTED_BEFORE164COMPLETE')

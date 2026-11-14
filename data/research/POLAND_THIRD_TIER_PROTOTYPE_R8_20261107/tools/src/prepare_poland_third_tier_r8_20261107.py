@@ -1,0 +1,15 @@
+﻿"""Create the isolated workspace for the Polish third-tier prototype."""
+import hashlib,json,pathlib,shutil
+from datetime import datetime
+ROOT=pathlib.Path('J:/FM08dev');selection=ROOT/'FmLauncher/data/research/POLAND_THIRD_TIER_PILOT_R7_20261107';out=ROOT/'FmLauncher/data/research/POLAND_THIRD_TIER_PROTOTYPE_R8_20261107'
+assert not out.exists(),'Refuse overwrite prototype'
+m=json.loads((selection/'manifest.json').read_text(encoding='utf-8'));base=ROOT/'data/updates/update-802/db/802'
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest().upper()
+assert {str(p.relative_to(base)):sha(p) for p in base.rglob('*') if p.is_file()}==m['source_hashes']
+assert sha(ROOT/'fm.exe')=='157F484BE2EAD4AB27006D1002C2C666A7228197B88B14C8D026E76F31B1D62D'
+out.mkdir(parents=True);(out/'input').mkdir();shutil.copytree(base,out/'input/802');shutil.copy2(selection/'participants.csv',out/'participants.csv')
+protected={str(p.relative_to(ROOT)):sha(p) for p in [ROOT/'fm.exe',ROOT/'data/comps.efa',ROOT/'data/updates/update-802/data/comps.efa']}
+manifest={'status':'building','started_at':datetime.now().astimezone().isoformat(),'revision':'R8','source_database':str(base),'frozen_input':str(out/'input/802'),'output_database':str(out/'user-data/db/TEST_POL_3_LEVEL_R8'),'runtime':str(out/'runtime'),'scope':{'new_competitions':1,'existing_club_assignment_changes':18,'new_clubs':0,'new_people':0,'squads':False},'participant_uids':m['participant_uids'],'protected_source_hashes':protected,'source_database_hashes':m['source_hashes'],'new_competition_uid_candidate':1800001000,'preserve_lower_pool_uid':129560,'protected_top_two_clubs':m['protected_division_club_uids'],'source_modified':False,'game_verified':False,'resource_strategy':'country_settings_plus_new_league_definitions; preserve original Polish factories; minimal append hook if required','native_db_status':'schema_investigation','resource_status':'archive_format_investigation'}
+(out/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+(out/'WZNOWIENIE.md').write_text('''# Prototyp trzeciego poziomu Polski R8 — prace rozpoczęte\n\nŹródło: czysta8.0.2, zamrożona kopia input/802.18klubów z R7. Bez tworzenia klubów i osób. NowyUIDkandydat1800001000; zaplecze129560zostaje.\n\nNowe ustalenie: COMPwSERVERniezawsze68B — długość68+7*n, n=int32+42. CLIENT54B. Obie tabele1332rekordy; language20bloków także1332UID. Puste nazwy językowe nie mająNUL16.\n\nEFAma9Bheader, XORFFod+9, indeksFMF/zlib; XMLpayloadniekompresowany. KrajowyXMLdivision_levelsmożeoverride'owaćlistęniezależnie, alelista competitionszastępujepol_setup_comps. Dlazachowanianatywnych5obiektówrozważanyminimalnyhookdopisanianowegoACTUAL_COMPpooryginalnejfabryce; regułyligiwdanych.\n\nNie uruchomiono gry ani nie zapisano gotowej bazy wynikowej. Manifest ma statusbuilding; nie traktować samego katalogu jako wdrożenia.\n''',encoding='utf-8')
+print(json.dumps({'status':'prepared','directory':str(out),'frozen_source_files':len(m['source_hashes']),'source_unchanged':True}))

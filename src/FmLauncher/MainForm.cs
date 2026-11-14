@@ -35,12 +35,20 @@ internal sealed class MainForm : Form
     private readonly ToggleSwitch paEnabled = new() { Name = "PaEnabled" };
     private readonly ToggleSwitch agingDelay = new() { Name = "AgingDelayEnabled" };
     private readonly ToggleSwitch panelInformation = new() { Name = "PanelInformationEnabled" };
+    private readonly ToggleSwitch positionHighlights = new() { Name = "PositionHighlightsEnabled", Dock = DockStyle.Top };
+    private readonly ToggleSwitch hiddenAttributes = new() { Name = "HiddenAttributesEnabled", Dock = DockStyle.Top };
     private readonly SkinGuidePage skinGuide;
     private readonly LeagueReputationPage leagueReputation;
     private int legacyPaChance;
     private readonly Label paStatistics = new() { Name = "PaStatistics", AutoSize = true, Dock = DockStyle.Top };
     private readonly Label paLogStatus = new() { Name = "PaLogStatus", AutoSize = true, Dock = DockStyle.Top };
     private PaLogForm? paLogWindow;
+    private readonly LaunchLogPanel launchLog;
+    private readonly ComboBox ruleView = Choice();
+    private readonly Control individualRulesView;
+    private readonly RuleGroupEditor groupedRules;
+    private int activeRuleView;
+    private bool changingRuleView;
     private readonly NumericUpDown substitutionsEditor = new()
     {
         Name = "SubstitutionsEditor", Minimum = 0, Maximum = 12, Width = 80, Enabled = false
@@ -57,7 +65,7 @@ internal sealed class MainForm : Form
     };
     private readonly DataGridView rules = new()
     {
-        Dock = DockStyle.Fill, Height = 300, AutoGenerateColumns = false,
+        Name = "IndividualRules", Dock = DockStyle.Fill, Height = 300, AutoGenerateColumns = false,
         AllowUserToAddRows = false, AllowUserToDeleteRows = false,
         AllowUserToOrderColumns = false, RowHeadersVisible = false,
         AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
@@ -102,7 +110,7 @@ internal sealed class MainForm : Form
         leagueReputation = new LeagueReputationPage(localizer, () => gamePath.Text.Trim(), Execute, directory, launcher,
             () => darkMode);
         skinGuide = new SkinGuidePage(localizer, () => gamePath.Text.Trim(), () => userDataPath.Text.Trim(), Execute,
-            () => darkMode);
+            () => darkMode, () => new PlayerProfilePanelOptions(positionHighlights.Checked, hiddenAttributes.Checked));
         tabs.TabPages.Add(skinGuide);
         Controls.Add(tabs);
         profileBanner.Click += (_, _) =>
@@ -132,7 +140,15 @@ internal sealed class MainForm : Form
         var title = CaptionLabel("Title");
         title.Name = "BrandTitle";
         title.Font = new Font(Font.FontFamily, 15, FontStyle.Bold);
-        header.Controls.Add(title, 0, 0);
+        var version = new Label
+        {
+            Name = "LauncherVersion", AutoSize = true,
+            Text = "v" + typeof(MainForm).Assembly.GetName().Version!.ToString(3),
+            Margin = new Padding(0, 11, 3, 3)
+        };
+        var brandRow = Row(title, version);
+        brandRow.WrapContents = false;
+        header.Controls.Add(brandRow, 0, 0);
         themeMode.Click += (_, _) => ApplyTheme(!darkMode);
         var languageRow = Row(themeMode, CaptionLabel("Language"), languages);
         languageRow.WrapContents = false;
@@ -225,14 +241,28 @@ internal sealed class MainForm : Form
             Execute(() => UpdateFromEditor(substitutionsEditor, "Substitutions"));
         benchEditor.ValueChanged += (_, _) => Execute(() => UpdateFromEditor(benchEditor, "Bench"));
         var rulePanel = Stack();
-        rulePanel.Controls.Add(Notice("RulesNotice"));
+        rulePanel.Controls.Add(Notice("RulesViewNotice"));
+        ruleView.Name = "RuleEditView";
+        ruleView.Width = 300;
+        ruleView.SelectedIndexChanged += (_, _) => Execute(SwitchRuleView);
+        rulePanel.Controls.Add(Row(CaptionLabel("RuleEditView"), ruleView));
+        var individualPanel = Stack();
+        individualRulesView = individualPanel;
+        individualRulesView.Name = "IndividualRulesView";
+        individualPanel.Controls.Add(Notice("RulesNotice"));
         var gridContainer = new Panel { Dock = DockStyle.Top, Height = 260 };
         gridContainer.Controls.Add(rules);
-        rulePanel.Controls.Add(gridContainer);
-        rulePanel.Controls.Add(Row(selectedRule, CaptionLabel("Substitutions"), substitutionsEditor,
+        individualPanel.Controls.Add(gridContainer);
+        individualPanel.Controls.Add(Row(selectedRule, CaptionLabel("Substitutions"), substitutionsEditor,
             CaptionLabel("Bench"), benchEditor));
+        rulePanel.Controls.Add(individualRulesView);
+        groupedRules = new RuleGroupEditor(localizer) { Visible = false };
+        groupedRules.SelectionChanged += UpdateRuleScope;
+        groupedRules.ApplyRequested += (code, substitutions, bench) =>
+            Execute(() => ApplyGroupedChanges(code, substitutions, bench));
+        rulePanel.Controls.Add(groupedRules);
         rulePanel.Controls.Add(Notice("RuleScopeNotice"));
-        var scopeContainer = new Panel { Dock = DockStyle.Top, Height = 170 };
+        var scopeContainer = new Panel { Dock = DockStyle.Top, Height = 155 };
         scopeContainer.Controls.Add(ruleScope);
         rulePanel.Controls.Add(scopeContainer);
         captions.Add(matchRulesEnabled, "MatchRulesEnabled");
@@ -295,6 +325,13 @@ internal sealed class MainForm : Form
         captions.Add(panelInformation, "PanelInformationEnabled");
         panelInformationSection.Controls.Add(Notice("PanelInformationNotice"));
         panelInformationSection.Controls.Add(Notice("PanelSkinGuideNotice"));
+        captions.Add(positionHighlights, "PositionHighlightsEnabled");
+        positionHighlights.Enabled = PositionHighlightModel.IntegrationReady;
+        captions.Add(hiddenAttributes, "HiddenAttributesEnabled");
+        panelInformationSection.Controls.Add(positionHighlights);
+        panelInformationSection.Controls.Add(Notice("PositionHighlightsNotice"));
+        panelInformationSection.Controls.Add(hiddenAttributes);
+        panelInformationSection.Controls.Add(Notice("HiddenAttributesNotice"));
         body.Controls.Add(Feature("PanelsFeature", panelInformation, panelInformationSection));
         body.Controls.Add(leagueReputation);
         captions.Add(advancedMode, "AdvancedMode");
@@ -357,7 +394,9 @@ internal sealed class MainForm : Form
         linkRow.Controls.Add(links, 1, 0);
         linkRow.Controls.Add(support, 2, 0);
         footer.Controls.Add(linkRow);
+        launchLog = new LaunchLogPanel(localizer, launcher.LaunchJournal);
         Controls.Add(footer);
+        Controls.Add(launchLog);
         Controls.Add(header);
         wrappingLabels.Add(status);
         ClientSizeChanged += (_, _) => UpdateNoticeWidths();
@@ -547,6 +586,12 @@ internal sealed class MainForm : Form
             SetStatus(statusKey, statusArguments);
             UpdatePaStatistics();
             paLogWindow?.ApplyLanguage();
+            var ruleViewIndex = Math.Max(0, ruleView.SelectedIndex);
+            ruleView.Items.Clear();
+            ruleView.Items.AddRange(new object[] { localizer.Text("IndividualRuleView"), localizer.Text("GroupedRuleView") });
+            ruleView.SelectedIndex = ruleViewIndex;
+            groupedRules.ApplyLanguage();
+            launchLog.ApplyLanguage();
             skinGuide.ApplyLanguage();
             leagueReputation.RefreshLanguage();
             UpdateAdvancedNotice();
@@ -561,6 +606,7 @@ internal sealed class MainForm : Form
             ResumeLayout(true);
         }
         SyncEditors();
+        UpdateRuleScope();
     }
 
     private void UpdateOriginal(DataGridViewRow row)
@@ -592,8 +638,9 @@ internal sealed class MainForm : Form
             var row = rules.CurrentRow;
             selectedRule.Text = row is null ? localizer.Text("NoSelectedRule")
                 : localizer.Text("SelectedRule", row.Cells["Code"].Value);
-            ruleScope.Text = row is null ? localizer.Text("NoSelectedRule")
-                : MatchRuleScope.Details((int)row.Cells["Code"].Value, localizer);
+            if (activeRuleView == 0)
+                ruleScope.Text = row is null ? localizer.Text("NoSelectedRule")
+                    : MatchRuleScope.Details((int)row.Cells["Code"].Value, localizer);
             SyncEditor(substitutionsEditor, row, "Substitutions", "Override");
             SyncEditor(benchEditor, row, "Bench", "BenchOverride");
         }
@@ -618,6 +665,67 @@ internal sealed class MainForm : Form
             throw new LauncherException("InvalidGrid");
         }
         row.Cells[column].Value = (int)editor.Value;
+    }
+
+    private void SwitchRuleView()
+    {
+        if (updating || changingRuleView) return;
+        changingRuleView = true;
+        try
+        {
+            if (!ValidateChildren() || !rules.EndEdit())
+            {
+                ruleView.SelectedIndex = activeRuleView;
+                throw new LauncherException("InvalidGrid");
+            }
+            activeRuleView = Math.Max(0, ruleView.SelectedIndex);
+            individualRulesView.Visible = activeRuleView == 0;
+            groupedRules.Visible = activeRuleView == 1;
+            if (activeRuleView == 1) groupedRules.Populate(ReadRuleSettings());
+            UpdateRuleScope();
+        }
+        finally { changingRuleView = false; }
+    }
+
+    private void UpdateRuleScope()
+    {
+        if (activeRuleView == 1)
+            ruleScope.Text = string.Join(Environment.NewLine + Environment.NewLine,
+                groupedRules.SelectedCodes.Select(code => MatchRuleScope.Details(code, localizer)));
+        else SyncEditors();
+    }
+
+    private List<RuleSettings> ReadRuleSettings() =>
+        rules.Rows.Cast<DataGridViewRow>().Select(row => new RuleSettings
+        {
+            Code = (int)row.Cells["Code"].Value, Override = (bool)row.Cells["Override"].Value,
+            BenchOverride = (bool)row.Cells["BenchOverride"].Value,
+            Substitutions = Convert.ToInt32(row.Cells["Substitutions"].Value, CultureInfo.InvariantCulture),
+            Bench = Convert.ToInt32(row.Cells["Bench"].Value, CultureInfo.InvariantCulture)
+        }).OrderBy(rule => rule.Code).ToList();
+
+    internal void ApplyGroupedChanges(int code, GroupRuleChange substitutions, GroupRuleChange bench)
+    {
+        var config = CaptureConfiguration();
+        MatchRuleGroups.Apply(config.Rules, code, substitutions, bench);
+        updating = true;
+        try
+        {
+            foreach (DataGridViewRow row in rules.Rows)
+            {
+                var value = config.Rules.Single(rule => rule.Code == (int)row.Cells["Code"].Value);
+                row.Cells["Override"].Value = value.Override;
+                row.Cells["Substitutions"].Value = value.Substitutions;
+                row.Cells["BenchOverride"].Value = value.BenchOverride;
+                row.Cells["Bench"].Value = value.Bench;
+                UpdateRuleEditing(row);
+            }
+        }
+        finally { updating = false; }
+        groupedRules.Populate(config.Rules);
+        SyncEditors();
+        UpdateRuleScope();
+        SetStatus("RuleGroupApplied", string.Join(", ", MatchRuleGroups.ForCode(code)));
     }
 
     internal void LoadConfiguration()
@@ -651,6 +759,8 @@ internal sealed class MainForm : Form
         agingDelay.Checked = config.AgingDelayEnabled;
         legacyPaChance = config.PaChance;
         panelInformation.Checked = config.PanelInformationEnabled;
+        positionHighlights.Checked = config.PositionHighlightsEnabled;
+        hiddenAttributes.Checked = config.HiddenAttributesEnabled;
         leagueReputation.ObservationEnabled = config.LeagueReputationEnabled;
         leagueReputation.DiagnosticsEnabled = config.LeagueDiagnosticsEnabled;
         leagueReputation.ChangesEnabled = config.LeagueChangesEnabled;
@@ -672,7 +782,9 @@ internal sealed class MainForm : Form
             }
         }
         finally { updating = false; }
+        groupedRules.Populate(ReadRuleSettings());
         SyncEditors();
+        UpdateRuleScope();
         ApplyTheme(config.DarkMode);
     }
 
@@ -737,16 +849,12 @@ internal sealed class MainForm : Form
             PaEnabled = paEnabled.Checked, PaChance = legacyPaChance,
             AgingDelayEnabled = agingDelay.Checked,
             PanelInformationEnabled = panelInformation.Checked,
+            PositionHighlightsEnabled = positionHighlights.Checked,
+            HiddenAttributesEnabled = hiddenAttributes.Checked,
             LeagueReputationEnabled = leagueReputation.ObservationEnabled,
             LeagueDiagnosticsEnabled = leagueReputation.DiagnosticsEnabled,
             LeagueChangesEnabled = leagueReputation.ChangesEnabled,
-            Rules = rules.Rows.Cast<DataGridViewRow>().Select(row => new RuleSettings
-            {
-                Code = (int)row.Cells["Code"].Value, Override = (bool)row.Cells["Override"].Value,
-                BenchOverride = (bool)row.Cells["BenchOverride"].Value,
-                Substitutions = Convert.ToInt32(row.Cells["Substitutions"].Value, CultureInfo.InvariantCulture),
-                Bench = Convert.ToInt32(row.Cells["Bench"].Value, CultureInfo.InvariantCulture)
-            }).OrderBy(rule => rule.Code).ToList()
+            Rules = ReadRuleSettings()
         };
         ConfigurationValidator.Validate(config);
         return config;
@@ -764,7 +872,11 @@ internal sealed class MainForm : Form
     private void LaunchGame() => LaunchGame(
         confirmation => MessageBox.Show(this, confirmation, localizer.Text("WarningTitle"),
             MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2),
-        config => launcher.Launch(config, localizer));
+        config =>
+        {
+            try { launcher.Launch(config, localizer); }
+            finally { launchLog.RefreshJournal(); }
+        });
 
     internal void LaunchGame(Func<string, DialogResult> confirm, Action<LauncherConfiguration> start)
     {
@@ -777,6 +889,7 @@ internal sealed class MainForm : Form
                 ? localizer.Text("PaLaunchConfirmation", PaGrowthPolicy.Default.BaseChancePercent)
                 : localizer.Text("PaDisabledConfirmation"))
             + "\n\n" + localizer.Text(config.PanelInformationEnabled ? "PanelLaunchConfirmation" : "PanelDisabledConfirmation")
+            + "\n\n" + localizer.Text(config.HiddenAttributesEnabled ? "HiddenLaunchConfirmation" : "HiddenDisabledConfirmation")
             + "\n\n" + localizer.Text(config.LeagueChangesEnabled ? "LeagueChangesNotice"
                 : config.LeagueReputationEnabled ? "LeagueLaunchConfirmation" : "LeagueDisabledConfirmation");
         if (config.LeagueDiagnosticsEnabled)

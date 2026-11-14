@@ -1,0 +1,36 @@
+from pathlib import Path
+import sys,json,hashlib,struct
+sys.dont_write_bytecode=True;sys.stdout.reconfigure(encoding='utf-8')
+root=Path('J:/FM08dev');b=Path(__file__).resolve().parent;sys.path.insert(0,str(root/'FM08-Database-Tools/scratch'))
+from create_italy_structure_i1_20261108 import load,languages,lang_sections,find_table,club
+from audit_poland_v25_common_r1_20261108 import Cursor
+src=b/'input/X20-after-SI';m=json.loads((b/'source-freeze.json').read_text(encoding='utf-8-sig'))
+h=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+assert all(h(src/k)==v for k,v in m['hashes'].items())
+rr=json.loads((b/'native-structure.json').read_text(encoding='utf-8-sig'))['records']
+en,_=lang_sections(dict(languages((src/'lang_db.dat').read_bytes()))[8])
+a=load(src,'server_db.dat');cc=load(src,'client_db.dat')
+cl,_,_=find_table(cc,[v['uid']for v in en['club']],club);cf={f['uid']:f for f in cl};nf={f['uid']:f['names']for f in en['club']};world=[];unresolved=[]
+for r in rr:
+ own=cf.get(r['ClubUID']);end=r['RosterOffset']+2+4*struct.unpack_from('<H',a,r['RosterOffset'])[0];hits=[]
+ for pos in range(end+4,r['Footer']-13):
+  if a[pos-3]!=0:continue
+  fi=struct.unpack_from('<i',a,pos)[0]
+  if not 0<=fi<len(cl):continue
+  cur=Cursor(a,pos+4)
+  try:
+   ns=[]
+   for _ in range(2):ns.append(cur.string());cur.byte()
+   if cur.p!=r['Footer']:continue
+  except(AssertionError,ValueError,UnicodeError,struct.error):continue
+  hits.append((fi,pos,a[pos-4],ns))
+ if len(hits)!=1:
+  unresolved.append(dict(ClubUID=r['ClubUID'],Reason='no_unique_typed_TEAM_family_tail',candidates=hits));continue
+ fi,pos,kind,ns=hits[0];tail=cl[fi];f=own or tail;parent=tail['uid'] if tail['uid']!=r['ClubUID']else None
+ labels=nf.get(r['ClubUID'],[])+[f['embedded_full_name'],f['embedded_short_name']]+ns
+ world.append(dict(ClubUID=r['ClubUID'],TeamIndex=r['TeamIndex'],FamilyIndex=f['index'],FamilyUID=f['uid'],NameFamilyIndex=own['index']if own else None,TeamTailFamilyIndex=fi,TeamTailFamilyUID=tail['uid'],NativeTeamKind=kind,ParentUID=parent,Country=f['country_index'],TeamCountry=tail['country_index'],Names=list(dict.fromkeys(n for n in labels if n)),CurrentDivision=r['CurrentDivisionIndex'],YearFounded=f['year_founded_raw'],StadiumIndex=struct.unpack_from('<i',a,r['Start']+19)[0],FamilyProof='unique_typed_TEAM_family_two_strings_exact_footer',FamilyProofOffset=pos))
+for name,value in [('native-world-identities.json',world),('native-world-unresolved.json',unresolved),('competition-catalog.json',[dict(index=i,**v)for i,v in enumerate(en['comp'])]),('native-nation-catalog.json',[dict(index=i,**v)for i,v in enumerate(en['nation'])])]:
+ (b/name).write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+assert all(h(src/k)==v for k,v in m['hashes'].items())
+print('WORLD',len(world),'UNRESOLVED',len(unresolved),'CHILDREN',sum(v['ParentUID']is not None for v in world))
+print('Witness',next((v for v in world if v['ClubUID']==1800002012),None))

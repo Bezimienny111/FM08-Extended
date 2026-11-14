@@ -1,4 +1,4 @@
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO.Compression;
 using System.Text;
 using System.Xml;
@@ -6,13 +6,13 @@ using System.Xml.Linq;
 
 namespace FmLauncher;
 
-internal static class SkinPanelInstaller
+internal static partial class SkinPanelInstaller
 {
     internal const string BackupSuffix = ".before-fmext-panels";
     internal const string EditViewId = "Fmed";
     internal const string EditViewName = "Edycja";
     internal const string TrainingFragment = """
-        <widget class="label" text="Zmęczenie sezonowe" col="0" row="7" auto_size="vertical"/>
+        <widget class="label" col="0" row="7" auto_size="vertical"><string id="text_not_translated" value="Zmęczenie sezonowe" translate="false"/></widget>
         <widget class="label" id="Fmjd" col="2" row="7" auto_size="vertical" text="----"/>
         """;
     internal const string SquadFragment = """
@@ -44,106 +44,17 @@ internal static class SkinPanelInstaller
                     new XElement("flags", new XAttribute("id", "alignment"), new XAttribute("value", "centre"))),
                 new XElement("record", new XAttribute("id", "column_heading"),
                     new XElement("flags", new XAttribute("id", "alignment"), new XAttribute("value", "centre")),
-                    new XElement("string", new XAttribute("id", "text"), new XAttribute("value", title)),
-                    new XElement("string", new XAttribute("id", "hint"), new XAttribute("value", title))));
+                    new XElement("string", new XAttribute("id", "text_not_translated"), new XAttribute("value", title),
+                        new XAttribute("translate", "false")),
+                    new XElement("string", new XAttribute("id", "hint_not_translated"), new XAttribute("value", title),
+                        new XAttribute("translate", "false"))));
     }
 
     internal static int Install(string gamePath, string skinsPath, string fatigueTitle)
     {
-        using var launchLock = new Mutex(false, @"Local\FmLauncher.GameStart");
-        bool acquired;
-        try { acquired = launchLock.WaitOne(0); }
-        catch (AbandonedMutexException) { acquired = true; }
-        if (!acquired) throw new LauncherException("AlreadyRunning");
-        try
-        {
-            var candidates = Process.GetProcessesByName(Path.GetFileNameWithoutExtension(gamePath));
-            try
-            {
-                if (candidates.Any(candidate => !candidate.HasExited))
-                    throw new LauncherException("SkinGameRunning");
-            }
-            finally { foreach (var candidate in candidates) candidate.Dispose(); }
-            return InstallStopped(gamePath, skinsPath, fatigueTitle);
-        }
-        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or XmlException
-            or InvalidDataException or OverflowException or ArgumentException)
-        {
-            throw new LauncherException("SkinInstallError", ex.Message);
-        }
-        finally { launchLock.ReleaseMutex(); }
-    }
-
-    private static int InstallStopped(string gamePath, string skinsPath, string fatigueTitle)
-    {
-        if (!Path.IsPathFullyQualified(gamePath) || !File.Exists(gamePath))
-            throw new LauncherException("InvalidGamePath", gamePath);
-        if (!Path.IsPathFullyQualified(skinsPath) || !Directory.Exists(skinsPath))
-            throw new LauncherException("SkinDirectoryMissing", skinsPath);
-        var blackSkins = new[] { "steklo_black", "steklo_left_black" }
-            .Where(skin => File.Exists(Path.Combine(skinsPath, skin, skin + ".xml"))).ToArray();
-        if (blackSkins.Length == 0)
-            throw new LauncherException("SkinBlackMissing", skinsPath);
-        var gameDirectory = Path.GetDirectoryName(gamePath)!;
-        var panels = new FmfArchive(Path.Combine(gameDirectory, "data", "panels.fmf"));
-        var patch = new FmfArchive(Path.Combine(gameDirectory, "data", "updates", "update-802", "data", "panels.fmf"));
-        var skins = new FmfArchive(Path.Combine(gameDirectory, "data", "skins.fmf"));
-        var plans = new Dictionary<string, byte[]>(StringComparer.OrdinalIgnoreCase);
-        foreach (var name in skins.Names.Where(name => name.StartsWith(@"fm2008\", StringComparison.OrdinalIgnoreCase)))
-        {
-            var destination = Path.Combine(skinsPath, name);
-            if (!File.Exists(destination)) plans.Add(destination, skins.Get(name));
-        }
-        foreach (var skin in new[] { "fm2008" }.Concat(blackSkins))
-        foreach (var name in new[] { "player training.xml", "team squad.xml", "tactic person list.xml", "person list table.xml" })
-        {
-            var destination = Path.Combine(skinsPath, skin, "panels", name);
-            var ancestors = skin switch
-            {
-                "steklo_left_black" => new[] { skin, "steklo_left", "steklo" },
-                "steklo_black" => new[] { skin, "steklo" },
-                _ => new[] { skin }
-            };
-            var inherited = ancestors.Select(ancestor => Path.Combine(skinsPath, ancestor, "panels", name))
-                .FirstOrDefault(File.Exists);
-            var source = inherited is not null ? File.ReadAllBytes(inherited)
-                : patch.Names.Contains(name, StringComparer.OrdinalIgnoreCase) ? patch.Get(name) : panels.Get(name);
-            plans[destination] = Transform(name, source, fatigueTitle);
-        }
-        var originals = plans.Keys.ToDictionary(path => path,
-            path => File.Exists(path) ? File.ReadAllBytes(path) : null, StringComparer.OrdinalIgnoreCase);
-        var changed = new List<string>();
-        try
-        {
-            foreach (var (path, bytes) in plans)
-            {
-                var previous = originals[path];
-                if (previous is not null && previous.AsSpan().SequenceEqual(bytes)) continue;
-                Directory.CreateDirectory(Path.GetDirectoryName(path)!);
-                if (previous is not null && !File.Exists(path + BackupSuffix))
-                    File.Copy(path, path + BackupSuffix, overwrite: false);
-                AtomicWrite(path, bytes);
-                changed.Add(path);
-            }
-        }
-        catch (Exception error) when (error is IOException or UnauthorizedAccessException)
-        {
-            var failures = new List<Exception> { error };
-            foreach (var path in changed.AsEnumerable().Reverse())
-            {
-                try
-                {
-                    if (originals[path] is { } original) AtomicWrite(path, original);
-                    else File.Delete(path);
-                }
-                catch (Exception rollback) when (rollback is IOException or UnauthorizedAccessException)
-                {
-                    failures.Add(rollback);
-                }
-            }
-            throw new LauncherException("SkinInstallError", string.Join(Environment.NewLine, failures.Select(e => e.Message)));
-        }
-        return changed.Count;
+        var localizer = new Localizer(Path.Combine(AppContext.BaseDirectory, "FmLauncher.languages.json"));
+        localizer.Select("pl");
+        return InstallExt(gamePath, skinsPath, fatigueTitle, new PlayerProfilePanelOptions(), localizer);
     }
 
     private static void AtomicWrite(string path, byte[] bytes)
@@ -157,7 +68,8 @@ internal static class SkinPanelInstaller
         finally { if (File.Exists(temporary)) File.Delete(temporary); }
     }
 
-    internal static byte[] Transform(string name, byte[] original, string fatigueTitle)
+    internal static byte[] Transform(string name, byte[] original, string fatigueTitle, string? panelLanguage = null,
+        IReadOnlyCollection<string>? knownFatigueTitles = null)
     {
         using var stream = new MemoryStream(original);
         var xml = XDocument.Load(stream, LoadOptions.PreserveWhitespace);
@@ -172,14 +84,35 @@ internal static class SkinPanelInstaller
                 var row = rows.DefaultIfEmpty(-1).Max() + 1;
                 table.Add(new XText("\n\t\t\t\t\t"));
                 table.Add(new XElement("widget", new XAttribute("class", "label"),
-                    new XAttribute("text", fatigueTitle), new XAttribute("col", "0"),
-                    new XAttribute("row", row), new XAttribute("auto_size", "vertical")));
+                    new XAttribute("col", "0"), new XAttribute("row", row), new XAttribute("auto_size", "vertical"),
+                    new XElement("string", new XAttribute("id", "text_not_translated"), new XAttribute("value", fatigueTitle),
+                        new XAttribute("translate", "false"))));
                 table.Add(new XText("\n\t\t\t\t\t"));
                 table.Add(new XElement("widget", new XAttribute("class", "label"),
                     new XAttribute("id", "Fmjd"), new XAttribute("col", "2"),
                     new XAttribute("row", row), new XAttribute("auto_size", "vertical"),
                     new XAttribute("text", "\u2014")));
                 table.Add(new XText("\n\t\t\t\t"));
+            }
+            else
+            {
+                var row = (string?)value.Attribute("row");
+                var labels = table.Elements("widget").Where(e => row is not null
+                    && (string?)e.Attribute("row") == row && (string?)e.Attribute("col") == "0").ToArray();
+                if (labels.Length == 1)
+                {
+                    var strings = labels[0].Elements("string").Where(e =>
+                        (string?)e.Attribute("id") is "text" or "text_not_translated").ToArray();
+                    var current = (string?)labels[0].Attribute("text")
+                        ?? (strings.Length == 1 ? (string?)strings[0].Attribute("value") : null);
+                    if (current is not null && (current == fatigueTitle || knownFatigueTitles?.Contains(current) == true))
+                    {
+                        labels[0].Attribute("text")?.Remove();
+                        foreach (var text in strings) text.Remove();
+                        labels[0].Add(new XElement("string", new XAttribute("id", "text_not_translated"),
+                            new XAttribute("value", fatigueTitle), new XAttribute("translate", "false")));
+                    }
+                }
             }
         }
         else if (name == "person list table.xml")
@@ -214,7 +147,7 @@ internal static class SkinPanelInstaller
                 AddColumn(view, "Fcab", null, 44, 32, 900);
                 AddColumn(view, "Fpab", null, 44, 32, 900);
             }
-            AddEditView(view, viewId == "sltn");
+            AddEditView(view, viewId == "sltn", panelLanguage=="pl" || panelLanguage is null ? EditViewName : "Edit");
         }
         using var output = new MemoryStream();
         using (var writer = XmlWriter.Create(output, new XmlWriterSettings
@@ -224,20 +157,39 @@ internal static class SkinPanelInstaller
         return output.ToArray();
     }
 
-    private static void AddEditView(XElement view, bool squad)
+    private static void AddEditView(XElement view, bool squad, string captionText)
     {
         var template = view.Parent ?? throw new InvalidDataException("Missing view definition.");
         var menu = template.Parent ?? throw new InvalidDataException("Missing views menu.");
         if (menu.Name != "list" || (string?)menu.Attribute("id") != "items")
             throw new InvalidDataException("Unexpected views menu.");
-        if (menu.Elements("record").Any(e => (string?)e.Attribute("id") == EditViewId)) return;
+        var existing = menu.Elements("record").Where(e => (string?)e.Attribute("id") == EditViewId).ToArray();
+        if (existing.Length > 1) throw new InvalidDataException("Duplicate FMExt edit view.");
+        if (existing.Length == 1)
+        {
+            var captions = existing[0].Elements("string").Where(e =>
+                (string?)e.Attribute("id") is "name" or "text" or "name_not_translated" or "text_not_translated").ToArray();
+            // Older installations can already be in the original backup. Only our
+            // reserved ID and two known captions migrate; preserve custom user names.
+            if (captions.Length == 1 && (string?)captions[0].Attribute("value") is "Edycja" or "Edit")
+            {
+                var key = (string)captions[0].Attribute("id")!;
+                if (!key.EndsWith("_not_translated", StringComparison.Ordinal))
+                    captions[0].SetAttributeValue("id", key + "_not_translated");
+                captions[0].SetAttributeValue("value", captionText);
+                captions[0].SetAttributeValue("translate", "false");
+            }
+            return;
+        }
         var edit = new XElement(template);
         edit.SetAttributeValue("id", EditViewId);
         foreach (var text in edit.Nodes().OfType<XText>().Where(t => !string.IsNullOrWhiteSpace(t.Value)).ToArray())
             text.Remove();
         var caption = edit.Elements("string")
             .Single(e => (string?)e.Attribute("id") is "name" or "text");
-        caption.SetAttributeValue("value", EditViewName);
+        caption.SetAttributeValue("id",(string)caption.Attribute("id")!+"_not_translated");
+        caption.SetAttributeValue("value", captionText);
+        caption.SetAttributeValue("translate", "false");
         var columns = edit.Elements("record").Single(e => (string?)e.Attribute("id") == "view");
         var keep = new HashSet<string> { "Ppkd", "Pnfo", "Pnam", "Ppos", "Pcon", "Fjad" };
         if (squad) keep.UnionWith(["Fcab", "Fpab"]);
