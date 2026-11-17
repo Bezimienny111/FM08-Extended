@@ -71,44 +71,7 @@ internal static partial class Program
         foreach (var snippet in new[] { SkinPanelInstaller.TrainingFragment, SkinPanelInstaller.SquadFragment,
             SkinPanelInstaller.TacticsFragment, SkinPanelInstaller.ColumnRegistryFragment("Fatigue & recovery") })
             XDocument.Parse("<panel>" + snippet + "</panel>");
-        var fixture = Path.Combine(directory, "skins-fixture");
-        Directory.CreateDirectory(Path.Combine(fixture, "steklo_black", "panels"));
-        try
-        {
-            File.WriteAllText(Path.Combine(fixture, "steklo_black", "steklo_black.xml"), "<properties/>");
-            var existing = Path.Combine(fixture, "steklo_black", "panels", "tactic person list.xml");
-            var original = patch.Get("tactic person list.xml");
-            File.WriteAllBytes(existing, original);
-            var count = SkinPanelInstaller.Install(gamePath, fixture, "Zmęczenie sezonowe");
-            Assert(count == 16);
-            Assert(File.ReadAllBytes(existing + SkinPanelInstaller.BackupSuffix).SequenceEqual(original));
-            Assert(SkinPanelInstaller.Install(gamePath, fixture, "Zmęczenie sezonowe") == 0);
-            Assert(File.ReadAllBytes(existing + SkinPanelInstaller.BackupSuffix).SequenceEqual(original));
-            Directory.CreateDirectory(Path.Combine(fixture, "steklo_left_black"));
-            File.WriteAllText(Path.Combine(fixture, "steklo_left_black", "steklo_left_black.xml"), "<properties/>");
-            Directory.CreateDirectory(Path.Combine(fixture, "steklo_left", "panels"));
-            var inherited = XDocument.Parse(Encoding.UTF8.GetString(basePanels.Get("team squad.xml")));
-            inherited.Root!.SetAttributeValue("title", "Left fixture panel");
-            var leftSource = Path.Combine(fixture, "steklo_left", "panels", "team squad.xml");
-            inherited.Save(leftSource);
-            var parentBytes = File.ReadAllBytes(leftSource);
-            Assert(SkinPanelInstaller.Install(gamePath, fixture, "Zmęczenie sezonowe") == 4);
-            foreach (var panel in new[] { "team squad.xml", "tactic person list.xml", "person list table.xml" })
-            {
-                var installed = XDocument.Load(Path.Combine(fixture, "steklo_left_black", "panels", panel));
-                if (panel == "person list table.xml")
-                    Assert(installed.Descendants("list").Single(e => (string?)e.Attribute("id") == "column_display_properties")
-                        .Elements("record").Elements("flags").Count(e =>
-                        (string?)e.Attribute("id") == "id" && (string?)e.Attribute("value") == "Fjad") == 1);
-                else Assert(installed.Descendants("record").Count(e => (string?)e.Attribute("id") == SkinPanelInstaller.EditViewId) == 1);
-                if (panel == "team squad.xml") Assert((string?)installed.Root!.Attribute("title") == "Left fixture panel");
-            }
-            Assert(File.ReadAllBytes(leftSource).SequenceEqual(parentBytes));
-            Assert(SkinPanelInstaller.Install(gamePath, fixture, "Zmęczenie sezonowe") == 0);
-            File.Delete(Path.Combine(fixture, "steklo_black", "steklo_black.xml"));
-            Assert(SkinPanelInstaller.Install(gamePath, fixture, "Zmęczenie sezonowe") == 0);
-        }
-        finally { Directory.Delete(fixture, recursive: true); }
+        TestPlayerProfilePanels(directory, gamePath, Path.Combine(directory, "ext-profile-results"));
         using var form = new MainForm(directory, PanelLocalizer(), _ => [Hd]);
         form.Show();
         var config = Default();
@@ -136,7 +99,7 @@ internal static partial class Program
         {
             form.ApplyLanguage(language);
             var instructions = Descendants(form).OfType<TextBox>().Single(e => e.Name == "SkinInstructions");
-            Assert(instructions.Text.Contains("Edycja") && instructions.Text.Contains("steklo_left_black"));
+            Assert(instructions.Text.Contains("Edycja") && instructions.Text.Contains("steklo_black_ext_left"));
             Assert(instructions.Text.StartsWith(language == "pl" ? "UWAGA: odświeżanie widoku."
                 : "NOTE: refreshing the view.", StringComparison.Ordinal));
         }

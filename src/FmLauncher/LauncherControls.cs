@@ -57,22 +57,61 @@ internal sealed class ToggleSwitch : CheckBox
     }
 }
 
+internal sealed class SectionBox : GroupBox
+{
+    internal bool DarkMode { get; set; }
+    internal SectionBox() => SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw, true);
+    protected override void OnPaint(PaintEventArgs e)
+    {
+        if (Width < 5 || Height < 5) return;
+        using var border = new Pen(LauncherTheme.SectionBorder(DarkMode), Math.Max(2, 2 * DeviceDpi / 96f));
+        using var band = new SolidBrush(DarkMode ? Color.FromArgb(37, 48, 65) : Color.FromArgb(229, 237, 247));
+        e.Graphics.FillRectangle(band, 2, 2, Width - 4, 25 * DeviceDpi / 96);
+        e.Graphics.DrawRectangle(border, 1, 1, Width - 3, Height - 3);
+        TextRenderer.DrawText(e.Graphics, Text, Font, new Rectangle(10, 2, Width - 20, 24 * DeviceDpi / 96),
+            ForeColor, TextFormatFlags.Left | TextFormatFlags.VerticalCenter | TextFormatFlags.EndEllipsis);
+    }
+}
+
+internal sealed class FramedPanel : Panel
+{
+    internal bool DarkMode { get; set; }
+    internal FramedPanel() => SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw, true);
+    protected override void OnPaint(PaintEventArgs e)
+    {
+        base.OnPaint(e);
+        if (Width < 4 || Height < 4) return;
+        using var border = new Pen(LauncherTheme.SectionBorder(DarkMode), Math.Max(2, 2 * DeviceDpi / 96f));
+        e.Graphics.DrawRectangle(border, 1, 1, Width - 3, Height - 3);
+    }
+}
+
 internal sealed class FeatureSection : UserControl
 {
     private readonly Localizer localizer;
     private readonly Button details = new()
     {
-        AutoSize = false, Anchor = AnchorStyles.Left | AnchorStyles.Right, Size = new Size(148, 30),
+        AutoSize = false, Anchor = AnchorStyles.Left | AnchorStyles.Right, Size = new Size(120, 30),
         FlatStyle = FlatStyle.Flat, TextAlign = ContentAlignment.MiddleRight
     };
     private readonly Control content;
     private readonly ToggleSwitch toggle;
     private bool expanded;
+    private Action<FeatureSection>? selectDetails;
+    private readonly Control? alwaysVisible;
+    internal string FeatureTitle => toggle.Text;
+    internal bool DarkMode { get; set; }
+    internal bool DetailsSelected => selectDetails is not null && expanded;
     internal bool Expanded
     {
         get => expanded;
         set
         {
+            if (selectDetails is not null)
+            {
+                if (value) selectDetails(this);
+                return;
+            }
             expanded = value;
             content.Visible = value;
             RefreshLanguage();
@@ -84,13 +123,15 @@ internal sealed class FeatureSection : UserControl
     {
         this.localizer = localizer;
         this.content = content;
+        this.alwaysVisible = alwaysVisible;
         this.toggle = toggle;
         Name = name;
         AutoSize = true;
         AutoSizeMode = AutoSizeMode.GrowAndShrink;
         Dock = DockStyle.Top;
-        Padding = new Padding(10, 4, 10, 4);
-        Margin = new Padding(0, 2, 0, 2);
+        Padding = new Padding(10, 8, 10, 8);
+        Margin = new Padding(4, 4, 4, 4);
+        DoubleBuffered = true;
         BackColor = Color.White;
         var stack = new TableLayoutPanel
         {
@@ -104,7 +145,7 @@ internal sealed class FeatureSection : UserControl
             ColumnCount = 2, Margin = Padding.Empty
         };
         header.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
-        header.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 148));
+        header.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 120));
         header.RowStyles.Add(new RowStyle(SizeType.AutoSize));
         toggle.Dock = DockStyle.Fill;
         toggle.Margin = new Padding(0);
@@ -112,7 +153,11 @@ internal sealed class FeatureSection : UserControl
         details.ForeColor = Color.FromArgb(32, 99, 180);
         details.FlatAppearance.BorderSize = 0;
         details.Margin = Padding.Empty;
-        details.Click += (_, _) => Expanded = !Expanded;
+        details.Click += (_, _) =>
+        {
+            if (selectDetails is not null) selectDetails(this);
+            else Expanded = !Expanded;
+        };
         header.Controls.Add(toggle, 0, 0);
         header.Controls.Add(details, 1, 0);
         content.Dock = DockStyle.Top;
@@ -132,9 +177,65 @@ internal sealed class FeatureSection : UserControl
         Expanded = expanded;
     }
 
+    internal Control UseSharedDetails(Action<FeatureSection> select)
+    {
+        selectDetails = select;
+        var panel = new TableLayoutPanel
+        {
+            Name = Name + "Content", Dock = DockStyle.Top, AutoSize = true,
+            AutoSizeMode = AutoSizeMode.GrowAndShrink, ColumnCount = 1,
+            Padding = new Padding(8), Margin = Padding.Empty
+        };
+        panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+        if (alwaysVisible is not null) panel.Controls.Add(alwaysVisible);
+        panel.Controls.Add(content);
+        content.Visible = true;
+        expanded = false;
+        RefreshLanguage();
+        return panel;
+    }
+
+    internal void MarkSelected(bool selected)
+    {
+        expanded = selected;
+        details.Text = localizer.Text(selected ? "DetailsSelected" : "Details");
+        details.AccessibleName = details.Text + ": " + toggle.Text;
+        RefreshAppearance();
+        Invalidate();
+    }
+
+    internal void RefreshAppearance()
+    {
+        var color = DetailsSelected ? LauncherTheme.SelectedSurface(DarkMode) : LauncherTheme.Surface(DarkMode);
+        void Apply(Control parent)
+        {
+            parent.BackColor = color;
+            foreach (Control child in parent.Controls) Apply(child);
+        }
+        Apply(this);
+        details.ForeColor = LauncherTheme.Accent(DarkMode);
+        details.FlatAppearance.MouseOverBackColor = LauncherTheme.Hover(DarkMode);
+        Invalidate(true);
+    }
+
+    protected override void OnPaint(PaintEventArgs e)
+    {
+        base.OnPaint(e);
+        if (Width < 4 || Height < 4) return;
+        using var pen = new Pen(DetailsSelected ? LauncherTheme.Accent(DarkMode) : LauncherTheme.SectionBorder(DarkMode),
+            Math.Max(2, (DetailsSelected ? 3 : 2) * DeviceDpi / 96f));
+        e.Graphics.DrawRectangle(pen, 1, 1, Width - 3, Height - 3);
+        if (DetailsSelected)
+        {
+            using var stripe = new SolidBrush(LauncherTheme.Accent(DarkMode));
+            e.Graphics.FillRectangle(stripe, 1, 1, Math.Max(4, 4 * DeviceDpi / 96), Height - 2);
+        }
+    }
+
     internal void RefreshLanguage()
     {
-        details.Text = localizer.Text(expanded ? "HideDetails" : "Details");
+        details.Text = localizer.Text(selectDetails is not null
+            ? expanded ? "DetailsSelected" : "Details" : expanded ? "HideDetails" : "Details");
         details.AccessibleName = details.Text + ": " + toggle.Text;
     }
 }
@@ -198,43 +299,73 @@ internal sealed class ThemedTabControl : TabControl
 {
     internal ThemedTabControl() => DrawMode = TabDrawMode.OwnerDrawFixed;
     internal bool DarkMode { get; set; }
+    internal bool ProminentTabs { get; set; }
 
     protected override void OnDrawItem(DrawItemEventArgs e)
     {
         DrawTab(e.Graphics, e.Index, e.Bounds);
-        if ((e.State & DrawItemState.Focus) != 0) ControlPaint.DrawFocusRectangle(e.Graphics, e.Bounds);
     }
 
     private void DrawTab(Graphics graphics, int index, Rectangle bounds)
     {
         var selected = index == SelectedIndex;
-        using var brush = new SolidBrush(selected ? LauncherTheme.Surface(DarkMode) : LauncherTheme.Background(DarkMode));
-        graphics.FillRectangle(brush, bounds);
-        TextRenderer.DrawText(graphics, TabPages[index].Text, Font, bounds,
-            selected ? LauncherTheme.Text(DarkMode) : LauncherTheme.Muted(DarkMode),
-            TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
-        if (selected)
+        bool sidebar=Alignment==TabAlignment.Left;
+        bool framed=ProminentTabs && !sidebar;
+        using var baseBrush=new SolidBrush(sidebar?LauncherTheme.NavigationBackground(DarkMode):LauncherTheme.Background(DarkMode));
+        graphics.FillRectangle(baseBrush,bounds);
+        var card=bounds;
+        if(sidebar)card.Inflate(-10*DeviceDpi/96,-4*DeviceDpi/96);
+        else if(framed)card.Inflate(-4*DeviceDpi/96,-3*DeviceDpi/96);
+        using var brush = new SolidBrush(selected
+            ?sidebar?LauncherTheme.NavigationSelected(DarkMode):LauncherTheme.SelectedSurface(DarkMode)
+            :sidebar?LauncherTheme.NavigationBackground(DarkMode):framed?LauncherTheme.Surface(DarkMode):LauncherTheme.Background(DarkMode));
+        graphics.FillRectangle(brush, card);
+        if(framed)
+        {
+            using var border=new Pen(selected?LauncherTheme.Accent(DarkMode):LauncherTheme.SectionBorder(DarkMode),
+                (selected?2f:1.5f)*DeviceDpi/96);
+            graphics.DrawRectangle(border,card.Left,card.Top,Math.Max(0,card.Width-1),Math.Max(0,card.Height-1));
+        }
+        var textBounds=card;
+        if(sidebar){textBounds.X+=16*DeviceDpi/96;textBounds.Width-=24*DeviceDpi/96;}
+        using var textFont=new Font(Font,selected?FontStyle.Bold:FontStyle.Regular);
+        TextRenderer.DrawText(graphics, TabPages[index].Text, textFont, textBounds,
+            selected||framed?LauncherTheme.Text(DarkMode):LauncherTheme.Muted(DarkMode),
+            (sidebar?TextFormatFlags.Left:TextFormatFlags.HorizontalCenter) | TextFormatFlags.VerticalCenter |
+            TextFormatFlags.WordBreak | TextFormatFlags.NoPrefix);
+        if (selected && !framed)
         {
             using var accent = new SolidBrush(LauncherTheme.Accent(DarkMode));
             var thickness = Math.Max(2, 2 * DeviceDpi / 96);
-            graphics.FillRectangle(accent, bounds.Left + 5, bounds.Bottom - thickness, Math.Max(0, bounds.Width - 10), thickness);
+            if (sidebar) graphics.FillRectangle(accent, card.Left, card.Top, thickness + 2, Math.Max(0, card.Height));
+            else graphics.FillRectangle(accent, bounds.Left + 5, bounds.Bottom - thickness, Math.Max(0, bounds.Width - 10), thickness);
         }
+        if(Focused && ShowFocusCues && selected)ControlPaint.DrawFocusRectangle(graphics,Rectangle.Inflate(card,-5,-5),
+            LauncherTheme.Text(DarkMode),LauncherTheme.SelectedSurface(DarkMode));
     }
 
     protected override void WndProc(ref Message m)
     {
         base.WndProc(ref m);
         // OwnerDrawFixed does not cover the native tab frame or unused strip.
-        if (DarkMode && TabCount > 0 && m.Msg is 0x000F or 0x0317 or 0x0318)
+        if (TabCount > 0 && m.Msg is 0x000F or 0x0317 or 0x0318)
         {
             using var graphics = m.Msg == 0x000F ? Graphics.FromHwnd(Handle) : Graphics.FromHdc(m.WParam);
-            using var brush = new SolidBrush(LauncherTheme.Background(true));
+            using var brush = new SolidBrush(LauncherTheme.Background(DarkMode));
             var page = DisplayRectangle;
             graphics.FillRectangle(brush, 0, 0, ClientSize.Width, page.Top);
-            graphics.FillRectangle(brush, 0, page.Top, page.Left, Math.Max(0, ClientSize.Height - page.Top));
+            using var navigation=new SolidBrush(Alignment==TabAlignment.Left?LauncherTheme.NavigationBackground(DarkMode):LauncherTheme.Background(DarkMode));
+            graphics.FillRectangle(navigation, 0, page.Top, page.Left, Math.Max(0, ClientSize.Height - page.Top));
             graphics.FillRectangle(brush, page.Right, page.Top, Math.Max(0, ClientSize.Width - page.Right), Math.Max(0, ClientSize.Height - page.Top));
             graphics.FillRectangle(brush, 0, page.Bottom, ClientSize.Width, Math.Max(0, ClientSize.Height - page.Bottom));
             for (var index = 0; index < TabCount; index++) DrawTab(graphics, index, GetTabRect(index));
+            if(Alignment==TabAlignment.Left)
+            {
+                float scale=DeviceDpi/96f;
+                using var border=new Pen(LauncherTheme.SectionBorder(DarkMode),scale);
+                graphics.DrawRectangle(border,scale,scale,page.Left-3*scale,ClientSize.Height-3*scale);
+                graphics.DrawRectangle(border,5*scale,5*scale,page.Left-11*scale,ClientSize.Height-11*scale);
+            }
         }
     }
 }
@@ -319,7 +450,9 @@ internal sealed class SocialLinkButton : Button
         var g = e.Graphics;
         g.SmoothingMode = SmoothingMode.AntiAlias;
         var state = g.Save();
-        var scale = DeviceDpi / 96f * (Name == "DonateLink" ? 1.5f : 1);
+        var dpiScale=DeviceDpi/96f;
+        var scale = dpiScale*Math.Min(Name=="DonateLink"?1.5f:1f,
+            Math.Max(.5f,Math.Min((Width-8*dpiScale)/(24*dpiScale),(Height-8*dpiScale)/(24*dpiScale))));
         g.TranslateTransform((Width - 24 * scale) / 2f, (Height - 24 * scale) / 2f);
         g.ScaleTransform(scale, scale);
         var color = !Enabled ? Color.FromArgb(150, 158, 170) : Name switch
@@ -360,5 +493,38 @@ internal sealed class SocialLinkButton : Button
                 break;
         }
         g.Restore(state);
+    }
+}
+
+
+internal sealed class ThemedListView : ListView
+{
+    internal bool DarkMode { get; set; }
+    internal ThemedListView()
+    {
+        OwnerDraw = true;
+        DrawColumnHeader += (_, e) =>
+        {
+            using var background = new SolidBrush(LauncherTheme.Surface(DarkMode));
+            e.Graphics.FillRectangle(background, e.Bounds);
+            TextRenderer.DrawText(e.Graphics, e.Header?.Text ?? "", Font,
+                Rectangle.Inflate(e.Bounds, -4, -2), LauncherTheme.Text(DarkMode),
+                TextFormatFlags.VerticalCenter | TextFormatFlags.EndEllipsis);
+            using var border = new Pen(LauncherTheme.Border(DarkMode));
+            e.Graphics.DrawLine(border, e.Bounds.Left, e.Bounds.Bottom - 1, e.Bounds.Right, e.Bounds.Bottom - 1);
+        };
+        DrawItem += (_, e) =>
+        {
+            if (View != View.Details) e.DrawDefault = true;
+        };
+        DrawSubItem += (_, e) =>
+        {
+            var selected = e.Item?.Selected == true;
+            using var background = new SolidBrush(selected ? Color.FromArgb(32, 113, 207) : LauncherTheme.Input(DarkMode));
+            e.Graphics.FillRectangle(background, e.Bounds);
+            TextRenderer.DrawText(e.Graphics, e.SubItem?.Text ?? "", Font,
+                Rectangle.Inflate(e.Bounds, -4, 0), selected ? Color.White : LauncherTheme.Text(DarkMode),
+                TextFormatFlags.VerticalCenter | TextFormatFlags.EndEllipsis);
+        };
     }
 }

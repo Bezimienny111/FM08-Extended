@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using Marshal = PanelRemoteMemory;
 
-internal static class NativePanelFixture
+internal static partial class NativePanelFixture
 {
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     private delegate int PanelRead(IntPtr player, int kind);

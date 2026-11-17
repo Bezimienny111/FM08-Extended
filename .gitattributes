@@ -5,3 +5,6 @@
 *.md text eol=lf whitespace=-blank-at-eol
 *.yml text eol=lf
 LICENSE text eol=lf
+
+# Preserve the built backup payload byte-for-byte, including JSON and hash receipts.
+dev-snapshots/** -text !eol whitespace=cr-at-eol

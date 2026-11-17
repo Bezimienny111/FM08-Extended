@@ -1,0 +1,66 @@
+﻿Attribute;Value_used;GK;SW;DC;DL_DR;DM;WBL_WBR;MC;AMC;ML_MR_AML_AMR;FS;TS
+Scale;profile scale (not an attribute weight);100;102;100;105;103;107;104;104;105;103;103
+CA;CA (1-200), denominator multiplier 10;0;0;0;0;0;0;0;0;0;0;0
+Corners;attribute (1-20);0;0;0;10;10;10;10;10;10;10;0
+Crossing;attribute (1-20);0;0;0;30;30;60;40;60;100;10;10
+Dribbling;attribute (1-20);0;0;0;20;20;40;50;80;100;80;60
+Finishing;attribute (1-20);0;0;0;0;10;10;20;40;60;100;80
+FirstTouch;attribute (1-20);0;20;20;20;30;20;30;30;30;40;30
+FreeKicks;attribute (1-20);0;10;10;10;10;10;10;10;10;10;10
+Heading;attribute (1-20);0;100;100;60;40;40;30;20;20;40;100
+LongShots;attribute (1-20);0;10;10;10;20;20;20;20;20;20;20
+LongThrows;attribute (1-20);0;0;0;10;5;10;5;5;5;0;0
+Marking;attribute (1-20);0;100;80;60;60;60;40;10;10;0;0
+Passing;attribute (1-20);0;10;20;30;40;40;70;100;60;40;40
+Penalties;attribute (1-20);0;5;5;5;5;5;5;5;5;5;5
+Tackling;attribute (1-20);5;100;100;100;100;100;60;10;10;0;0
+Technique;attribute (1-20);0;10;10;20;30;40;50;80;80;80;40
+LeftFoot;attribute (1-20);0;5;5;5;5;5;5;5;5;5;5
+RightFoot;attribute (1-20);0;5;5;5;5;5;5;5;5;5;5
+Aggression;attribute (1-20);10;20;20;15;40;10;30;10;10;10;20
+Anticipation;attribute (1-20);5;20;20;80;40;80;40;30;20;10;10
+Bravery;attribute (1-20);20;40;40;20;20;10;10;10;10;10;20
+Composure;attribute (1-20);20;40;20;10;10;10;10;10;10;10;10
+Concentration;attribute (1-20);10;60;40;30;20;20;10;10;10;10;10
+Consistency;attribute (1-20);10;10;10;10;10;10;10;10;10;10;10
+Creativity;attribute (1-20);0;10;10;10;20;20;60;100;60;40;20
+Decisions;attribute (1-20);20;20;20;20;20;20;30;40;20;10;10
+Determination;attribute (1-20);10;10;10;10;10;10;10;10;10;10;10
+Dirtiness;21 - attribute;5;25;20;10;10;10;5;5;5;5;5
+Flair;attribute (1-20);0;0;0;5;10;10;10;20;10;10;10
+ImportantMatches;attribute (1-20);10;10;10;10;10;10;10;10;20;10;10
+Influence;attribute (1-20);10;10;10;10;10;10;10;10;10;10;10
+OffTheBall;attribute (1-20);0;10;10;20;30;20;40;60;60;80;80
+Positioning;attribute (1-20);80;100;80;100;80;100;40;20;20;10;20
+Teamwork;attribute (1-20);5;40;40;20;40;20;50;60;30;10;10
+WorkRate;attribute (1-20);0;20;20;20;80;40;50;20;30;10;10
+Acceleration;attribute (1-20);5;30;40;60;40;80;50;60;80;100;40
+Agility;attribute (1-20);10;10;10;10;10;10;10;10;20;40;20
+Balance;attribute (1-20);10;20;20;20;10;20;10;10;10;10;20
+InjuryProneness;21 - attribute;5;5;5;5;5;5;5;5;5;5;5
+Jumping;attribute (1-20);80;100;100;60;40;20;40;20;20;20;100
+NaturalFitness;attribute (1-20);5;5;5;5;5;5;5;5;5;5;5
+Pace;attribute (1-20);0;20;30;80;40;100;40;60;100;100;40
+Stamina;attribute (1-20);0;10;10;60;60;80;60;60;60;40;20
+Strength;attribute (1-20);10;80;60;40;40;40;30;20;20;20;80
+Versatility;attribute (1-20);0;5;5;5;5;5;5;5;5;5;5
+AerialAbility;attribute (1-20);50;0;0;0;0;0;0;0;0;0;0
+CommandOfArea;attribute (1-20);20;0;0;0;0;0;0;0;0;0;0
+Communication;attribute (1-20);50;0;0;0;0;0;0;0;0;0;0
+Eccentricity;21 - attribute;20;0;0;0;0;0;0;0;0;0;0
+Handling;attribute (1-20);100;0;0;0;0;0;0;0;0;0;0
+Kicking;attribute (1-20);10;0;0;0;0;0;0;0;0;0;0
+OneOnOnes;attribute (1-20);50;5;5;5;5;5;5;5;5;5;5
+Reflexes;attribute (1-20);100;5;5;5;5;5;5;5;5;5;5
+RushingOut;attribute (1-20);20;0;0;0;0;0;0;0;0;0;0
+TendencyToPunch;21 - attribute;10;0;0;0;0;0;0;0;0;0;0
+Throwing;attribute (1-20);10;0;0;0;0;0;0;0;0;0;0
+Adaptability;attribute (1-20);5;5;5;5;5;5;5;5;5;5;5
+Ambition;attribute (1-20);10;10;10;10;10;10;10;10;10;10;10
+Controversy;21 - attribute;5;5;5;5;5;5;5;5;5;5;5
+Loyalty;attribute (1-20);5;5;5;5;5;5;5;5;5;5;5
+Pressure;attribute (1-20);5;5;5;5;5;5;5;5;5;5;5
+Professionalism;attribute (1-20);5;5;5;5;5;5;5;5;5;5;5
+Sportsmanship;attribute (1-20);5;5;5;5;5;5;5;5;5;5;5
+Temperament;attribute (1-20);5;5;5;5;5;5;5;5;5;5;5
+Normalization_denominator;10*CA_weight + sum(effective_attribute_weights);830;1160;1085;1195;1190;1305;1185;1235;1255;1110;1070

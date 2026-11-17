@@ -1,0 +1,12 @@
+{
+  "Status": "PASS_LINKS_SOURCE_HASHES_AND_JSON",
+  "MarkdownFiles": 16,
+  "TopicChapters": 13,
+  "InternalAndExternalLinks": 232,
+  "BrokenLocalLinks": 0,
+  "PrimarySourceFiles": 81,
+  "HistoricalInventoryRows": 194,
+  "RegisteredIssues": 46,
+  "NewGameplayTestsRun": false,
+  "RecordedAt": "2026-11-14T16:54:57.835873+00:00"
+}

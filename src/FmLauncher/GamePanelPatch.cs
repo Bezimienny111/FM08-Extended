@@ -4,9 +4,10 @@ using System.Text;
 namespace FmLauncher;
 
 internal sealed record PanelPayload(byte[] Code, byte[] Data, uint PropertyEntry, uint TitleEntry,
-    uint TrainingEntry, uint LabelEntry, uint ReadEntry, uint FormatEntry, uint[] Types);
+    uint TrainingEntry, uint LabelEntry, uint ReadEntry, uint FormatEntry, uint[] Types, uint ProfileSetEntry = 0,
+    uint ProfileEventEntry = 0, uint ProfileInitEntry = 0, uint ProfileUpdateEntry = 0, uint ProfileRoleEntry = 0);
 
-internal static class GamePanelPatch
+internal static partial class GamePanelPatch
 {
     internal const uint PropertyAddress = 0x00A73FB0;
     internal const uint TitleAddress = 0x00C8A030;
@@ -21,7 +22,11 @@ internal static class GamePanelPatch
     internal const uint PaProperty = 0x46706162; // Fpab
     internal const uint HintProperty = 0x466A6874; // Fjht
     internal const int Missing = int.MinValue;
-    internal const int StateSize = 16;
+    internal const int StateSize = 48;
+    internal const int ProfileReadStageOffset = 16, ProfileResolveStageOffset = 20,
+        ProfileViewerStageOffset = 24, ProfileResolveCallsOffset = 28,
+        ProfileViewerCallsOffset = 32, ProfileResolveSuccessOffset = 36,
+        ProfileViewerSuccessOffset = 40;
     internal const int CodeCapacity = 8192;
     internal const int DataCapacity = 65536;
     internal static ReadOnlySpan<byte> PropertyOriginal => [0x55, 0x8B, 0xEC, 0x83, 0xE4, 0xF8];
@@ -29,9 +34,11 @@ internal static class GamePanelPatch
     internal static ReadOnlySpan<byte> TrainingOriginal => [0x39, 0xBE, 0x34, 0x02, 0, 0];
     internal static ReadOnlySpan<byte> LabelOriginal => [0x64, 0xA1, 0, 0, 0, 0];
 
-    internal static PanelPayload Build(uint address, uint dataAddress, byte[] integerVtable, Localizer localizer)
+    internal static PanelPayload Build(uint address, uint dataAddress, byte[] integerVtable, Localizer localizer,
+        PlayerProfilePanelOptions? profileOptions = null, bool legacyEnabled = true, uint positionSetRole = 0)
     {
         if (integerVtable.Length != 0x70) throw new LauncherException("UnexpectedGameMemory");
+        profileOptions ??= new();
         var data = new List<byte>(new byte[StateSize]);
         var code = new Code(address);
         uint Reserve(int size)
@@ -68,11 +75,12 @@ internal static class GamePanelPatch
         {
             Text(localizer.Text("PanelFatigueTitle")), Text("CA"), Text("PA"),
             Text(localizer.Text("PanelFatigueTitle"))
-        };
+        }.Concat(PlayerProfileFields.Hidden.Select(field =>
+            Text(localizer.Code == "pl" ? field.Polish : field.English))).ToArray();
         var vtable = Reserve(0x70);
         integerVtable.CopyTo(System.Runtime.InteropServices.CollectionsMarshal.AsSpan(data)
             .Slice(checked((int)(vtable - dataAddress)), integerVtable.Length));
-        var types = Enumerable.Range(0, 4).Select(_ => Reserve(8)).ToArray();
+        var types = Enumerable.Range(0, 4 + PlayerProfileFields.Hidden.Count).Select(_ => Reserve(8)).ToArray();
         for (var kind = 0; kind < types.Length; kind++)
         {
             Set(types[kind], vtable);
@@ -105,22 +113,101 @@ internal static class GamePanelPatch
         // Server-side variants recheck the active human on conversion, including
         // serialization. Client tables receive gated integers, not player references.
         code.Mark("read");
+        DiagnosticStage(code, dataAddress, ProfileReadStageOffset, 1);
         code.Emit(0x53, 0x55, 0x56, 0x57, 0x8B, 0xD9, 0x8B, 0xEA);
+        code.Emit(0x83, 0xEC, 0x04, 0xC7, 0x04, 0x24); code.Dword(0); // synchronous CLIENT source or0 for SERVER values
         code.Emit(0xF0, 0xFF, 0x05); code.Dword(dataAddress);
+        code.Emit(0x83, 0xFD, 0); code.Branch(0x8C, "invalid");
+        code.Emit(0x83, 0xFD, (byte)types.Length); code.Branch(0x8D, "invalid");
+        if (!legacyEnabled)
+        {
+            code.Emit(0x83, 0xFD, 0x04); code.Branch(0x8C, "hidden");
+        }
+        if (!profileOptions.HiddenAttributesEnabled)
+        {
+            code.Emit(0x83, 0xFD, 0x04); code.Branch(0x8D, "hidden");
+        }
         code.Emit(0x85, 0xDB); code.Branch(0x84, "hidden");
-        code.Emit(0x81, 0x3B); code.Dword(PlayerVtable); code.Branch(0x85, "invalid");
+        // Profile values carry the client proxy. Resolve only at conversion time;
+        // no server PLAYER pointer is retained by a label.
+        code.Emit(0x81, 0x3B); code.Dword(ClientPersonVtable);
+        code.Branch(0x85, "readServerValue");
+        code.Emit(0x83, 0xFD, 0x04); code.Branch(0x8C, "hidden");
+        DiagnosticStage(code, dataAddress, ProfileReadStageOffset, 3);
+        code.Emit(0x89, 0x1C, 0x24, 0x8B, 0xCB); code.Call("profileResolve");
+        code.Emit(0x8B, 0xD8, 0x85, 0xDB); code.Branch(0x84, "hidden");
+        code.Mark("readServerValue");
+        code.Emit(0x81, 0x3B); code.Dword(PlayerVtable); code.Branch(0x84, "knownPlayerType");
+        code.Emit(0x83, 0xFD, 0x04); code.Branch(0x8D, "hidden");
+        code.Jump("invalid");
+        code.Mark("knownPlayerType");
+        DiagnosticStage(code, dataAddress, ProfileReadStageOffset, 4);
         code.Emit(0x8B, 0x4B, 0x04, 0x85, 0xC9); code.Branch(0x84, "invalid");
-        code.Emit(0x8B, 0x49, 0x04, 0x8D, 0x4C, 0x0B, 0x04, 0x8B, 0x01, 0xFF, 0x90);
+        code.Emit(0x8B, 0x49, 0x04, 0x8D, 0x4C, 0x0B, 0x04, 0x8B, 0xF9, 0x8B, 0x01, 0xFF, 0x90);
         code.Dword(0x110);
         code.Emit(0x8B, 0xF0, 0x85, 0xF6); code.Branch(0x84, "hidden");
-        code.Call(0x00C927B0);
+        DiagnosticStage(code, dataAddress, ProfileReadStageOffset, 5);
+        code.Emit(0x8B, 0x0C, 0x24, 0x85, 0xC9); code.Branch(0x84, "readServerHuman");
+        code.Call("profileViewer"); code.Jump("readHumanReady");
+        code.Mark("readServerHuman");
+        code.Call(0x00C927B0); // legacy/SERVER properties retain original request context
+        code.Mark("readHumanReady");
         code.Emit(0x85, 0xC0); code.Branch(0x84, "hidden");
         code.Emit(0x81, 0x38); code.Dword(HumanVtable); code.Branch(0x85, "invalid");
         code.Emit(0x8B, 0x48, 0x04, 0x85, 0xC9); code.Branch(0x84, "invalid");
         code.Emit(0x8B, 0x49, 0x04, 0x8D, 0x4C, 0x08, 0x04, 0x8B, 0x11, 0xFF, 0x92);
         code.Dword(0x110);
         code.Emit(0x85, 0xC0); code.Branch(0x84, "hidden");
+        DiagnosticStage(code, dataAddress, ProfileReadStageOffset, 6);
         code.Emit(0x3B, 0xC6); code.Branch(0x85, "hidden");
+        code.Emit(0x83, 0xFD, 0x04); code.Branch(0x8C, "readLegacy");
+        DiagnosticStage(code, dataAddress, ProfileReadStageOffset, 7);
+        // New hidden values are unavailable while hosting, remote, closed or unknown.
+        // Both conditions are checked again on every conversion, not cached at startup.
+        code.Emit(0x80, 0x3D); code.Dword(RunAsServerAddress); code.Emit(0x00);
+        code.Branch(0x85, "hidden");
+        code.Emit(0x83, 0x3D); code.Dword(ConnectionManagerAddress + 8); code.Emit(0x00);
+        code.Branch(0x84, "hidden");
+        code.Emit(0xB9); code.Dword(ConnectionManagerAddress); code.Call(CurrentConnectionGetter);
+        code.Emit(0x85, 0xC0); code.Branch(0x84, "hidden");
+        code.Emit(0x8B, 0x40, 0x64, 0x85, 0xC0); code.Branch(0x84, "hidden");
+        code.Emit(0x81, 0x38); code.Dword(LocalConnectionVtable); code.Branch(0x85, "hidden");
+        DiagnosticStage(code, dataAddress, ProfileReadStageOffset, 8);
+        for (var index = 0; index < PlayerProfileFields.Hidden.Count; index++)
+        {
+            code.Emit(0x83, 0xFD, (byte)(index + 4)); code.Branch(0x84, "readHidden" + index);
+        }
+        code.Jump("invalid");
+        for (var index = 0; index < PlayerProfileFields.Hidden.Count; index++)
+        {
+            var field = PlayerProfileFields.Hidden[index];
+            code.Mark("readHidden" + index);
+            if (field.PersonSlot != 0)
+            {
+                code.Emit(0x8B, 0xCF, 0x8B, 0x01, 0xFF, 0x90); code.Dword((uint)field.PersonSlot);
+                code.Emit(0x0F, 0xBE, 0xC0);
+            }
+            else if (field.PlayerSelector >= 0)
+            {
+                // PLAYER returns AL; raw1..100 must be checked before native scaling,
+                // whose clamp would otherwise turn unknown0/invalid data into a value.
+                code.Push(0); code.Push(0); code.Push((uint)field.PlayerSelector);
+                code.Emit(0x8B, 0xCB, 0x8B, 0x01, 0xFF, 0x50, 0x18, 0x0F, 0xBE, 0xC0);
+                code.Emit(0x83, 0xF8, 0x01); code.Branch(0x8C, "invalid");
+                code.Emit(0x83, 0xF8, 100); code.Branch(0x8F, "invalid");
+                code.Push(0); code.Push(1); code.Push((uint)field.PlayerSelector);
+                code.Emit(0x8B, 0xCB, 0x8B, 0x01, 0xFF, 0x50, 0x18, 0x0F, 0xBE, 0xC0);
+            }
+            else
+            {
+                code.Jump("hidden"); // Controversy: source binding is intentionally unresolved.
+                continue;
+            }
+            code.Emit(0x83, 0xF8, 0x01); code.Branch(0x8C, "invalid");
+            code.Emit(0x83, 0xF8, 20); code.Branch(0x8F, "invalid");
+            code.Jump("readDone");
+        }
+        code.Mark("readLegacy");
         code.Emit(0x83, 0xFD, 0x01); code.Branch(0x84, "readCa");
         code.Emit(0x83, 0xFD, 0x02); code.Branch(0x84, "readPa");
         code.Emit(0x0F, 0xBF, 0x43, 0x0C, 0x3D); code.Dword(unchecked((uint)-1500));
@@ -142,7 +229,10 @@ internal static class GamePanelPatch
         code.Mark("missing");
         code.Emit(0xB8); code.Dword(unchecked((uint)Missing));
         code.Mark("readDone");
-        code.Emit(0x5F, 0x5E, 0x5D, 0x5B, 0xC3);
+        code.Emit(0x3D); code.Dword(unchecked((uint)Missing)); code.Branch(0x84, "readStageDone");
+        DiagnosticStage(code, dataAddress, ProfileReadStageOffset, 100);
+        code.Mark("readStageDone");
+        code.Emit(0x83, 0xC4, 0x04, 0x5F, 0x5E, 0x5D, 0x5B, 0xC3);
 
         code.Mark("integer");
         code.Emit(0x8B, 0x51, 0x04, 0x8B, 0x44, 0x24, 0x04, 0x8B, 0x08);
@@ -330,6 +420,9 @@ internal static class GamePanelPatch
         code.Mark("trainingDone");
         code.Emit(0x83, 0xC4, 0x08, 0x5F, 0x5E, 0x5D, 0x5B, 0xC3);
 
+        AppendProfile(code, types, Reserve, Set, SetControl, positionSetRole);
+        AppendProfileResolver(code, dataAddress);
+
         foreach (var (slot, label) in new (int, string)[]
         {
             (0x10, "equal"), (0x14, "equalRaw"), (0x18, "boolean"), (0x1C, "integer"),
@@ -339,11 +432,14 @@ internal static class GamePanelPatch
         if (code.Length > CodeCapacity || data.Count > DataCapacity)
             throw new LauncherException("UnexpectedGameMemory");
         return new PanelPayload(code.Finish(), data.ToArray(), code.At("property"), code.At("title"),
-            code.At("training"), code.At("label"), code.At("read"), code.At("format"), types);
+            code.At("training"), code.At("label"), code.At("read"), code.At("format"), types,
+            code.At("profileSet"), code.At("profileEvent"), code.At("profileInit"), code.At("updateProfile"),
+            positionSetRole != 0 ? code.At("profileRole") : 0);
 
         void Identify(string prefix, string otherwise)
         {
-            var ids = new[] { FatigueProperty, CaProperty, PaProperty, HintProperty };
+            var ids = new[] { FatigueProperty, CaProperty, PaProperty, HintProperty }
+                .Concat(PlayerProfileFields.Hidden.Select(field => field.Property)).ToArray();
             for (var i = 0; i < ids.Length; i++)
             {
                 code.Emit(0x3D); code.Dword(ids[i]); code.Branch(0x84, prefix + i);

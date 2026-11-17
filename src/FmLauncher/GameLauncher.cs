@@ -11,6 +11,12 @@ public sealed class GameLauncher : IDisposable
     private GameDisplayController? display;
     private uint paState;
     private uint panelState;
+    private RuleDisplayInstallation? ruleDisplayInstallation;
+    private long nextRuleAudit;
+    private TeamTalkUiController? teamTalk;
+    private string teamTalkStatus="";
+    internal AppliedRuleSnapshot? AppliedRules { get; private set; }
+    internal bool RuleDisplayReady { get; private set; }
     public bool IsRunning => process is not null && !process.HasExited;
     public bool IsDisplayReady => display is null || display.Ready;
     internal IntPtr GameWindow => display?.Window ?? IntPtr.Zero;
@@ -19,6 +25,7 @@ public sealed class GameLauncher : IDisposable
     internal PaStatistics? PaStatistics { get; private set; }
     internal PanelStatistics? PanelStatistics { get; private set; }
     internal GamePaJournal PaJournal { get; } = new();
+    internal LaunchJournal LaunchJournal { get; } = new();
     internal LeagueDiagnostics LeagueDiagnostics { get; } = new();
     internal LeagueChanges LeagueChanges { get; } = new();
 
@@ -34,30 +41,49 @@ public sealed class GameLauncher : IDisposable
             {
                 WorkArea = (Screen.PrimaryScreen ?? throw new LauncherException("NoDisplay")).WorkingArea
             } : null;
+        var profileOptions = PlayerProfilePanelOptions.From(config);
+        if (profileOptions.PositionHighlightsEnabled && !PositionHighlightModel.IntegrationReady)
+            throw new LauncherException("PositionHighlightsUnavailable");
+        var skinsPath = SkinGuidePage.InitialSkinDirectory(config.GamePath, config.UserDataPath);
+        SkinPanelInstaller.ValidateProfileReadiness(skinsPath, profileOptions);
+
+        var talkLanguage=config.TeamTalkReactionsEnabled?GameLanguageResolver.CreatePanelLocalizer(localizer):null;
         Localizer? panels = null;
-        if (config.PanelInformationEnabled)
+        if (config.PanelInformationEnabled || profileOptions.HiddenAttributesEnabled || profileOptions.PositionHighlightsEnabled)
         {
-            panels = localizer ?? new Localizer(Path.Combine(AppContext.BaseDirectory, "FmLauncher.languages.json"));
-            panels.Select(config.Language);
+            panels = GameLanguageResolver.CreatePanelLocalizer(localizer);
         }
+        var requiredPanelLanguage=panels??talkLanguage;
+        if(requiredPanelLanguage is not null)
+            SkinPanelInstaller.ValidatePanelLanguage(skinsPath,requiredPanelLanguage);
+        if(config.TeamTalkReactionsEnabled)TeamTalkSkinInstaller.Validate(config.GamePath,skinsPath);
         Launch(config.GamePath, config.MatchRulesEnabled ? config.Rules : null, settings, config.PaEnabled ? PaGrowthPolicy.Default : null, panels,
             config.LeagueDiagnosticsEnabled || config.LeagueChangesEnabled, config.AgingDelayEnabled,
-            config.LeagueChangesEnabled);
+            config.LeagueChangesEnabled, profileOptions, config.PanelInformationEnabled,
+            config.TeamTalkReactionsEnabled,talkLanguage?.Code=="pl");
     }
 
     private void Launch(string path, IReadOnlyList<RuleSettings>? rules, DisplayLaunchSettings? settings = null,
         PaGrowthPolicy? paPolicy = null, Localizer? panels = null, bool leagueDiagnostics = false, bool agingDelay = false,
-        bool leagueChanges = false)
+        bool leagueChanges = false, PlayerProfilePanelOptions? profileOptions = null, bool legacyPanelInformation = true,
+        bool teamTalkEnabled = false,bool teamTalkPolish = false)
     {
         if (IsRunning) throw new LauncherException("AlreadyRunning");
         Release();
+        var effectiveRules = EffectiveRuleResolver.Compile(rules);
+        LaunchJournal.Begin(rules);
         PaStatistics = null;
         PanelStatistics = null;
         PaJournal.Reset();
         LeagueDiagnostics.Reset();
+        uint talkData=0;
         if (!Path.IsPathFullyQualified(path) || !File.Exists(path)
             || !string.Equals(Path.GetExtension(path), ".exe", StringComparison.OrdinalIgnoreCase))
-            throw new LauncherException("InvalidGamePath", path);
+        {
+            var error = new LauncherException("InvalidGamePath", path);
+            LaunchJournal.Failed(error);
+            throw error;
+        }
         launchLock = new Mutex(false, @"Local\FmLauncher.GameStart");
         bool acquired;
         try { acquired = launchLock.WaitOne(0); }
@@ -66,7 +92,9 @@ public sealed class GameLauncher : IDisposable
         {
             launchLock.Dispose();
             launchLock = null;
-            throw new LauncherException("AlreadyRunning");
+            var error = new LauncherException("AlreadyRunning");
+            LaunchJournal.Failed(error);
+            throw error;
         }
         try
         {
@@ -78,13 +106,22 @@ public sealed class GameLauncher : IDisposable
                     throw new LauncherException("AlreadyRunning");
             }
             finally { foreach (var candidate in candidates) candidate.Dispose(); }
-            if (agingDelay || leagueDiagnostics || panels is not null || settings is not null || paPolicy is not null
-                || (rules is not null && rules.Any(rule => rule.Override || rule.BenchOverride)))
+            if (teamTalkEnabled || agingDelay || leagueDiagnostics || panels is not null || settings is not null || paPolicy is not null
+                || Enum.GetValues<RuleLimit>().Any(effectiveRules.HasOverrides))
             {
-                using var verified = MatchRulePatch.OpenVerifiedGame(path);
+                using var verified = MatchRulePatch.OpenVerifiedGame(path, out var imageHash);
+                // Panel readiness was checked without writing skins before process creation.
                 using var suspended = new SuspendedGameProcess(path,
                     settings is null ? null : GameDisplayPatch.Arguments(settings.Mode), dpiAware: settings is not null);
-                if (rules is not null) suspended.ApplyRuleLimits(rules, verified);
+                if (rules is not null)
+                {
+                    AppliedRules = suspended.ApplyRuleLimits(effectiveRules, verified,
+                        suspended.CreateRuleSession(imageHash), LaunchJournal.Rule);
+                    ruleDisplayInstallation = suspended.ApplyRuleDisplay(AppliedRules, verified, imageHash);
+                    RuleDisplayReady = ruleDisplayInstallation is not null;
+                    if (Enum.GetValues<RuleLimit>().Any(effectiveRules.HasOverrides))
+                        LaunchJournal.Add(RuleDisplayReady ? "LaunchLogRulesDisplayVerified" : "LaunchLogRulesDisplayUnsupported");
+                }
                 if (agingDelay) suspended.ApplyAgingDelay(verified);
                 if (settings is not null) display = new GameDisplayController(suspended.ApplyDisplay(settings, verified), settings);
                 if (paPolicy is not null)
@@ -94,8 +131,13 @@ public sealed class GameLauncher : IDisposable
                 }
                 if (panels is not null)
                 {
-                    panelState = suspended.ApplyPanelInformation(verified, panels);
+                    panelState = suspended.ApplyPanelInformation(verified, panels, profileOptions, legacyPanelInformation);
                     PanelStatistics = new PanelStatistics(0, 0, 0, 0);
+                }
+                if(teamTalkEnabled)
+                {
+                    talkData=suspended.ApplyTeamTalkUi(verified,teamTalkPolish);
+                    LaunchJournal.Add("LaunchLogTeamTalkInstalled");
                 }
                 if (leagueDiagnostics)
                 {
@@ -113,6 +155,7 @@ public sealed class GameLauncher : IDisposable
                             LeagueDiagnostics, Path.Combine(AppContext.BaseDirectory, "league-changes"), suspended.ProcessId);
                 }
                 process = suspended.Resume();
+                if(talkData!=0)teamTalk=new TeamTalkUiController(process,talkData,teamTalkPolish);
             }
             else
             {
@@ -123,15 +166,18 @@ public sealed class GameLauncher : IDisposable
                     UseShellExecute = false
                 }) ?? throw new LauncherException("ProcessStartError", path);
             }
+            LaunchJournal.Add("LaunchLogResumed");
         }
         catch (Exception ex) when (ex is Win32Exception or InvalidOperationException or IOException or UnauthorizedAccessException)
         {
             Release();
+            LaunchJournal.Failed(ex);
             throw new LauncherException("ProcessStartError", ex.Message);
         }
-        catch (LauncherException)
+        catch (LauncherException ex)
         {
             Release();
+            LaunchJournal.Failed(ex);
             throw;
         }
     }
@@ -143,9 +189,22 @@ public sealed class GameLauncher : IDisposable
         {
             var startupFailed = display is not null && !display.HasInitialized;
             var exitCode = process.ExitCode;
+            LaunchJournal.Add("LaunchLogExited", exitCode);
             Release();
             if (startupFailed) throw new LauncherException("DisplayStartupExited", exitCode);
             return true;
+        }
+        UpdateAppliedRules();
+        if(teamTalk is not null)
+        {
+            teamTalk.Update();var talk=teamTalk.Status;string signature=talk.State+"/"+talk.Rows;
+            if(signature!=teamTalkStatus)
+            {
+                teamTalkStatus=signature;
+                if(talk.State=="current")LaunchJournal.Add("LaunchLogTeamTalkCurrent",talk.Rows);
+                else if(talk.State=="unavailable")LaunchJournal.Add("LaunchLogTeamTalkUnavailable",talk.Error??"");
+                else LaunchJournal.Add("LaunchLogTeamTalkWaiting");
+            }
         }
         LeagueDiagnostics.Update();
         LeagueChanges.Update();
@@ -186,11 +245,12 @@ public sealed class GameLauncher : IDisposable
             {
                 var startupFailed = display is not null && !display.HasInitialized;
                 var exitCode = process.ExitCode;
+                LaunchJournal.Add("LaunchLogExited", exitCode);
                 Release();
                 if (startupFailed) throw new LauncherException("DisplayStartupExited", exitCode);
                 return true;
             }
-            catch (LauncherException)
+            catch (LauncherException ex)
             {
                 try
                 {
@@ -200,15 +260,55 @@ public sealed class GameLauncher : IDisposable
                         if (!process.WaitForExit(5000)) throw new LauncherException("DisplayStopTimeout");
                     }
                 }
-                finally { Release(); }
+                finally
+                {
+                    Release();
+                    LaunchJournal.Failed(ex);
+                }
                 throw;
             }
         }
         return false;
     }
 
+    private void UpdateAppliedRules()
+    {
+        if (AppliedRules is null || process is null || Environment.TickCount64 < nextRuleAudit) return;
+        nextRuleAudit = Environment.TickCount64 + 1000;
+        var before = AppliedRules;
+        try
+        {
+            var actual = new RuleHookSession(process.Id, process.StartTime.ToUniversalTime().Ticks,
+                before.Session.ImageSha256);
+            AppliedRules = before.Revalidate(actual, !process.HasExited,
+                (address, size) => SuspendedGameProcess.ReadMemory(process.SafeHandle, address, size));
+            if (RuleDisplayReady && (!RuleDisplayInstallation.SupportsAppliedState(AppliedRules)
+                || ruleDisplayInstallation is null || !ruleDisplayInstallation.MatchesFreshRead(
+                    (address, size) => SuspendedGameProcess.ReadMemory(process.SafeHandle, address, size))))
+            {
+                RuleDisplayReady = false;
+                LaunchJournal.Add("LaunchLogRulesDisplayLost");
+            }
+        }
+        catch (Exception ex) when (ex is Win32Exception or InvalidOperationException or LauncherException)
+        {
+            // Diagnostic loss must not close a user's game or pretend that desired rules are applied.
+            AppliedRules = before.WithSessionLost();
+            if (RuleDisplayReady)
+            {
+                RuleDisplayReady = false;
+                LaunchJournal.Add("LaunchLogRulesDisplayLost");
+            }
+        }
+        foreach (var limit in Enum.GetValues<RuleLimit>())
+            if (before.Status(limit) == AppliedRuleStatus.Verified
+                && AppliedRules.Status(limit) == AppliedRuleStatus.Lost)
+                LaunchJournal.Rule(limit, RuleHookStatus.Lost);
+    }
+
     private void Release()
     {
+        teamTalk?.Dispose();teamTalk=null;teamTalkStatus="";
         LeagueChanges.End(process is not null && !process.HasExited);
         LeagueDiagnostics.End();
         process?.Dispose();
@@ -216,6 +316,10 @@ public sealed class GameLauncher : IDisposable
         display = null;
         paState = 0;
         panelState = 0;
+        AppliedRules = null;
+        ruleDisplayInstallation = null;
+        RuleDisplayReady = false;
+        nextRuleAudit = 0;
         if (launchLock is not null)
         {
             launchLock.ReleaseMutex();

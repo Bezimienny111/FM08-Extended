@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace FmLauncher;
 
-internal sealed class MainForm : Form
+internal sealed partial class MainForm : Form
 {
     private readonly Localizer localizer;
     private readonly ConfigurationStore store;
@@ -19,7 +19,12 @@ internal sealed class MainForm : Form
     private readonly ToolTip tooltips = new();
     private readonly List<FeatureSection> features = [];
     private readonly List<SocialLinkButton> socialLinks = [];
-    private readonly Button themeMode = new() { Name = "ThemeMode", AutoSize = true, FlatStyle = FlatStyle.Flat };
+    private readonly Button themeMode = new()
+    {
+        Name="ThemeMode",AutoSize=false,Size=new Size(150,44),FlatStyle=FlatStyle.Flat,
+        Anchor=AnchorStyles.Top|AnchorStyles.Right,Margin=Padding.Empty,
+        Font=new Font("Segoe UI",10,FontStyle.Bold)
+    };
     private bool darkMode;
     private readonly ToggleSwitch advancedMode = new()
     {
@@ -35,12 +40,22 @@ internal sealed class MainForm : Form
     private readonly ToggleSwitch paEnabled = new() { Name = "PaEnabled" };
     private readonly ToggleSwitch agingDelay = new() { Name = "AgingDelayEnabled" };
     private readonly ToggleSwitch panelInformation = new() { Name = "PanelInformationEnabled" };
+    private readonly ToggleSwitch positionHighlights = new() { Name = "PositionHighlightsEnabled", Dock = DockStyle.Top };
+    private readonly ToggleSwitch hiddenAttributes = new() { Name = "HiddenAttributesEnabled", Dock = DockStyle.Top };
+    private readonly ToggleSwitch teamTalkReactions = new() { Name = "TeamTalkReactionsEnabled" };
     private readonly SkinGuidePage skinGuide;
+    private readonly CommunityLinksPage communityLinks;
     private readonly LeagueReputationPage leagueReputation;
     private int legacyPaChance;
     private readonly Label paStatistics = new() { Name = "PaStatistics", AutoSize = true, Dock = DockStyle.Top };
     private readonly Label paLogStatus = new() { Name = "PaLogStatus", AutoSize = true, Dock = DockStyle.Top };
     private PaLogForm? paLogWindow;
+    private readonly LaunchLogPanel launchLog;
+    private readonly ComboBox ruleView = Choice();
+    private readonly Control individualRulesView;
+    private readonly RuleGroupEditor groupedRules;
+    private int activeRuleView;
+    private bool changingRuleView;
     private readonly NumericUpDown substitutionsEditor = new()
     {
         Name = "SubstitutionsEditor", Minimum = 0, Maximum = 12, Width = 80, Enabled = false
@@ -57,15 +72,16 @@ internal sealed class MainForm : Form
     };
     private readonly DataGridView rules = new()
     {
-        Dock = DockStyle.Fill, Height = 300, AutoGenerateColumns = false,
+        Name = "IndividualRules", Dock = DockStyle.Fill, Height = 300, AutoGenerateColumns = false,
         AllowUserToAddRows = false, AllowUserToDeleteRows = false,
         AllowUserToOrderColumns = false, RowHeadersVisible = false,
         AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
         ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize,
-        SelectionMode = DataGridViewSelectionMode.CellSelect
+        SelectionMode = DataGridViewSelectionMode.FullRowSelect, MultiSelect = true
     };
-    private readonly Button save = new() { Name = "Save", AutoSize = true };
-    private readonly FlowLayoutPanel configurationActions = Row();
+    private readonly Button retryConfiguration = new() { Name = "RetryConfiguration", AutoSize = true, Visible = false };
+    private bool configurationLoaded;
+    private string? lastSavedConfiguration;
     private readonly Button launch = new()
     {
         Name = "Play", Size = new Size(180, 44), FlatStyle = FlatStyle.Flat,
@@ -92,24 +108,35 @@ internal sealed class MainForm : Form
         AutoScaleMode = AutoScaleMode.Dpi;
         Font = new Font("Segoe UI", 10);
         BackColor = Color.FromArgb(239, 242, 247);
-        MinimumSize = new Size(720, 540);
-        Size = new Size(1000, 900);
+        MinimumSize = new Size(1024, 720);
+        Size = new Size(1280, 960);
         StartPosition = FormStartPosition.CenterScreen;
         SuspendLayout();
-        var tabs = new ThemedTabControl { Name = "FeatureTabs", Dock = DockStyle.Fill, ItemSize = new Size(150, 32) };
-        var body = settingsContent = AddSettingsTab(tabs, "Settings", "SettingsTab");
+        var tabs = new ThemedTabControl
+        {
+            Name = "FeatureTabs", Dock = DockStyle.Fill, Alignment = TabAlignment.Left,
+            SizeMode = TabSizeMode.Fixed, Multiline = true, ItemSize = new Size(54, 185), Padding = new Point(12, 8)
+        };
+        var body = settingsContent = AddSettingsTab(tabs, "Settings", "FeaturesTab");
+        var graphicsBody = AddSettingsTab(tabs, "Graphics", "GraphicsTab");
+        var preferencesPage = new TabPage { Name = "Preferences", Padding = new Padding(12) };
+        captions.Add(preferencesPage, "PreferencesTab");
+        var preferencesScroll = new Panel { Name = "PreferencesScroll", Dock = DockStyle.Fill, AutoScroll = true };
+        var preferencesBody = Stack();
+        preferencesScroll.Controls.Add(preferencesBody);
+        preferencesPage.Controls.Add(preferencesScroll);
         body.SuspendLayout();
         leagueReputation = new LeagueReputationPage(localizer, () => gamePath.Text.Trim(), Execute, directory, launcher,
             () => darkMode);
         skinGuide = new SkinGuidePage(localizer, () => gamePath.Text.Trim(), () => userDataPath.Text.Trim(), Execute,
-            () => darkMode);
+            () => darkMode, () => new PlayerProfilePanelOptions(positionHighlights.Checked, hiddenAttributes.Checked));
         tabs.TabPages.Add(skinGuide);
         Controls.Add(tabs);
         profileBanner.Click += (_, _) =>
         {
-            tabs.SelectedIndex = 0;
+            tabs.SelectedTab=tabs.TabPages.Cast<TabPage>().Single(page=>page.Name=="Settings");
             leagueReputation.ShowChanges();
-            if (body.Parent is ScrollableControl scroll) scroll.ScrollControlIntoView(leagueReputation);
+            if (body.Parent is ScrollableControl scroll) scroll.ScrollControlIntoView(sharedDetails);
         };
         leagueReputation.ProfileStatusChanged += () =>
         {
@@ -117,27 +144,59 @@ internal sealed class MainForm : Form
             profileBanner.Text = leagueReputation.ProfileStatusText;
             profileBanner.BackColor = leagueReputation.ProfileStatusColor;
         };
-        ClientSizeChanged += (_, _) => profileBanner.MaximumSize = new Size(Math.Max(200, ClientSize.Width - 36), 0);
+        ClientSizeChanged += (_, _) => profileBanner.MaximumSize = new Size(Math.Max(200, (profileBanner.Parent?.ClientSize.Width??ClientSize.Width) - 12), 0);
 
         languages.Name = "LauncherLanguage";
         languages.Width = 160;
         languages.Items.AddRange(localizer.Languages.Cast<object>().ToArray());
         var header = new TableLayoutPanel
         {
-            Name = "LauncherHeader", Dock = DockStyle.Top, AutoSize = true, ColumnCount = 2,
+            Name = "LauncherHeader", Dock = DockStyle.Top, Height = 76, ColumnCount = 3,
             Padding = new Padding(12, 8, 12, 8), BackColor = Color.White
         };
+        header.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 325));
         header.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
-        header.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+        header.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 325));
+        header.RowCount = 1;
+        header.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
         var title = CaptionLabel("Title");
         title.Name = "BrandTitle";
-        title.Font = new Font(Font.FontFamily, 15, FontStyle.Bold);
-        header.Controls.Add(title, 0, 0);
+        title.Font = new Font(Font.FontFamily, 17, FontStyle.Bold);
+        title.AutoSize = false;
+        title.Dock = DockStyle.Fill;
+        title.TextAlign = ContentAlignment.MiddleCenter;
+        title.Height = 33;
+        title.Margin = Padding.Empty;
+        var version = new Label
+        {
+            Name = "LauncherVersion", Dock = DockStyle.Fill, Height = 22,
+            Text = "v" + typeof(MainForm).Assembly.GetName().Version!.ToString(3) + " R23",
+            TextAlign = ContentAlignment.MiddleCenter, Margin = Padding.Empty
+        };
+        var brandRow = new TableLayoutPanel { Name = "BrandHeading", Dock = DockStyle.Fill, ColumnCount = 1, RowCount = 2, Margin = Padding.Empty };
+        brandRow.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+        brandRow.RowStyles.Add(new RowStyle(SizeType.Percent, 65));
+        brandRow.RowStyles.Add(new RowStyle(SizeType.Percent, 35));
+        brandRow.Controls.Add(title, 0, 0);
+        brandRow.Controls.Add(version, 0, 1);
+        header.Controls.Add(brandRow, 1, 0);
         themeMode.Click += (_, _) => ApplyTheme(!darkMode);
-        var languageRow = Row(themeMode, CaptionLabel("Language"), languages);
-        languageRow.WrapContents = false;
-        languageRow.Anchor = AnchorStyles.Right;
-        header.Controls.Add(languageRow, 1, 0);
+        var languageFrame=new FramedPanel
+        {
+            Name="LanguageControls",Size=new Size(310,46),Anchor=AnchorStyles.Top|AnchorStyles.Left,
+            Padding=new Padding(10,5,10,5),Margin=Padding.Empty
+        };
+        var languageRow=new TableLayoutPanel{Dock=DockStyle.Fill,ColumnCount=2,RowCount=1,Margin=Padding.Empty};
+        languageRow.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute,144));
+        languageRow.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,100));
+        var languageLabel=CaptionLabel("Language");languageLabel.Name="LanguageHeading";
+        languageLabel.AutoSize=false;languageLabel.Dock=DockStyle.Fill;languageLabel.Margin=Padding.Empty;
+        languageLabel.TextAlign=ContentAlignment.MiddleLeft;languageLabel.Font=new Font(Font,FontStyle.Bold);
+        languages.Dock=DockStyle.Fill;languages.Margin=new Padding(3,3,0,0);
+        languageRow.Controls.Add(languageLabel,0,0);languageRow.Controls.Add(languages,1,0);
+        languageFrame.Controls.Add(languageRow);
+        header.Controls.Add(languageFrame,0,0);
+        header.Controls.Add(themeMode,2,0);
         var browse = Button("Browse", () =>
         {
             using var dialog = new OpenFileDialog { Filter = localizer.Text("ExecutableFilter"), CheckFileExists = true };
@@ -166,7 +225,10 @@ internal sealed class MainForm : Form
         var dataNotice = Notice("UserDataNotice");
         pathRow.Controls.Add(dataNotice, 0, 2);
         pathRow.SetColumnSpan(dataNotice, 3);
-        body.Controls.Add(pathRow);
+        var pathsBox = new SectionBox { Name = "PathsSection", Dock = DockStyle.Top, AutoSize = true, Padding = new Padding(10, 25, 10, 10) };
+        captions.Add(pathsBox, "PathsTitle");
+        pathsBox.Controls.Add(pathRow);
+        preferencesBody.Controls.Add(pathsBox);
 
         rules.Columns.Add(new DataGridViewTextBoxColumn { Name = "Code", ValueType = typeof(int), ReadOnly = true, FillWeight = 55 });
         rules.Columns.Add(new DataGridViewTextBoxColumn { Name = "Original", ReadOnly = true, FillWeight = 140 });
@@ -225,14 +287,29 @@ internal sealed class MainForm : Form
             Execute(() => UpdateFromEditor(substitutionsEditor, "Substitutions"));
         benchEditor.ValueChanged += (_, _) => Execute(() => UpdateFromEditor(benchEditor, "Bench"));
         var rulePanel = Stack();
-        rulePanel.Controls.Add(Notice("RulesNotice"));
-        var gridContainer = new Panel { Dock = DockStyle.Top, Height = 260 };
+        rulePanel.Controls.Add(CreateBulkRulesEditor());
+        rulePanel.Controls.Add(Notice("RulesViewNotice"));
+        ruleView.Name = "RuleEditView";
+        ruleView.Width = 300;
+        ruleView.SelectedIndexChanged += (_, _) => Execute(SwitchRuleView);
+        rulePanel.Controls.Add(Row(CaptionLabel("RuleEditView"), ruleView));
+        var individualPanel = Stack();
+        individualRulesView = individualPanel;
+        individualRulesView.Name = "IndividualRulesView";
+        individualPanel.Controls.Add(Notice("RulesNotice"));
+        var gridContainer = new FramedPanel { Name = "IndividualRulesFrame", Dock = DockStyle.Top, Height = 260, Padding = new Padding(3) };
         gridContainer.Controls.Add(rules);
-        rulePanel.Controls.Add(gridContainer);
-        rulePanel.Controls.Add(Row(selectedRule, CaptionLabel("Substitutions"), substitutionsEditor,
+        individualPanel.Controls.Add(gridContainer);
+        individualPanel.Controls.Add(Row(selectedRule, CaptionLabel("Substitutions"), substitutionsEditor,
             CaptionLabel("Bench"), benchEditor));
+        rulePanel.Controls.Add(individualRulesView);
+        groupedRules = new RuleGroupEditor(localizer) { Visible = false };
+        groupedRules.SelectionChanged += UpdateRuleScope;
+        groupedRules.ApplyRequested += (code, substitutions, bench) =>
+            Execute(() => ApplyGroupedChanges(code, substitutions, bench));
+        rulePanel.Controls.Add(groupedRules);
         rulePanel.Controls.Add(Notice("RuleScopeNotice"));
-        var scopeContainer = new Panel { Dock = DockStyle.Top, Height = 170 };
+        var scopeContainer = new FramedPanel { Name = "RuleScopeFrame", Dock = DockStyle.Top, Height = 155, Padding = new Padding(3) };
         scopeContainer.Controls.Add(ruleScope);
         rulePanel.Controls.Add(scopeContainer);
         captions.Add(matchRulesEnabled, "MatchRulesEnabled");
@@ -264,7 +341,14 @@ internal sealed class MainForm : Form
         refreshDisplay.Anchor = AnchorStyles.Right;
         refreshDisplay.Margin = new Padding(3, 0, 3, 0);
         displayOptions.Controls.Add(refreshDisplay, 2, 1);
-        body.Controls.Add(Feature("GraphicsFeature", displayEnabled, displayPanel, alwaysVisible: displayOptions));
+        var graphicsSection = new SectionBox { Name = "GraphicsSection", Dock = DockStyle.Top, AutoSize = true, Padding = new Padding(12, 25, 12, 12) };
+        captions.Add(graphicsSection, "GraphicsTab");
+        var graphicsContents = Stack();
+        graphicsContents.Controls.Add(displayEnabled);
+        graphicsContents.Controls.Add(displayPanel);
+        graphicsContents.Controls.Add(displayOptions);
+        graphicsSection.Controls.Add(graphicsContents);
+        graphicsBody.Controls.Add(graphicsSection);
         body.Controls.Add(Feature("MatchRulesFeature", matchRulesEnabled, rulePanel));
         displayEnabled.CheckedChanged += (_, _) =>
         {
@@ -277,7 +361,7 @@ internal sealed class MainForm : Form
         };
         var paPanel = Stack();
         captions.Add(paEnabled, "PaEnabled");
-        captions.Add(agingDelay, "AgingDelayEnabled");
+        captions.Add(agingDelay, "AgingFeatureTitle");
         paPanel.Controls.Add(Notice("PaNotice"));
         paPanel.Controls.Add(Notice("PaCalculation"));
         paPanel.Controls.Add(paStatistics);
@@ -292,45 +376,74 @@ internal sealed class MainForm : Form
         agingPanel.Controls.Add(Notice("AgingDelayNotice"));
         body.Controls.Add(Feature("AgingFeature", agingDelay, agingPanel));
         var panelInformationSection = Stack();
-        captions.Add(panelInformation, "PanelInformationEnabled");
+        captions.Add(panelInformation, "PlayerPanelsFeatureTitle");
         panelInformationSection.Controls.Add(Notice("PanelInformationNotice"));
         panelInformationSection.Controls.Add(Notice("PanelSkinGuideNotice"));
+        captions.Add(positionHighlights, "PositionHighlightsEnabled");
+        positionHighlights.Enabled = PositionHighlightModel.IntegrationReady;
+        captions.Add(hiddenAttributes, "HiddenAttributesEnabled");
+        panelInformationSection.Controls.Add(positionHighlights);
+        panelInformationSection.Controls.Add(Notice("PositionHighlightsNotice"));
+        panelInformationSection.Controls.Add(hiddenAttributes);
+        panelInformationSection.Controls.Add(Notice("HiddenAttributesNotice"));
         body.Controls.Add(Feature("PanelsFeature", panelInformation, panelInformationSection));
+        var talks = Stack();
+        captions.Add(teamTalkReactions,"TeamTalkReactionsTitle");
+        talks.Controls.Add(Notice("TeamTalkReactionsNotice"));
+        void OpenSkinsBasic()
+        {
+            tabs.SelectedTab=skinGuide;
+            skinGuide.ShowBasic();
+        }
+        var openTalkSkins=Button("OpenSkinsBasic",OpenSkinsBasic);
+        openTalkSkins.Name="TeamTalkOpenSkins";
+        talks.Controls.Add(openTalkSkins);
+        var openPlayerSkins=Button("OpenSkinsBasic",OpenSkinsBasic);
+        openPlayerSkins.Name="PlayerPanelsOpenSkins";
+        panelInformationSection.Controls.Add(openPlayerSkins);
+        body.Controls.Add(Feature("TeamTalkFeature",teamTalkReactions,talks));
         body.Controls.Add(leagueReputation);
+        BuildFeatureWorkspace(body);
         captions.Add(advancedMode, "AdvancedMode");
-        body.Controls.Add(advancedMode);
+        preferencesBody.Controls.Add(advancedMode);
         advancedNotice = new Label
         {
             Name = "AdvancedActiveTools", AutoSize = true, Dock = DockStyle.Top,
             Margin = new Padding(3, 7, 8, 3)
         };
         wrappingLabels.Add(advancedNotice);
-        body.Controls.Add(advancedNotice);
+        preferencesBody.Controls.Add(advancedNotice);
+        preferencesBody.Controls.Add(Notice("IniSettingsNotice"));
+        preferencesBody.Controls.Add(Notice("AutomaticSaveHint"));
+        captions.Add(retryConfiguration,"RetryConfiguration");
+        retryConfiguration.Click+=(_,_)=>Execute(LoadConfiguration);
+        preferencesBody.Controls.Add(retryConfiguration);
         advancedMode.CheckedChanged += (_, _) => ApplyAdvancedMode();
         leagueReputation.AdvancedToolsChanged += UpdateAdvancedNotice;
         ApplyAdvancedMode();
-        captions.Add(save, "Save");
         captions.Add(launch, "Play");
-        save.Click += (_, _) => Execute(SaveConfiguration);
         launch.Click += (_, _) => Execute(LaunchGame);
-        var footer = Stack();
-        footer.Name = "LauncherActions";
-        footer.Dock = DockStyle.Bottom;
-        footer.BackColor = Color.White;
-        footer.Padding = new Padding(12, 4, 12, 6);
-        footer.Controls.Add(status);
-        footer.Controls.Add(profileBanner);
-        var playRow = new TableLayoutPanel { Dock = DockStyle.Top, AutoSize = true, ColumnCount = 3 };
-        playRow.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
-        playRow.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
-        playRow.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
-        configurationActions.Name = "ConfigurationActions";
-        var reload = Button("Reload", LoadConfiguration);
-        reload.Name = "Reload";
-        configurationActions.Controls.AddRange([save, reload]);
-        playRow.Controls.Add(configurationActions, 0, 0);
-        playRow.Controls.Add(launch, 1, 0);
-        footer.Controls.Add(playRow);
+        var footer = new TableLayoutPanel
+        {
+            Name="LauncherActions",Dock=DockStyle.Bottom,AutoSize=true,ColumnCount=2,
+            Padding=new Padding(8,4,8,4),Margin=Padding.Empty
+        };
+        footer.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute,188));
+        footer.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,100));
+        footer.Paint += (_, args) =>
+        {
+            using var pen = new Pen(LauncherTheme.SectionBorder(darkMode), 2);
+            args.Graphics.DrawLine(pen, 0, 0, footer.Width, 0);
+        };
+        var playArea=new Panel{Name="PlayArea",Dock=DockStyle.Fill,Padding=new Padding(4,8,12,4),MinimumSize=new Size(0,58),Margin=Padding.Empty};
+        launch.Dock=DockStyle.Top;launch.Height=42;launch.Margin=Padding.Empty;
+        playArea.Controls.Add(launch);footer.Controls.Add(playArea,0,0);
+        var footerContents=Stack();footerContents.Name="FooterContents";footerContents.Margin=Padding.Empty;
+        footerContents.SizeChanged+=(_,_)=>profileBanner.MaximumSize=new Size(Math.Max(160,footerContents.ClientSize.Width-8),0);
+        footer.Controls.Add(footerContents,1,0);
+        status.AutoSize=false;status.AutoEllipsis=true;status.TextAlign=ContentAlignment.MiddleLeft;status.Height=30;status.Margin=Padding.Empty;
+        profileBanner.Padding=new Padding(5,3,5,3);profileBanner.Margin=Padding.Empty;
+        profileBanner.Font=new Font(Font.FontFamily,9);
         var links = new FlowLayoutPanel { Name = "SocialLinks", AutoSize = true, Anchor = AnchorStyles.None, WrapContents = false };
         AddSocialLink(links, "GitLink", "https://github.com/Bezimienny111/FM08-Extended");
         AddSocialLink(links, "YouTubeLink", "https://www.youtube.com/@Bezimienny111");
@@ -346,20 +459,41 @@ internal sealed class MainForm : Form
         donatePrompt.Margin = new Padding(0, 0, 8, 0);
         support.Controls.Add(donatePrompt);
         AddSocialLink(support, "DonateLink", "https://ko-fi.com/ericaaurora");
+        communityLinks = new CommunityLinksPage(localizer,
+            socialLinks.Select(button => new CommunityLink(button.Name, (string)button.Tag!, true)).ToArray(),
+            url => Execute(() =>
+            {
+                try { Process.Start(new ProcessStartInfo(url) { UseShellExecute = true }); }
+                catch (Exception error) when (error is Win32Exception or InvalidOperationException)
+                { throw new LauncherException("LinkOpenError", error.Message); }
+            }));
+        tabs.TabPages.Add(communityLinks);
+        tabs.TabPages.Add(preferencesPage);
+        var featurePage=tabs.TabPages.Cast<TabPage>().Single(page=>page.Name=="Settings");
+        var graphicsPage=tabs.TabPages.Cast<TabPage>().Single(page=>page.Name=="Graphics");
+        tabs.TabPages.Clear();
+        tabs.TabPages.AddRange([preferencesPage,graphicsPage,skinGuide,featurePage,communityLinks]);
+        tabs.SelectedTab=preferencesPage;
         var linkRow = new TableLayoutPanel
         {
             Name = "FooterLinks", Dock = DockStyle.Top, AutoSize = true,
             ColumnCount = 3, Margin = Padding.Empty
         };
-        linkRow.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
+        linkRow.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
         linkRow.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
-        linkRow.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
+        linkRow.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+        linkRow.Controls.Add(status,0,0);
         linkRow.Controls.Add(links, 1, 0);
         linkRow.Controls.Add(support, 2, 0);
-        footer.Controls.Add(linkRow);
+        foreach(var social in socialLinks){social.Size=social.Name=="DonateLink"?new Size(40,32):new Size(32,30);social.Margin=new Padding(2,0,2,0);}
+        footerContents.Controls.Add(linkRow);
+        footerContents.Controls.Add(profileBanner);
+        launchLog = new LaunchLogPanel(localizer, launcher.LaunchJournal);
+        launchLog.Dock = DockStyle.Top;
+        launchLog.Margin = new Padding(0,2,0,0);
+        footerContents.Controls.Add(launchLog);
         Controls.Add(footer);
         Controls.Add(header);
-        wrappingLabels.Add(status);
         ClientSizeChanged += (_, _) => UpdateNoticeWidths();
         languages.SelectedIndexChanged += (_, _) =>
         {
@@ -379,8 +513,10 @@ internal sealed class MainForm : Form
             skinGuide.UpdateRuntime(launcher.PanelStatistics, launcher.IsRunning);
             leagueReputation.UpdateRuntime();
         });
-        FormClosing += (_, _) =>
+        FormClosing += (_, args) =>
         {
+            try{SaveConfigurationOnClose();}
+            catch(LauncherException error){args.Cancel=true;ShowError(error);return;}
             timer.Stop();
             launcher.Dispose();
         };
@@ -400,9 +536,11 @@ internal sealed class MainForm : Form
     private void ApplyAdvancedMode()
     {
         var advanced = advancedMode.Checked;
-        configurationActions.Visible = advanced;
         paLogOpen.Visible = paStatistics.Visible = paLogStatus.Visible = advanced;
         leagueReputation.SetAdvancedMode(advanced);
+        UpdateFeatureSelectorLayout();
+        if (!advanced && selectedFeature?.Name is "LeagueObservationFeature" or "LeagueDiagnosticsFeature")
+            ShowFeatureDetails(features.Single(feature => feature.Name == "MatchRulesFeature"));
         if (!advanced) paLogWindow?.Close();
         UpdateAdvancedNotice();
     }
@@ -433,7 +571,7 @@ internal sealed class MainForm : Form
     private void UpdateNoticeWidths()
     {
         foreach (var label in wrappingLabels)
-            label.MaximumSize = new Size(Math.Max(200, ClientSize.Width - 115), 0);
+            label.MaximumSize = new Size(Math.Max(160, (label.Parent?.ClientSize.Width ?? ClientSize.Width) - 34), 0);
     }
     private FeatureSection Feature(string name, ToggleSwitch toggle, Control content, bool expanded = false,
         Control? alwaysVisible = null)
@@ -449,6 +587,7 @@ internal sealed class MainForm : Form
         themeMode.Text = localizer.Text(dark ? "LightMode" : "DarkMode");
         themeMode.AccessibleName = themeMode.Text;
         LauncherTheme.Apply(this, dark);
+        foreach (var feature in featureContents.Keys) feature.RefreshAppearance();
         foreach (var window in OwnedForms) LauncherTheme.Apply(window, dark);
         foreach (DataGridViewRow row in rules.Rows) UpdateRuleEditing(row);
         leagueReputation.RefreshLanguage();
@@ -530,7 +669,7 @@ internal sealed class MainForm : Form
             languages.SelectedItem = localizer.Languages.Single(language => language.Code == code);
             Text = localizer.Text("Title");
             foreach (var caption in captions) caption.Key.Text = localizer.Text(caption.Value);
-            foreach (var feature in features) feature.RefreshLanguage();
+            RefreshFeatureWorkspaceLanguage();
             foreach (var button in socialLinks)
             {
                 button.AccessibleName = localizer.Text(button.Name);
@@ -547,8 +686,16 @@ internal sealed class MainForm : Form
             SetStatus(statusKey, statusArguments);
             UpdatePaStatistics();
             paLogWindow?.ApplyLanguage();
+            var ruleViewIndex = Math.Max(0, ruleView.SelectedIndex);
+            ruleView.Items.Clear();
+            ruleView.Items.AddRange(new object[] { localizer.Text("IndividualRuleView"), localizer.Text("GroupedRuleView") });
+            ruleView.SelectedIndex = ruleViewIndex;
+            groupedRules.ApplyLanguage();
+            launchLog.ApplyLanguage();
             skinGuide.ApplyLanguage();
+            communityLinks.ApplyLanguage();
             leagueReputation.RefreshLanguage();
+            sharedDetails.Text = selectedFeature?.FeatureTitle ?? localizer.Text("Details");
             UpdateAdvancedNotice();
             themeMode.Text = localizer.Text(darkMode ? "LightMode" : "DarkMode");
             themeMode.AccessibleName = themeMode.Text;
@@ -561,6 +708,7 @@ internal sealed class MainForm : Form
             ResumeLayout(true);
         }
         SyncEditors();
+        UpdateRuleScope();
     }
 
     private void UpdateOriginal(DataGridViewRow row)
@@ -592,8 +740,9 @@ internal sealed class MainForm : Form
             var row = rules.CurrentRow;
             selectedRule.Text = row is null ? localizer.Text("NoSelectedRule")
                 : localizer.Text("SelectedRule", row.Cells["Code"].Value);
-            ruleScope.Text = row is null ? localizer.Text("NoSelectedRule")
-                : MatchRuleScope.Details((int)row.Cells["Code"].Value, localizer);
+            if (activeRuleView == 0)
+                ruleScope.Text = row is null ? localizer.Text("NoSelectedRule")
+                    : MatchRuleScope.Details((int)row.Cells["Code"].Value, localizer);
             SyncEditor(substitutionsEditor, row, "Substitutions", "Override");
             SyncEditor(benchEditor, row, "Bench", "BenchOverride");
         }
@@ -620,6 +769,67 @@ internal sealed class MainForm : Form
         row.Cells[column].Value = (int)editor.Value;
     }
 
+    private void SwitchRuleView()
+    {
+        if (updating || changingRuleView) return;
+        changingRuleView = true;
+        try
+        {
+            if (!ValidateChildren() || !rules.EndEdit())
+            {
+                ruleView.SelectedIndex = activeRuleView;
+                throw new LauncherException("InvalidGrid");
+            }
+            activeRuleView = Math.Max(0, ruleView.SelectedIndex);
+            individualRulesView.Visible = activeRuleView == 0;
+            groupedRules.Visible = activeRuleView == 1;
+            if (activeRuleView == 1) groupedRules.Populate(ReadRuleSettings());
+            UpdateRuleScope();
+        }
+        finally { changingRuleView = false; }
+    }
+
+    private void UpdateRuleScope()
+    {
+        if (activeRuleView == 1)
+            ruleScope.Text = string.Join(Environment.NewLine + Environment.NewLine,
+                groupedRules.SelectedCodes.Select(code => MatchRuleScope.Details(code, localizer)));
+        else SyncEditors();
+    }
+
+    private List<RuleSettings> ReadRuleSettings() =>
+        rules.Rows.Cast<DataGridViewRow>().Select(row => new RuleSettings
+        {
+            Code = (int)row.Cells["Code"].Value, Override = (bool)row.Cells["Override"].Value,
+            BenchOverride = (bool)row.Cells["BenchOverride"].Value,
+            Substitutions = Convert.ToInt32(row.Cells["Substitutions"].Value, CultureInfo.InvariantCulture),
+            Bench = Convert.ToInt32(row.Cells["Bench"].Value, CultureInfo.InvariantCulture)
+        }).OrderBy(rule => rule.Code).ToList();
+
+    internal void ApplyGroupedChanges(int code, GroupRuleChange substitutions, GroupRuleChange bench)
+    {
+        var config = CaptureConfiguration();
+        MatchRuleGroups.Apply(config.Rules, code, substitutions, bench);
+        updating = true;
+        try
+        {
+            foreach (DataGridViewRow row in rules.Rows)
+            {
+                var value = config.Rules.Single(rule => rule.Code == (int)row.Cells["Code"].Value);
+                row.Cells["Override"].Value = value.Override;
+                row.Cells["Substitutions"].Value = value.Substitutions;
+                row.Cells["BenchOverride"].Value = value.BenchOverride;
+                row.Cells["Bench"].Value = value.Bench;
+                UpdateRuleEditing(row);
+            }
+        }
+        finally { updating = false; }
+        groupedRules.Populate(config.Rules);
+        SyncEditors();
+        UpdateRuleScope();
+        SetStatus("RuleGroupApplied", string.Join(", ", MatchRuleGroups.ForCode(code)));
+    }
+
     internal void LoadConfiguration()
     {
         configurationBlocked = true;
@@ -635,6 +845,8 @@ internal sealed class MainForm : Form
             config.Language = "en";
         }
         Populate(config, available);
+        configurationLoaded=true;
+        lastSavedConfiguration=ConfigurationFingerprint(CaptureConfiguration());
         configurationBlocked = false;
         SetStatus(launcher.IsRunning ? "Running" : "Ready");
         UpdateActions();
@@ -651,6 +863,9 @@ internal sealed class MainForm : Form
         agingDelay.Checked = config.AgingDelayEnabled;
         legacyPaChance = config.PaChance;
         panelInformation.Checked = config.PanelInformationEnabled;
+        positionHighlights.Checked = config.PositionHighlightsEnabled;
+        hiddenAttributes.Checked = config.HiddenAttributesEnabled;
+        teamTalkReactions.Checked = config.TeamTalkReactionsEnabled;
         leagueReputation.ObservationEnabled = config.LeagueReputationEnabled;
         leagueReputation.DiagnosticsEnabled = config.LeagueDiagnosticsEnabled;
         leagueReputation.ChangesEnabled = config.LeagueChangesEnabled;
@@ -672,7 +887,9 @@ internal sealed class MainForm : Form
             }
         }
         finally { updating = false; }
+        groupedRules.Populate(ReadRuleSettings());
         SyncEditors();
+        UpdateRuleScope();
         ApplyTheme(config.DarkMode);
     }
 
@@ -737,56 +954,48 @@ internal sealed class MainForm : Form
             PaEnabled = paEnabled.Checked, PaChance = legacyPaChance,
             AgingDelayEnabled = agingDelay.Checked,
             PanelInformationEnabled = panelInformation.Checked,
+            PositionHighlightsEnabled = positionHighlights.Checked,
+            HiddenAttributesEnabled = hiddenAttributes.Checked,
+            TeamTalkReactionsEnabled = teamTalkReactions.Checked,
             LeagueReputationEnabled = leagueReputation.ObservationEnabled,
             LeagueDiagnosticsEnabled = leagueReputation.DiagnosticsEnabled,
             LeagueChangesEnabled = leagueReputation.ChangesEnabled,
-            Rules = rules.Rows.Cast<DataGridViewRow>().Select(row => new RuleSettings
-            {
-                Code = (int)row.Cells["Code"].Value, Override = (bool)row.Cells["Override"].Value,
-                BenchOverride = (bool)row.Cells["BenchOverride"].Value,
-                Substitutions = Convert.ToInt32(row.Cells["Substitutions"].Value, CultureInfo.InvariantCulture),
-                Bench = Convert.ToInt32(row.Cells["Bench"].Value, CultureInfo.InvariantCulture)
-            }).OrderBy(rule => rule.Code).ToList()
+            Rules = ReadRuleSettings()
         };
         ConfigurationValidator.Validate(config);
         return config;
     }
 
-    private void SaveConfiguration()
+    private static string ConfigurationFingerprint(LauncherConfiguration config) =>
+        System.Text.Json.JsonSerializer.Serialize(config,ConfigurationStore.JsonOptions)+"\n"+config.TeamTalkReactionsEnabled;
+
+    private void PersistConfiguration(LauncherConfiguration config)
     {
-        if (configurationBlocked) throw new LauncherException("ConfigBlocked");
-        var config = CaptureConfiguration();
-        ConfigurationValidator.ValidateDisplay(config, DetectSelectedDisplay());
         store.Save(config);
-        SetStatus(launcher.IsRunning ? "Running" : "Saved");
+        lastSavedConfiguration=ConfigurationFingerprint(config);
+    }
+
+    internal void SaveConfigurationOnClose()
+    {
+        // Never replace an unreadable/newer configuration with model defaults.
+        if(!configurationLoaded || configurationBlocked)return;
+        var config=CaptureConfiguration();
+        if(ConfigurationFingerprint(config)!=lastSavedConfiguration)PersistConfiguration(config);
     }
 
     private void LaunchGame() => LaunchGame(
-        confirmation => MessageBox.Show(this, confirmation, localizer.Text("WarningTitle"),
-            MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2),
-        config => launcher.Launch(config, localizer));
+        config =>
+        {
+            try { launcher.Launch(config, localizer); }
+            finally { launchLog.RefreshJournal(); }
+        });
 
-    internal void LaunchGame(Func<string, DialogResult> confirm, Action<LauncherConfiguration> start)
+    internal void LaunchGame(Action<LauncherConfiguration> start)
     {
         if (configurationBlocked) throw new LauncherException("ConfigBlocked");
         var config = CaptureConfiguration();
         ConfigurationValidator.ValidateDisplay(config, DetectSelectedDisplay());
-        var confirmation = localizer.Text("LaunchConfirmation") + "\n\n"
-            + localizer.Text(config.DisplayOverride ? "DisplayLaunchConfirmation" : "DisplayDisabledConfirmation") + "\n\n"
-            + (config.PaEnabled
-                ? localizer.Text("PaLaunchConfirmation", PaGrowthPolicy.Default.BaseChancePercent)
-                : localizer.Text("PaDisabledConfirmation"))
-            + "\n\n" + localizer.Text(config.PanelInformationEnabled ? "PanelLaunchConfirmation" : "PanelDisabledConfirmation")
-            + "\n\n" + localizer.Text(config.LeagueChangesEnabled ? "LeagueChangesNotice"
-                : config.LeagueReputationEnabled ? "LeagueLaunchConfirmation" : "LeagueDisabledConfirmation");
-        if (config.LeagueDiagnosticsEnabled)
-            confirmation += "\n\n" + localizer.Text("LeagueDiagnosticsLaunchConfirmation");
-        if (config.AgingDelayEnabled)
-            confirmation += "\n\n" + localizer.Text("AgingDelayNotice");
-        if (!config.MatchRulesEnabled)
-            confirmation += "\n\n" + localizer.Text("MatchRulesDisabledConfirmation");
-        if (confirm(confirmation) != DialogResult.OK) return;
-        store.Save(config);
+        PersistConfiguration(config);
         start(config);
         leagueReputation.UpdateRuntime();
         skinGuide.UpdateRuntime(launcher.PanelStatistics, launcher.IsRunning);
@@ -827,7 +1036,7 @@ internal sealed class MainForm : Form
     }
     private void UpdateActions()
     {
-        save.Enabled = !configurationBlocked;
+        retryConfiguration.Visible=configurationBlocked;
         launch.Enabled = !configurationBlocked && !launcher.IsRunning;
     }
     private void ShowError(LauncherException error) =>

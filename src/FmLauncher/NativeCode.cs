@@ -8,11 +8,14 @@ internal sealed class NativeCode(uint address)
     private readonly List<byte> bytes = [];
     private readonly Dictionary<string, int> labels = [];
     private readonly List<(int Offset, string Label)> fixups = [];
+    internal int Length => bytes.Count;
+    internal uint At(string label) => address + (uint)labels[label];
     internal void Emit(params byte[] value) => bytes.AddRange(value);
     internal void Dword(uint value) => bytes.AddRange(BitConverter.GetBytes(value));
     internal void Mark(string label) => labels.Add(label, bytes.Count);
     internal void Jump(uint target) { Emit(0xE9); Relative(target); }
     internal void Call(uint target) { Emit(0xE8); Relative(target); }
+    internal void Call(string label) { Emit(0xE8); Reference(label); }
     internal void Jump(string label) { Emit(0xE9); Reference(label); }
     internal void Branch(byte condition, string label) { Emit(0x0F, condition); Reference(label); }
     internal void Branch(byte condition, uint target) { Emit(0x0F, condition); Relative(target); }

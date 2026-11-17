@@ -21,12 +21,15 @@ internal static class MatchRulePatch
     internal static bool IsSupportedHash(string hash) => hash is SupportedHash or AlternateSupportedHash;
     internal static ReadOnlySpan<byte> OriginalEntry => [0x0F, 0xBE, 0x44, 0x24, 0x04];
 
-    internal static FileStream OpenVerifiedGame(string path)
+    internal static FileStream OpenVerifiedGame(string path) => OpenVerifiedGame(path, out _);
+
+    internal static FileStream OpenVerifiedGame(string path, out string imageHash)
     {
         var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
         try
         {
-            if (!IsSupportedHash(Convert.ToHexString(SHA256.HashData(stream))))
+            imageHash = Convert.ToHexString(SHA256.HashData(stream));
+            if (!IsSupportedHash(imageHash))
                 throw new LauncherException("UnsupportedGame");
             stream.Position = 0;
             return stream;
@@ -38,22 +41,23 @@ internal static class MatchRulePatch
         }
     }
 
-    internal static byte[] BuildPayload(uint address, IReadOnlyList<RuleSettings> rules, RuleLimit limit)
-    {
-        if (rules.Count != 29 || rules.Select(rule => rule.Code).Distinct().Count() != 29
-            || rules.Any(rule => rule.Code is < 0 or > 28))
-            throw new LauncherException("InvalidRules");
-        var getter = GetterAddress(limit);
-        if (rules.Any(rule => Enabled(rule, limit) && Value(rule, limit) is < 0 or > 12))
-            throw new LauncherException(limit == RuleLimit.Substitutions ? "InvalidSubstitutionLimit" : "InvalidBenchLimit");
+    internal const int PayloadLength = 96;
+    internal const uint PayloadCodeOffset = 64;
 
+    internal static byte[] BuildPayload(uint address, IReadOnlyList<RuleSettings>? rules, RuleLimit limit) =>
+        BuildPayload(address, EffectiveRuleResolver.Compile(rules), limit);
+
+    internal static byte[] BuildPayload(uint address, EffectiveRulePolicy policy, RuleLimit limit)
+    {
+        ArgumentNullException.ThrowIfNull(policy);
+        var getter = GetterAddress(limit);
         // Tables precede the code; unsigned bounds checking also rejects negative signed-byte codes.
-        var payload = new byte[96];
-        foreach (var rule in rules)
+        var payload = new byte[PayloadLength];
+        foreach (var rule in policy.Rules)
         {
-            var enabled = Enabled(rule, limit);
-            payload[rule.Code] = enabled ? (byte)1 : (byte)0;
-            payload[32 + rule.Code] = enabled ? checked((byte)Value(rule, limit)) : (byte)0;
+            var value = policy.Override(rule.Code, limit);
+            payload[rule.Code] = value.HasValue ? (byte)1 : (byte)0;
+            payload[32 + rule.Code] = value.HasValue ? checked((byte)value.Value) : (byte)0;
         }
         byte[] code =
         [
@@ -73,9 +77,6 @@ internal static class MatchRulePatch
         code.CopyTo(payload, 64);
         return payload;
     }
-
-    private static int Value(RuleSettings rule, RuleLimit limit) =>
-        limit == RuleLimit.Substitutions ? rule.Substitutions : rule.Bench;
 
     internal static byte[] BuildEntryJump(uint destination, RuleLimit limit)
     {

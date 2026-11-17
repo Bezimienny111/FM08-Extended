@@ -29,6 +29,133 @@ internal static partial class Program
         Application.SetUnhandledExceptionMode(UnhandledExceptionMode.ThrowException);
         Application.EnableVisualStyles();
         Application.SetCompatibleTextRenderingDefault(false);
+        if (args.Length == 1 && args[0] == "--effective-rules")
+        {
+            try
+            {
+                Run("immutable effective rules and verified applied sessions", TestEffectiveRules);
+                Run("display hook full-payload readback evidence", TestRuleDisplayReceipt);
+                Run("display readiness rejects overlapping lost getter states", TestRuleDisplayAppliedState);
+                return 0;
+            }
+            catch (Exception error) { Console.Error.WriteLine(error); return 1; }
+        }
+        if (args.Length == 2 && args[0] == "--rule-display-startup")
+        {
+            try { Run("isolated startup Rules hook installation", () => TestRuleDisplayStartup(args[1])); return 0; }
+            catch (Exception error) { Console.Error.WriteLine(error); return 1; }
+        }
+        if (args.Length == 2 && args[0] == "--rule-display-native")
+        {
+            try { Run("native Rules formatter with applied engine getters", () => NativePanelFixture.TestRuleDisplayNative(args[1])); return 0; }
+            catch (Exception error) { Console.Error.WriteLine(error); return 1; }
+        }
+        if (args.Length == 6 && args[0] == "--noche-dev-install")
+        {
+            try { NocheDevInstaller.Run(args[1],args[2],args[3],args[4],args[5]); return 0; }
+            catch (Exception error) { Console.Error.WriteLine(error); return 1; }
+        }
+        if (args.Length == 4 && args[0] == "--noche-ext")
+        {
+            try { Run("R13 Noche withdrawal, four-skin scope and preservation", () => TestNocheExt(args[1],args[2],args[3])); return 0; }
+            catch (Exception error) { Console.Error.WriteLine(error); if (error is LauncherException detail) Console.Error.WriteLine(string.Join(" | ", detail.Arguments)); return 1; }
+        }
+        if (args.Length == 2 && args[0] == "--game-language")
+        {
+            try { Run("saved FM language and independent panel locale", () => TestGameLanguageResolver(args[1])); return 0; }
+            catch (Exception error) { Console.Error.WriteLine(error); return 1; }
+        }
+        if (args.Length == 2 && args[0] == "--position-profile-native")
+        {
+            try { Run("integrated native position selector", () => NativePanelFixture.TestPositionProfile(args[1])); return 0; }
+            catch (Exception error) { Console.Error.WriteLine(error); return 1; }
+        }
+        if (args.Length == 2 && args[0] == "--client-bridge-native")
+        {
+            try { Run("native CLIENT_BASE_PERSON resolver", () => NativePanelFixture.TestClientBridgeNative(args[1])); return 0; }
+            catch (Exception error) { Console.Error.WriteLine(error); return 1; }
+        }
+        if (args.Length == 4 && args[0] == "--game-language-upgrade")
+        {
+            try { Run("game-language transactional synchronization", () => TestInstalledProfileUpgrade(args[1],args[2],args[3],false,"en",true)); return 0; }
+            catch (Exception error) { Console.Error.WriteLine(error); return 1; }
+        }
+        if (args.Length == 4 && args[0] is "--installed-profile-upgrade" or "--installed-profile-upgrade-pl" or "--installed-profile-upgrade-en")
+        {
+            try { Run("actual installed profile upgrade on clone", () => TestInstalledProfileUpgrade(args[1],args[2],args[3],args[0]=="--installed-profile-upgrade",args[0]=="--installed-profile-upgrade-en"?"en":"pl")); return 0; }
+            catch (Exception error) { Console.Error.WriteLine(error); return 1; }
+        }
+        if (args.Length == 2 && args[0] == "--position-hooks")
+        {
+            try { Run("all14 integrated hook readback", () => TestProfileHookReadback(args[1],true)); return 0; }
+            catch (Exception error) { Console.Error.WriteLine(error); return 1; }
+        }
+        if (args.Length == 2 && args[0] == "--profile-hooks")
+        {
+            try { Run("hidden profile hooks signature and memory readback", () => TestProfileHookReadback(args[1])); return 0; }
+            catch (Exception error) { Console.Error.WriteLine(error); return 1; }
+        }
+        if (args.Length == 2 && args[0] == "--legacy-panels-native")
+        {
+            var temporary = Path.Combine(Path.GetTempPath(), "FmLauncher.LegacyPanels." + Guid.NewGuid().ToString("N"));
+            Directory.CreateDirectory(temporary);
+            try { Run("existing native panel regression", () => TestPanelsNative(temporary, args[1])); return 0; }
+            catch (Exception error) { Console.Error.WriteLine(error); return 1; }
+            finally { Directory.Delete(temporary, recursive: true); }
+        }
+        if (args.Length == 2 && args[0] == "--hidden-panels-native")
+        {
+            var temporary = Path.Combine(Path.GetTempPath(), "FmLauncher.HiddenPanels." + Guid.NewGuid().ToString("N"));
+            Directory.CreateDirectory(temporary);
+            try
+            {
+                Run("hidden getters, native scopes, profile replacement and original feature switches",
+                    () => TestHiddenPanelsNative(temporary, args[1]));
+                return 0;
+            }
+            catch (Exception error) { Console.Error.WriteLine(error); return 1; }
+            finally { Directory.Delete(temporary, recursive: true); }
+        }
+        if (args.Length == 3 && args[0] == "--player-profile-panels")
+        {
+            var temporary = Path.Combine(Path.GetTempPath(), "FmLauncher.PlayerPanels." + Guid.NewGuid().ToString("N"));
+            Directory.CreateDirectory(temporary);
+            try
+            {
+                Run("Ext profile model, configuration, XML and transaction", () => TestPlayerProfilePanels(temporary, args[1], args[2]));
+                return 0;
+            }
+            catch (Exception error) { Console.Error.WriteLine(error); return 1; }
+            finally { Directory.Delete(temporary, recursive: true); }
+        }
+        if (args.Length == 2 && args[0] == "--ui012")
+        {
+            var temporary = Path.Combine(Path.GetTempPath(), "FmLauncher.Ui012." + Guid.NewGuid().ToString("N"));
+            Directory.CreateDirectory(temporary);
+            try
+            {
+                Run("0.1.2 bordered sections, two rule views and permanent collapsible journal", () => TestUi012(temporary, args[1]));
+                return 0;
+            }
+            catch (Exception ex) { Console.Error.WriteLine(ex); return 1; }
+            finally { Directory.Delete(temporary, recursive: true); }
+        }
+        if (args.Length == 1 && args[0] == "--launcher-session")
+        {
+            var temporary = Path.Combine(Path.GetTempPath(), "FmLauncher.Session." + Guid.NewGuid().ToString("N"));
+            Directory.CreateDirectory(temporary);
+            try
+            {
+                Run("equivalent rule groups preserve independent overrides and native scopes", TestRuleGroups);
+                Run("startup log reports separate requests, readback evidence, failures and localization",
+                    () => TestLaunchJournal(temporary));
+                Run("explicit group editing, sorting, mixed values and JSON round-trip",
+                    () => TestRuleGroupUi(temporary));
+                return 0;
+            }
+            catch (Exception ex) { Console.Error.WriteLine(ex); return 1; }
+            finally { Directory.Delete(temporary, recursive: true); }
+        }
         if (args.Length == 2 && args[0] == "--ui-layout")
         {
             var uiDirectory = Path.Combine(Path.GetTempPath(), "FmLauncher.UiLayout." + Guid.NewGuid().ToString("N"));
@@ -227,6 +354,10 @@ internal static partial class Program
         Directory.CreateDirectory(directory);
         try
         {
+            Run("equivalent rule groups preserve independent overrides and native scopes", TestRuleGroups);
+            Run("startup log requests, readback, failures and localization", () => TestLaunchJournal(directory));
+            Run("explicit group editing, mixed settings and JSON round-trip", () => TestRuleGroupUi(directory));
+            Run("0.1.2 two rule views, contrasted frames and permanent collapsible log", () => TestUi012(directory));
             Run("29 independent rules and known originals", () =>
             {
                 var config = Default();
@@ -761,6 +892,8 @@ internal static partial class Program
                     child.Kill();
                     Assert(child.WaitForExit(5000));
                     Assert(second.CheckExited() && !second.IsRunning);
+                    Assert(second.LaunchJournal.Entries.Last().Key == "LaunchLogExited");
+                    Assert(!second.LaunchJournal.Entries.Any(entry => entry.Key == "LaunchLogVerified"));
                 }
                 finally
                 {

@@ -1,0 +1,13 @@
+{
+  "Status": "PASS_OFFLINE_ONLY",
+  "SyntheticCases": 352,
+  "Accepted": 231,
+  "RejectedOriginalRestored": 121,
+  "NativeRngRange": "upper exclusive",
+  "NoHighPAQuotaFound": "Scoped negative finding; not exhaustive engine proof",
+  "NativeHookInstalled": false,
+  "GameProcessAccess": false,
+  "GameOrDatabaseModified": false,
+  "NativeNormalizerReplay": "PENDING",
+  "REA": "list_documents unreturned; caller stopped; static R5 fallback used"
+}

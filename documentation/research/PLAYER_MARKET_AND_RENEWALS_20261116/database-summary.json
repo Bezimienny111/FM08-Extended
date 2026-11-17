@@ -1,0 +1,145 @@
+{
+  "Status": "READ_ONLY_DATABASE_EVIDENCE",
+  "Source": "J:\\FM08dev\\Dane\\db\\TEST_X37",
+  "SourcePeopleSHA256": "8343074ba3e9fa97075518863ed4504d19f22149759bf0cbfc1ffe7f67e31160",
+  "RegistryUIDs": 76357,
+  "VerifiedCurrentType2UIDs": 76357,
+  "NotCovered": 0,
+  "TopReputationTriples": [
+    {
+      "CurrentHomeWorld": [
+        0,
+        0,
+        0
+      ],
+      "Count": 76132
+    },
+    {
+      "CurrentHomeWorld": [
+        10,
+        10,
+        1
+      ],
+      "Count": 5
+    },
+    {
+      "CurrentHomeWorld": [
+        30,
+        30,
+        1
+      ],
+      "Count": 4
+    },
+    {
+      "CurrentHomeWorld": [
+        5,
+        5,
+        1
+      ],
+      "Count": 4
+    },
+    {
+      "CurrentHomeWorld": [
+        30,
+        30,
+        0
+      ],
+      "Count": 3
+    },
+    {
+      "CurrentHomeWorld": [
+        70,
+        70,
+        0
+      ],
+      "Count": 3
+    },
+    {
+      "CurrentHomeWorld": [
+        70,
+        70,
+        5
+      ],
+      "Count": 3
+    },
+    {
+      "CurrentHomeWorld": [
+        75,
+        75,
+        0
+      ],
+      "Count": 3
+    },
+    {
+      "CurrentHomeWorld": [
+        70,
+        70,
+        1
+      ],
+      "Count": 3
+    },
+    {
+      "CurrentHomeWorld": [
+        70,
+        70,
+        20
+      ],
+      "Count": 3
+    },
+    {
+      "CurrentHomeWorld": [
+        0,
+        30,
+        0
+      ],
+      "Count": 3
+    },
+    {
+      "CurrentHomeWorld": [
+        38,
+        38,
+        1
+      ],
+      "Count": 2
+    }
+  ],
+  "ImportedCA140Plus": 1261,
+  "ImportedCA140PlusDefaultTriple": 0,
+  "RecognizedContractEnds": {
+    "2010-06-30": 76261,
+    "2008-10-31": 3,
+    "2010-10-31": 2,
+    "2008-06-30": 3,
+    "2009-06-30": 5,
+    "2010-12-31": 2,
+    "2008-05-31": 1,
+    "2011-05-31": 1,
+    "2012-06-15": 1,
+    "2010-12-15": 1,
+    "2009-06-01": 1,
+    "2009-05-31": 1,
+    "2012-05-31": 1,
+    "2010-05-31": 2,
+    "2008-12-15": 1,
+    "2009-10-31": 2,
+    "2010-01-31": 1,
+    "2008-02-01": 1,
+    "2009-01-31": 1,
+    "2010-03-31": 2,
+    "2008-05-30": 1,
+    "2009-12-20": 1,
+    "2012-10-25": 1,
+    "2008-09-05": 1,
+    "2010-06-11": 1,
+    "2010-01-01": 1,
+    "2013-01-13": 1,
+    "2007-12-31": 4,
+    "2007-11-30": 1
+  },
+  "ContractReadScope": "Only recognized complete main-contract65 rows; unresolved/no contract not guessed.",
+  "RejectedAnchors": {},
+  "SourceUnchanged": true,
+  "NoFileDeletion": true,
+  "DatabaseWritten": false,
+  "RuntimeRead": false
+}

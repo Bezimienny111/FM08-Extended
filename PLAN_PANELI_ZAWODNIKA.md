@@ -251,3 +251,20 @@ nie zastepuja sie wzajemnie.
 Potwierdzic folder skorki ze zrzutu oraz zakres dostepu do ukrytych cech.
 Nastepnie wykonac etap 1 i maly prototyp na kopii tej skorki.
 Na tym etapie nie modyfikowac aktywnej instalacji ani zapisu kariery.
+
+
+## 9. Reakcja na rozmowę w trakcie meczu — plan odłożony
+
+Decyzja użytkownika 2026-11-10: **planned / not implemented; na razie nie wdrażać**.
+Na ekranie zespołu pokazać per zawodnik faktyczną reakcję na rozmowę dopiero po
+jej przetworzeniu, gdy mecz/dana połowa trwa i wyboru rozmowy na tę połowę nie
+można już edytować. Przykłady: rozmowa podziałała motywująco, nie podziałała,
+warianty negatywne. Liczbę kategorii i kombinacje ustalić z rzeczywistych flag
+silnika przy przyszłym wdrożeniu; brak odczytu nie oznacza braku reakcji.
+Miejsce UI (FM/launcher) pozostaje otwarte. Nie używać późniejszego występu
+jako natychmiastowej reakcji ani gwarancji skuteczności.
+
+Dokładne wymaganie, istniejące punkty integracji i brakujące dowody runtime:
+[PLAN rozmów](data/research/TEAM_TALK_ENGINE_AUDIT_20261110/PLAN.md).
+Mechanizm statyczny: [audyt](data/research/TEAM_TALK_ENGINE_AUDIT_20261110/RAPORT.md).
+Nie dodano kodu, parsera, UI, hooka ani zmian skórek dla tej funkcji.

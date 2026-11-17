@@ -1,0 +1,610 @@
+{
+  "Branch": "backup/launcher-0.1.3-r23-20261117",
+  "BaseCommit": "fdacdef51836d59e8cd19e02924c137430266bdb",
+  "Status": "PRECOMMIT_BACKUP_VERIFIED",
+  "ContainsGameOrDB": false,
+  "ContainsPersonalConfig": false,
+  "DeletedPaths": 0,
+  "Files": [
+    {
+      "Path": ".gitattributes",
+      "Bytes": 284,
+      "StagedSHA256": "b6d8123bda82df94e487a714b19ced8310af0852d94d1f57f3cf143524d91599"
+    },
+    {
+      "Path": ".gitignore",
+      "Bytes": 619,
+      "StagedSHA256": "9280e5771984500a37f99c2c1b6acdfddb89d356a146a5b8ab118dd24977fe6c"
+    },
+    {
+      "Path": "LAUNCHER_BACKUP_20261117.md",
+      "Bytes": 1613,
+      "StagedSHA256": "abec47931e19263b63ffe0d5c04e2152e13056f26ab0f093824cd31495bdf6b6"
+    },
+    {
+      "Path": "NOCHE_EXT.md",
+      "Bytes": 1718,
+      "StagedSHA256": "4293b43489575884333f79ea009b11aca1e340d1fdcf31727f667f17118ccc87"
+    },
+    {
+      "Path": "PLAN_LIMITOW_SZTABU.md",
+      "Bytes": 16595,
+      "StagedSHA256": "4d5db56e5331b163deb5c3e2ef9045301cdcdc1ecf48eae83a81ad2aecd41312"
+    },
+    {
+      "Path": "PLAN_PANELI_ZAWODNIKA.md",
+      "Bytes": 13518,
+      "StagedSHA256": "46b6134566497c91569c7abe798bcf807324aaef291f2f9ed487a7dfc0cdbc84"
+    },
+    {
+      "Path": "README.md",
+      "Bytes": 20652,
+      "StagedSHA256": "429068ebcb9c6b79f7d5394748507995ac18b142d3999571d89bc9de651cce30"
+    },
+    {
+      "Path": "dev-snapshots/launcher-0.1.3-r23/FmLauncher.deps.json",
+      "Bytes": 422,
+      "StagedSHA256": "076fdfb70d6f8da0b69382a7cb0dba668049e39fd41c25262ad5ea0a72811c58"
+    },
+    {
+      "Path": "dev-snapshots/launcher-0.1.3-r23/FmLauncher.dll",
+      "Bytes": 687616,
+      "StagedSHA256": "cd3878e92e5b0be649b854c2a11c6c7dad4480b1a114346974d75b88daa78e39"
+    },
+    {
+      "Path": "dev-snapshots/launcher-0.1.3-r23/FmLauncher.exe",
+      "Bytes": 139264,
+      "StagedSHA256": "096da11522350d106bd21f6eefb22f36bfdf0b519ad38ff9d9e8463cdb84fa70"
+    },
+    {
+      "Path": "dev-snapshots/launcher-0.1.3-r23/FmLauncher.languages.json",
+      "Bytes": 109899,
+      "StagedSHA256": "28036387e496c8445963c218fdb834551ad4d2faef3b1372c31a3570d8c1d7c1"
+    },
+    {
+      "Path": "dev-snapshots/launcher-0.1.3-r23/FmLauncher.runtimeconfig.json",
+      "Bytes": 386,
+      "StagedSHA256": "e1e0974d0e8833375024eb7c78521b3b5cad4228aad22b23d506cbe702445844"
+    },
+    {
+      "Path": "dev-snapshots/launcher-0.1.3-r23/R23_BUILD_RECEIPT.json",
+      "Bytes": 8238,
+      "StagedSHA256": "a135ff9d2d632e0e772d1b314fda411d215c77a42069b1e895d47a2b10260ba2"
+    },
+    {
+      "Path": "dev-snapshots/launcher-0.1.3-r23/README.md",
+      "Bytes": 1655,
+      "StagedSHA256": "278bda5a437628563ae6522db3af2534801906b7a0cec7cc40cc8962514b489d"
+    },
+    {
+      "Path": "dev-snapshots/launcher-0.1.3-r23/SHA256SUMS.txt",
+      "Bytes": 532,
+      "StagedSHA256": "0647dac0ee3c8a353a82ea0b991aeccc0dc1a8607a1b79f13b2b8fcb8f292ce3"
+    },
+    {
+      "Path": "dev-snapshots/launcher-0.1.3-r23/validation/NavigationChecks.cs",
+      "Bytes": 5717,
+      "StagedSHA256": "5da14a6abd0b93a7c78189939506c41b3bd19f980f41429967503931b01614c6"
+    },
+    {
+      "Path": "dev-snapshots/launcher-0.1.3-r23/validation/R22_BUILD_RECEIPT.json",
+      "Bytes": 8292,
+      "StagedSHA256": "b1997a745673779ea71bcb3683af12f43f767bd46d1a4f05c413f9982a1b9173"
+    },
+    {
+      "Path": "dev-snapshots/launcher-0.1.3-r23/validation/R22_RESULT.json",
+      "Bytes": 83,
+      "StagedSHA256": "ea1e1accde5f33366a466f817ad0bf07cb2a274f77e55a6c8f5850b9c2c48d64"
+    },
+    {
+      "Path": "dev-snapshots/launcher-0.1.3-r23/validation/R23_RESULT.json",
+      "Bytes": 48,
+      "StagedSHA256": "a8d37c248c038b949d21d27e5030dbf27833b055aad8ae6b010fe637e9f6bc1e"
+    },
+    {
+      "Path": "dev-snapshots/launcher-0.1.3-r23/validation/StartChecks.cs",
+      "Bytes": 2076,
+      "StagedSHA256": "426c4b001e22cd4d77fb9d8c8cd0318c5fe73751a1a5e6b796f0558464840619"
+    },
+    {
+      "Path": "documentation/01_EVIDENCE_AND_ENGINE_ARCHITECTURE.md",
+      "Bytes": 4547,
+      "StagedSHA256": "0a69080cc6402a88a4d874680a57b8a11d5eab42ed8c09b039bd4b6be2763d4b"
+    },
+    {
+      "Path": "documentation/02_NATIVE_DATABASE_FORMAT.md",
+      "Bytes": 8572,
+      "StagedSHA256": "8dbf7aa34435de97f99a980f19bd11f33f3a4f3e0d92e8f32fe825861f87a571"
+    },
+    {
+      "Path": "documentation/03_COMPETITIONS_AND_SEASONS.md",
+      "Bytes": 8758,
+      "StagedSHA256": "c0a2643cd4810860872aac3e986b8522154214c9a7705101e2f066e342b605b3"
+    },
+    {
+      "Path": "documentation/04_MATCH_RULES_AND_RULES_SCREEN.md",
+      "Bytes": 5331,
+      "StagedSHA256": "291e1388db70565a4b4f0feb26f672fcbc63e9d9c8544a822b8037c1033a9e19"
+    },
+    {
+      "Path": "documentation/05_PLAYER_GENERATION_AND_ABILITY.md",
+      "Bytes": 10627,
+      "StagedSHA256": "283518aa2ff34171080ebf8c2efbc326d16d43ee9e5638ad48b0226923918c52"
+    },
+    {
+      "Path": "documentation/06_TRAINING_AGING_AND_STAFF.md",
+      "Bytes": 6391,
+      "StagedSHA256": "fd5ff3bfed4e191a2289e1ebe8a1949bb5ea7e864f5b4a829e15d156e6ada42c"
+    },
+    {
+      "Path": "documentation/07_TEAM_TALK_REACTIONS.md",
+      "Bytes": 13152,
+      "StagedSHA256": "2d4861bd9e955f398dcd9fbd5539a2b046abc77398a50db079386e0e46bce642"
+    },
+    {
+      "Path": "documentation/08_PLAYER_PANELS_SKINS_AND_GRAPHICS.md",
+      "Bytes": 7976,
+      "StagedSHA256": "ccda52bb26a6042ac8af77f944c233061d7eaa9096a28106f0eb95d62199ffc3"
+    },
+    {
+      "Path": "documentation/09_FINANCES_REPUTATION_SPONSORS.md",
+      "Bytes": 11332,
+      "StagedSHA256": "ee25f103d559aba0d01fcace344c35c53a9b11e0282ec4bae32800582bedb3b9"
+    },
+    {
+      "Path": "documentation/10_SAVE_LOAD_AND_COMPATIBILITY.md",
+      "Bytes": 5880,
+      "StagedSHA256": "8f9dc3d446ddd7b239c2e33fee5470e760caab61f23ddbd0997bf9556d063432"
+    },
+    {
+      "Path": "documentation/11_OPENFM2007_CAPABILITIES_AND_PORTING.md",
+      "Bytes": 7927,
+      "StagedSHA256": "25638c32d755b0de8384e7800db7e54162d6808709ffcdd9a8a5d8a8fe4928de"
+    },
+    {
+      "Path": "documentation/12_BUG_REGISTER_AND_ERRATA.md",
+      "Bytes": 18743,
+      "StagedSHA256": "4090331f7d23dc3f9d09593aa9fd035de961c332634f48b9f0c05778f20b5044"
+    },
+    {
+      "Path": "documentation/13_RESEARCH_BACKLOG.md",
+      "Bytes": 6602,
+      "StagedSHA256": "056f8f22cae4c94f13a6316094b7e61db998b3a048b9171e551f73de2ba53438"
+    },
+    {
+      "Path": "documentation/PROJECT_DECISIONS.md",
+      "Bytes": 2543,
+      "StagedSHA256": "54d14d421c8bb81cb21bc62407eaa6f259434629177f6489e19b92af2b2af547"
+    },
+    {
+      "Path": "documentation/README.md",
+      "Bytes": 4632,
+      "StagedSHA256": "9aaa1fd268dad54b510ed9ec70851589e154daa13d904eef96ace5f92ffb0ea4"
+    },
+    {
+      "Path": "documentation/RESEARCH_INVENTORY.csv",
+      "Bytes": 51597,
+      "StagedSHA256": "2566bfc58618c702e78c4237c97de55cbbb730b28db3ecfeeb37c0d91d5f7fc7"
+    },
+    {
+      "Path": "documentation/SOURCES.md",
+      "Bytes": 22495,
+      "StagedSHA256": "9298a29358179426a375467f8fc420a42b925c6f4b239a1979b723d898d89131"
+    },
+    {
+      "Path": "documentation/bug-register.json",
+      "Bytes": 21472,
+      "StagedSHA256": "d74ecc20ce1a5848fe91285651b0ed45f122af873fbe11ac7f3c87bb98ba112e"
+    },
+    {
+      "Path": "documentation/checkpoints/2026-11-17/AGENTS.snapshot.md",
+      "Bytes": 19776,
+      "StagedSHA256": "4d9407c7a74584de9d8abe8dcd6fe040c0434730776adc366df5a9f98dfbe4a8"
+    },
+    {
+      "Path": "documentation/checkpoints/2026-11-17/wznowienie.before.txt",
+      "Bytes": 151853,
+      "StagedSHA256": "6c6d48d15535ebf41c45b4c3087b6c049765ee6b2207fe05d09c6a67a452ef05"
+    },
+    {
+      "Path": "documentation/checkpoints/2026-11-17/wznowienie.md",
+      "Bytes": 152908,
+      "StagedSHA256": "c3b16c6d3fd91c7498285c75cffe2390961ee564ebe574265294d547005c4034"
+    },
+    {
+      "Path": "documentation/documentation-manifest.json",
+      "Bytes": 2810,
+      "StagedSHA256": "97069bc507be9c2db844a6a455f3f8850fba62c9a556337089aae12dff6e4ed8"
+    },
+    {
+      "Path": "documentation/native-rules-display-catalogue.json",
+      "Bytes": 19421,
+      "StagedSHA256": "1ee223701a4337b9645838823d975ea7986fb1f40a3909724b907f6121d8b418"
+    },
+    {
+      "Path": "documentation/research/NEWGEN_POLICY_AND_PA_LIMITS_20261116/REPORT.md",
+      "Bytes": 10918,
+      "StagedSHA256": "716cdd6a2db7e47d8263a0f450bab9514013d8acf52d681d49980b015aeb2888"
+    },
+    {
+      "Path": "documentation/research/NEWGEN_POLICY_AND_PA_LIMITS_20261116/VERIFICATION.json",
+      "Bytes": 448,
+      "StagedSHA256": "cd267e46fb37be17eeb548dc768e6b61566e8114ec29661377c3e4f47b08f11f"
+    },
+    {
+      "Path": "documentation/research/NEWGEN_POLICY_AND_PA_LIMITS_20261116/WZNOWIENIE.md",
+      "Bytes": 1950,
+      "StagedSHA256": "ae152d2d95b62b4d547dbcd096a4052a0380580a3d4fde44a271f956348beb86"
+    },
+    {
+      "Path": "documentation/research/PLAYER_MARKET_AND_RENEWALS_20261116/CHECKPOINT.md",
+      "Bytes": 3134,
+      "StagedSHA256": "259389af70308d2617d3c272317ef05882c467dd3baa7669512a2eef7c148e5a"
+    },
+    {
+      "Path": "documentation/research/PLAYER_MARKET_AND_RENEWALS_20261116/database-summary.json",
+      "Bytes": 2463,
+      "StagedSHA256": "711ce057a1c4c41bb7bde240e58177f5a7d955aa5ad8baf32a159d0119a7013b"
+    },
+    {
+      "Path": "documentation/runtime-attribute-index.csv",
+      "Bytes": 3746,
+      "StagedSHA256": "26912c2cfbcb709d3eaeb2ad0a74c05ad7bc974ca724128e7dfb8b52ec0cf838"
+    },
+    {
+      "Path": "documentation/source-manifest.json",
+      "Bytes": 31682,
+      "StagedSHA256": "5e0797280f3297a0c88f15397828db524c637f2c51a18a85db72f5b3eb4c25d4"
+    },
+    {
+      "Path": "documentation/substitution-codes.csv",
+      "Bytes": 6523,
+      "StagedSHA256": "3bde7a67b6a46e3ca904b3b02cc2e03814d47bfed7152096b9ea29103c4349c6"
+    },
+    {
+      "Path": "documentation/validation-report.json",
+      "Bytes": 330,
+      "StagedSHA256": "17cb29e10bb941a9517bf141db7817d4e2c861d7e79b3fa6ccafb48e81a4f15a"
+    },
+    {
+      "Path": "documentation/verified-DAT-attribute-offsets.csv",
+      "Bytes": 6349,
+      "StagedSHA256": "3e4ae33a836b184ee813a6530beae7cbd8cec0e6ea3780cd04f15c94abaea4da"
+    },
+    {
+      "Path": "src/FmLauncher/AppliedRuleSnapshot.cs",
+      "Bytes": 9160,
+      "StagedSHA256": "c8b462365875fdf833f1fa486ad26c7817cbfa967c9ac0fee380a694fb6652fd"
+    },
+    {
+      "Path": "src/FmLauncher/BoundedTeamTalkProvider.cs",
+      "Bytes": 17111,
+      "StagedSHA256": "e9c9dc139a1d61494358231d12ff44e6cf6dbf01f2e2374e98e93eab782074a2"
+    },
+    {
+      "Path": "src/FmLauncher/CommunityLinksPage.cs",
+      "Bytes": 5246,
+      "StagedSHA256": "79f06bb7674489578dee85e9f028dbfcd0125ee2d19d0f0c7df9633ff210e61d"
+    },
+    {
+      "Path": "src/FmLauncher/Configuration.cs",
+      "Bytes": 17327,
+      "StagedSHA256": "64317ab7b3715a442002b9e9a2915d55a43309499c3b6f221aa84ac6494a60de"
+    },
+    {
+      "Path": "src/FmLauncher/EffectiveRuleResolver.cs",
+      "Bytes": 3882,
+      "StagedSHA256": "bfb0c98782cbc559e548e15c68d07bfcadbfb15dff8683831da8105354930f81"
+    },
+    {
+      "Path": "src/FmLauncher/ExtSkinCatalog.cs",
+      "Bytes": 4102,
+      "StagedSHA256": "f5ae44dacb29d9c559002a75fbf51795da3c9f5bc32ebaddfcaa38a28dbbcd31"
+    },
+    {
+      "Path": "src/FmLauncher/FmLauncher.csproj",
+      "Bytes": 912,
+      "StagedSHA256": "03d86cf41535df6469ec26b43f20d6f707351d699ed8ba02945fb7d70bfff28f"
+    },
+    {
+      "Path": "src/FmLauncher/FmLauncher.languages.json",
+      "Bytes": 109002,
+      "StagedSHA256": "987f5dc059b0c9468d5890ed95af2122e81f414c625e8cdd0909f4f4d9db9b2d"
+    },
+    {
+      "Path": "src/FmLauncher/GameLanguageResolver.cs",
+      "Bytes": 2712,
+      "StagedSHA256": "3a1588e1d72c67c848aff42e760d13afe7ee63e331ebdf12004306b70c78a5d6"
+    },
+    {
+      "Path": "src/FmLauncher/GameLauncher.cs",
+      "Bytes": 18465,
+      "StagedSHA256": "f3c136329d4a22006a1cd9b05bfead179e96830c669baeda5d0e4dbcdc29141a"
+    },
+    {
+      "Path": "src/FmLauncher/GamePanelPatch.cs",
+      "Bytes": 26585,
+      "StagedSHA256": "14a285c687ae7c44af12cd84f280ecf2f75bf2bd89a60a12992b6d214da7a31d"
+    },
+    {
+      "Path": "src/FmLauncher/GamePositionBackgroundPatch.cs",
+      "Bytes": 27680,
+      "StagedSHA256": "5ef68f75275774e4e98c7f203cf39e228ec1c17d83cf29e069a26d5e003f3869"
+    },
+    {
+      "Path": "src/FmLauncher/GameProfileColour.cs",
+      "Bytes": 2563,
+      "StagedSHA256": "fdea512b2ab575121fb77dd1e6e51fd2b005018a6ab7794e2f53e076428103d3"
+    },
+    {
+      "Path": "src/FmLauncher/GameProfilePanelPatch.cs",
+      "Bytes": 6266,
+      "StagedSHA256": "cb737c5e83e4c62fad9644fe58f9b45914c87397e6ad57dee21af4c48c244900"
+    },
+    {
+      "Path": "src/FmLauncher/GameProfileResolver.cs",
+      "Bytes": 9742,
+      "StagedSHA256": "b1df65eed4bebf9994034734267d0f26c4d14f431a263e770a3d96692370f659"
+    },
+    {
+      "Path": "src/FmLauncher/GameProfileRole.cs",
+      "Bytes": 1665,
+      "StagedSHA256": "212306f438656929dced0cf8c1db105f0444efc379c35df16d215b944e1d5071"
+    },
+    {
+      "Path": "src/FmLauncher/GameProfileViewer.cs",
+      "Bytes": 8093,
+      "StagedSHA256": "9a9a7090f99bc3f21c6721b8fd5034a7a4467d7cc2b5df7e00518be1da8618e1"
+    },
+    {
+      "Path": "src/FmLauncher/GameRuleDisplayPatch.cs",
+      "Bytes": 3375,
+      "StagedSHA256": "44dbcefddceb0cbd2cd98fb58a3f5b2aae520beb7cad494b6a058562698b2553"
+    },
+    {
+      "Path": "src/FmLauncher/GameTeamTalkInstallation.cs",
+      "Bytes": 1820,
+      "StagedSHA256": "b2f51f762fcb61bd97beeae674eb51e12dbdc13b16f780e2ba6007de29a7d55a"
+    },
+    {
+      "Path": "src/FmLauncher/GameTeamTalkPatch.cs",
+      "Bytes": 12648,
+      "StagedSHA256": "e734972dd04725c9ed58bc11ae1c4a85a213966d63102c31635e9212a1883741"
+    },
+    {
+      "Path": "src/FmLauncher/LaunchJournal.cs",
+      "Bytes": 1906,
+      "StagedSHA256": "7b804c6eb159e7897b160a0a3d82dc0fcfaad448a0aa7fd533645e6387def266"
+    },
+    {
+      "Path": "src/FmLauncher/LaunchLogPanel.cs",
+      "Bytes": 2812,
+      "StagedSHA256": "570697bbaab27a31a6f74a63752134ce3ed67378f901d1f939730213d7d26eab"
+    },
+    {
+      "Path": "src/FmLauncher/LauncherControls.cs",
+      "Bytes": 23893,
+      "StagedSHA256": "11abcc1b37a1cc45f100cff86d0fb42c264368b9275d9b24595fd8f6aca984c8"
+    },
+    {
+      "Path": "src/FmLauncher/LauncherTheme.cs",
+      "Bytes": 8126,
+      "StagedSHA256": "57fb91355c60db7bf1933e06a1ff6793615b14bebd71a7dd9266d90858aaa61a"
+    },
+    {
+      "Path": "src/FmLauncher/Localization.cs",
+      "Bytes": 4048,
+      "StagedSHA256": "777f6fdc397d29aab10476aaf21c4b9c92d28daacb9ce2c0dc2624cbb71ccf7b"
+    },
+    {
+      "Path": "src/FmLauncher/MainForm.FeatureWorkspace.cs",
+      "Bytes": 9469,
+      "StagedSHA256": "585d09194a6217c7a445da731bc8b3e2e2df145f50af1f911fb5f5d2fae7eea5"
+    },
+    {
+      "Path": "src/FmLauncher/MainForm.cs",
+      "Bytes": 52793,
+      "StagedSHA256": "e86dc062831adf66f98db8834ea78fc551bec7cc24d40d2138b1f8cfff3e4365"
+    },
+    {
+      "Path": "src/FmLauncher/MatchRuleGroups.cs",
+      "Bytes": 3817,
+      "StagedSHA256": "eed8300ae746b7deec712e9f2d9169ef76ace7e310178ce55361bcc3d299d7d1"
+    },
+    {
+      "Path": "src/FmLauncher/MatchRulePatch.cs",
+      "Bytes": 3870,
+      "StagedSHA256": "ba8c0ed5f54be89c15d01b15727e33900f83574f37782b255203b04097c1ac36"
+    },
+    {
+      "Path": "src/FmLauncher/MatchRuleScope.cs",
+      "Bytes": 4311,
+      "StagedSHA256": "86b6e2de66775bd9212b5165538f5eade4a6919770f7f57be2948199263e13b5"
+    },
+    {
+      "Path": "src/FmLauncher/NativeCode.cs",
+      "Bytes": 1612,
+      "StagedSHA256": "79ffbda677c5e83f6d8b9085f43a7afb4acfb6c52dbf6922da870947e6fff374"
+    },
+    {
+      "Path": "src/FmLauncher/PlayerProfileXml.cs",
+      "Bytes": 16085,
+      "StagedSHA256": "65f9b981deb95e4541b23b260f2ec41350d1c9896f1a01f3884a482d7dfb96f5"
+    },
+    {
+      "Path": "src/FmLauncher/PositionAttributeWeights.csv",
+      "Bytes": 3828,
+      "StagedSHA256": "1a53b25765c138d8623104919f5ab1deb0414b12d758f1a4d2025af51a9b14bb"
+    },
+    {
+      "Path": "src/FmLauncher/PositionHighlightModel.cs",
+      "Bytes": 4833,
+      "StagedSHA256": "9972d185255dfc3b46c33d89c354d3c9e9a65be5f21324ba4b1e95961d0c3bb9"
+    },
+    {
+      "Path": "src/FmLauncher/Program.cs",
+      "Bytes": 969,
+      "StagedSHA256": "c87b5a7acbd3d3005c622cf9e0946bc3095275264a406cbfc351248694bf9fb6"
+    },
+    {
+      "Path": "src/FmLauncher/RuleDisplayInstallation.cs",
+      "Bytes": 1314,
+      "StagedSHA256": "9048d7a753e3234c0cf8e9a8faf17e718b3730f8947542d326a098a0e9369d80"
+    },
+    {
+      "Path": "src/FmLauncher/RuleGroupEditor.cs",
+      "Bytes": 9462,
+      "StagedSHA256": "6a5dc31459795cb0a4668c223ee0f093347bea9ac2e0417f64b6be243a8cf49f"
+    },
+    {
+      "Path": "src/FmLauncher/SkinGuidePage.cs",
+      "Bytes": 14089,
+      "StagedSHA256": "e0a0fc104f0946806ae57c6f07440e4ff31b11dbf98ab6ac1b1fa02812b9536f"
+    },
+    {
+      "Path": "src/FmLauncher/SkinPanelInstaller.cs",
+      "Bytes": 16495,
+      "StagedSHA256": "90aa85612c79b728b0f30c5a3c35afa8768ada85c6be4c1696ba4ef73407b0fe"
+    },
+    {
+      "Path": "src/FmLauncher/SkinPanelTransaction.cs",
+      "Bytes": 25652,
+      "StagedSHA256": "0a305be8b2df586ca74b7bc2416a0c708452df9570b2e978322cc1bc7f6ac259"
+    },
+    {
+      "Path": "src/FmLauncher/SuspendedGameProcess.cs",
+      "Bytes": 26503,
+      "StagedSHA256": "21077bdceed53648e5bf8f9317a05d250b31190b4b24fbdbf02fceda260daa97"
+    },
+    {
+      "Path": "src/FmLauncher/TeamTalkDiagnostics.cs",
+      "Bytes": 5814,
+      "StagedSHA256": "d33d053b06b569d60b62e4d867e86cd36d3d25c0a61a1dcc4d47755f9fc3a08a"
+    },
+    {
+      "Path": "src/FmLauncher/TeamTalkReactionSession.cs",
+      "Bytes": 2455,
+      "StagedSHA256": "c65c2b43c78ab27d744fb8993c3ce13ddd685cc8c5c3ac9359e0c6a665690b31"
+    },
+    {
+      "Path": "src/FmLauncher/TeamTalkReactionText.cs",
+      "Bytes": 1602,
+      "StagedSHA256": "d3f9d9c1ab01b425dc820715ce48e1cf990ffb1e3def45f22b3fb9fa57415581"
+    },
+    {
+      "Path": "src/FmLauncher/TeamTalkSkinInstaller.cs",
+      "Bytes": 6798,
+      "StagedSHA256": "a969a4c43dbb5f9da3b7cd8dab1e796dd8cdfecee45df597accc9292d6645421"
+    },
+    {
+      "Path": "src/FmLauncher/TeamTalkUiController.cs",
+      "Bytes": 8364,
+      "StagedSHA256": "ee6f73aa99d4749e7adf3946b483ab3ca818277ac61a8ca1bb437c8c9f8ae681"
+    },
+    {
+      "Path": "src/FmLauncher/TeamTalkWindow.cs",
+      "Bytes": 514,
+      "StagedSHA256": "964cc78be3ace6168ebd710fa493d5b8df9b0272254a02030a572d2c78bb4bbf"
+    },
+    {
+      "Path": "src/FmLauncher/VerifiedTeamTalkProcessMemory.cs",
+      "Bytes": 4873,
+      "StagedSHA256": "114d99dc2813570f37f5ec053a4729ae7f7432c84d0231171e74453a649a02f4"
+    },
+    {
+      "Path": "tests/FmLauncher.Tests/ClientBridgeNativeFixture.cs",
+      "Bytes": 3467,
+      "StagedSHA256": "e796c93b5d12d1d9d6fc652f18c2967c5aea21c460235a278763084715fd8ccd"
+    },
+    {
+      "Path": "tests/FmLauncher.Tests/ClientProfileFixture.cs",
+      "Bytes": 8130,
+      "StagedSHA256": "20fb3f9a3a8e8546aa9d737e7deef24f86fe29255437a383d2b951f026e50be8"
+    },
+    {
+      "Path": "tests/FmLauncher.Tests/EffectiveRuleTests.cs",
+      "Bytes": 14304,
+      "StagedSHA256": "28c403e72aa94ac2c0449790c5e176f9f2e5e5838d11ad335164ad3d823f4eb1"
+    },
+    {
+      "Path": "tests/FmLauncher.Tests/GameLanguageTests.cs",
+      "Bytes": 3760,
+      "StagedSHA256": "4ce54fb1b7cb66cbcc55552173f5e900f9743eaea7f656112449e245d8023383"
+    },
+    {
+      "Path": "tests/FmLauncher.Tests/HiddenPanelNativeFixture.cs",
+      "Bytes": 27872,
+      "StagedSHA256": "64b29f0bb05daf2dd1ba57154cc064e2fc7d8d7e26010cecbccd72d9a19fc851"
+    },
+    {
+      "Path": "tests/FmLauncher.Tests/InstalledProfileUpgradeTests.cs",
+      "Bytes": 18022,
+      "StagedSHA256": "67dac46b5cec60f0fce77ee61edab19b23f13abe66ea6168242234c810cccfea"
+    },
+    {
+      "Path": "tests/FmLauncher.Tests/LauncherSessionTests.cs",
+      "Bytes": 10578,
+      "StagedSHA256": "c3d01ff378aae94a6a29939745ef0c21321985ab0f600b95842baff88dfe6f4f"
+    },
+    {
+      "Path": "tests/FmLauncher.Tests/LauncherUi012Tests.cs",
+      "Bytes": 4986,
+      "StagedSHA256": "5ed928ec9348e4b8ec729ad8b50e0583a1282818091562f1b6bfb985f887b96d"
+    },
+    {
+      "Path": "tests/FmLauncher.Tests/NocheCompatibilityTests.cs",
+      "Bytes": 7502,
+      "StagedSHA256": "91f822a712e1671b99c68d2f6cd3619a316cde613d5322746a2bf7e2b9a3d307"
+    },
+    {
+      "Path": "tests/FmLauncher.Tests/NocheDevInstaller.cs",
+      "Bytes": 10373,
+      "StagedSHA256": "955888c4dcc4f515a76d1417dc0b801bf9f011b7852e62bb901df98aa40b7ffa"
+    },
+    {
+      "Path": "tests/FmLauncher.Tests/NocheExtTests.cs",
+      "Bytes": 2813,
+      "StagedSHA256": "0ab926364dd3ecdf8d07d95ad0f87a291afe6717915db99787a00fa808446f44"
+    },
+    {
+      "Path": "tests/FmLauncher.Tests/PanelNativeFixture.cs",
+      "Bytes": 30363,
+      "StagedSHA256": "d095d2e714c7023e501009855db628d3f06375a71e1dbd9bceb12ce08b15a763"
+    },
+    {
+      "Path": "tests/FmLauncher.Tests/PanelTests.cs",
+      "Bytes": 11985,
+      "StagedSHA256": "21350018aecbb09998c7f8e53d9021db76668b05aec048ab85b2d635e46c38fb"
+    },
+    {
+      "Path": "tests/FmLauncher.Tests/PlayerProfilePanelTests.cs",
+      "Bytes": 19413,
+      "StagedSHA256": "d3c5df066a5c5ff72080f457f1af884a80ee697cbacd63b9ef986eb1e9d2daba"
+    },
+    {
+      "Path": "tests/FmLauncher.Tests/PositionProfileNativeFixture.cs",
+      "Bytes": 9499,
+      "StagedSHA256": "512c3c65a3ed43ba6bb588cb7749b7c624be0540c1c100c9191e5528ff087ae0"
+    },
+    {
+      "Path": "tests/FmLauncher.Tests/Program.cs",
+      "Bytes": 99456,
+      "StagedSHA256": "d24a5fa3ce874ea8dce11c942bd0f8853ded38a98d5cafd279309e79d1ac7c03"
+    },
+    {
+      "Path": "tests/FmLauncher.Tests/RuleDisplayNativeFixture.cs",
+      "Bytes": 19255,
+      "StagedSHA256": "bc4d5cf92af006f8872832d5fe8868659440c34a1af499c05e541956f6d70d7d"
+    },
+    {
+      "Path": "tests/FmLauncher.Tests/RuleDisplayReceiptTests.cs",
+      "Bytes": 5741,
+      "StagedSHA256": "0f4a0aea2314fd95d06f53facd60acf3d87a975ed61e07731d889df2b39f7fef"
+    },
+    {
+      "Path": "tests/FmLauncher.Tests/RuleScopeTests.cs",
+      "Bytes": 7878,
+      "StagedSHA256": "4496be3054bbaf25adc5d369d94bfe10edc651139259d2428c43338a030a7286"
+    }
+  ]
+}

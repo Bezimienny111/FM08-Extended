@@ -2,6 +2,77 @@
 
 [ENG](#eng) · [PL](#pl)
 
+### Development R23: direct start, skins and configuration compatibility
+
+PLAY starts directly without a routine summary/confirmation dialog. Configuration
+validation, panel readiness checks and actual error/warning messages remain enabled.
+
+Skin installation is available only from **Skins → Basic → Create/update Ext skins**.
+Buttons in feature details only open that page. PLAY never changes skin files:
+panel-dependent features require installed panels with matching hashes and FM language.
+If panels are missing or need a language update, launch stops with instructions.
+Choose the installed Ext skin in FM and reload it with skin caching disabled.
+
+Skins now has **Basic** and **Advanced** sections. R21 gives both selectors visible frames and standardizes create/detect/copy actions to the same size and font. Basic detects the built-in
+FM08 skin and installed Steklo/Steklo Black variants in the configured skins
+folder. One action creates/updates Base Ext, Steklo Ext and Steklo Black Ext,
+Left/Right when their parents are available. It includes the selected player
+panels and the match reaction column. Originals, graphics and Noche stay unchanged.
+
+Advanced explains child descriptors, target files, widget IDs and manual merging
+for other skins, with seven XML/reference topics. It is not an automatic converter
+for arbitrary layouts. Installation is blocked while FM is running; writes retain
+backups and readback receipts. There is no automatic removal or cleanup. Rollback
+restores inherited baseline XML for new overrides and retains created folders.
+
+R14 uses `FmLauncher.ini` next to the launcher. If it is absent, the existing
+`FmLauncher.config.json` is read without changing it. PLAY and closing the launcher write INI
+and a schema-1 JSON mirror readable by earlier launchers. When both exist,
+INI is authoritative. R17 removes the manual Save/Reload buttons from the footer.
+Closing writes only changed valid settings; an unchanged close creates no extra
+backup. Failed/unreadable configuration is never replaced with defaults. A retry
+action appears in Settings only after a configuration read failure.
+
+The optional team-talk flag stays INI-only so older strict schema-1 JSON readers
+can still load the compatible JSON mirror. New optional fields must preserve
+this compatibility; closing must detect changes to INI-only fields too.
+
+INI schema 1 keeps stable sections `[Launcher]`, `[Display]`, `[Features]` and
+`[Rule.0]` through `[Rule.28]`. Strings are JSON-quoted UTF-8 values (including
+escaped Windows path backslashes); booleans are `true`/`false`, numbers use
+invariant decimal notation. Hand-edited unquoted strings are also accepted.
+Rules retain their original numeric meaning. Missing optional keys use the
+model defaults. Unknown sections, keys and comments survive subsequent saves.
+Duplicate keys, invalid values and unsupported newer schema versions are
+rejected rather than silently reset. A schema change must have an explicit
+migration; existing keys must not be repurposed in the same schema.
+
+Each replacement retains a unique `.bak`; failed pending `.tmp` files remain.
+If an INI commit fails after updating an existing JSON mirror, that JSON is
+restored from its backup. No file deletion is used. These guarantees must be
+covered in future changes with migration, complete settings/rule roundtrip,
+unknown-key preservation, optional-default and failed-save checks.
+
+R18 navigation: Settings, Graphics, Skins, Features, Community Links on the
+left. Settings (paths and advanced mode) opens first. The centered heading and
+the bottom PLAY/support/log area remain fixed; PLAY is below the left navigation.
+Features have independently scrolling selector/details regions; the entire
+selected feature card is tinted. Graphics has its own page. Nested editor and
+scroll sections use visible frames in both light and dark themes.
+The sidebar follows the current skin surface and uses a double frame rather
+than a contrasting navy fill. Captions render without mnemonic underlining.
+The compact footer retains support links and collapsible logs. Selecting feature
+details or resizing reflows descriptions to the available content width.
+R19 places the framed language selector in the top-left corner and the bold,
+outlined theme button in the top-right corner. The launcher title stays centered.
+
+**PL:** `FmLauncher.ini` ma pierwszeństwo przed JSON. Przy braku INI zachowany
+jest odczyt starszej konfiguracji JSON. Od R17 GRAJ i zamknięcie launchera
+zapisują oba formaty; bez zmian nie powstaje dodatkowa kopia zapasowa.
+Zgodność schematu, domyślne nowe opcje oraz zachowanie nieznanych kluczy są
+obowiązującymi zasadami dalszego rozwoju; nie wolno resetować ustawień przy
+aktualizacji. Pliki wcześniejszych wersji launchera pozostają chronione.
+
 ## ENG
 
 ### Run the release — no building required
@@ -19,7 +90,7 @@
    the application inside the ZIP or copy only the EXE.
 5. Run **`FmLauncher.exe`** from the extracted folder.
 6. Select your own supported **FM08 8.0.2 `fm.exe`**, choose settings
-   and optional modules, then press **PLAY** and accept the confirmation.
+   and optional modules, then press **PLAY**.
    Settings are saved automatically.
 
 **No SDK, source download or compilation is needed to run a release.**
@@ -87,20 +158,20 @@ mode exposes diagnostics and logs.
 
 | Area | Features |
 |---|---|
-| Launching | Game selection, persistent settings and automatic saving after PLAY confirmation. |
+| Launching | Game selection, persistent settings and automatic saving when PLAY is pressed. |
 | Interface | English/Polish, light/dark themes, player and advanced modes. |
 | Display | Windowed, borderless, fullscreen and resolution detection up to 1920 × 1080. |
 | Match rules | Independent substitution/bench overrides, range 0–12, a 29-code table, spin buttons and sorting. |
 | Player development | Optional age- and mentality-based PA growth. |
 | Aging | Optional three-year delay to physical decline and CA penalty thresholds. |
 | Player panels | Seasonal fatigue and CA/PA for your own club in supported views. |
-| Skins | Installer for recognized Steklo Black variants, default-skin overrides and XML snippets. |
+| Skins | Basic creates Base/Steklo/Steklo Black Ext variants; Advanced explains manual integration and provides XML references. |
 | League reputation | Optional actual changes for 42 European leagues, career profiles and a journal. |
 | Advanced tools | Separate read-only league observation, simulation and event diagnostics. |
 
-The rule-code map is partial. The skin installer is not universal and
-currently requires a recognized Steklo Black variant even when preparing
-default-skin overrides. Fullscreen and long-term module behavior need
+The rule-code map is partial. The skin installer targets the three catalogued
+families; default Ext creation works without Steklo installed. Other layouts
+use the Advanced manual integration guide. Fullscreen and long-term module behavior need
 further testing. See the [complete English feature guide](EN.md).
 
 ### Safety and scope
@@ -255,13 +326,13 @@ udostępnia diagnostykę i dzienniki.
 | Rozwój zawodników | Opcjonalny wzrost PA zależny od wieku i mentalności. |
 | Starzenie | Opcjonalne przesunięcie progów spadku fizyczności i kar CA o 3 lata. |
 | Panele zawodników | Zmęczenie sezonowe oraz CA/PA dla własnego klubu w obsługiwanych widokach. |
-| Skórki | Instalator dla rozpoznanych wariantów Steklo Black, nadpisanie skórki domyślnej i fragmenty XML. |
+| Skórki | Podstawowe tworzą warianty Base/Steklo/Steklo Black Ext; Zaawansowane opisują ręczną integrację i zawierają wzorce XML. |
 | Reputacja lig | Opcjonalne rzeczywiste zmiany dla 42 europejskich lig, profile kariery i dziennik. |
 | Narzędzia zaawansowane | Osobna odczytowa obserwacja lig, symulacja i diagnostyka zdarzeń. |
 
-Mapa kodów reguł jest częściowa. Instalator skórek nie jest uniwersalny
-i obecnie wymaga rozpoznanego wariantu Steklo Black również przy tworzeniu
-nadpisań skórki domyślnej. Pełny ekran i długoterminowe działanie modułów
+Mapa kodów reguł jest częściowa. Instalator obsługuje trzy rodziny z katalogu;
+podstawowe Ext można tworzyć bez zainstalowanego Steklo. Inne układy wymagają
+ręcznej integracji opisanej w Zaawansowanych. Pełny ekran i długoterminowe działanie modułów
 wymagają dalszych prób. Szczegóły: [pełny opis funkcji PL](PL.md).
 
 ### Bezpieczeństwo i zakres

@@ -11,11 +11,15 @@ internal static class LauncherTheme
     internal static Color Text(bool dark) => dark ? Color.FromArgb(220, 229, 240) : SystemColors.ControlText;
     internal static Color Muted(bool dark) => dark ? Color.FromArgb(157, 173, 194) : SystemColors.ControlDarkDark;
     internal static Color Border(bool dark) => dark ? Color.FromArgb(57, 70, 88) : SystemColors.ControlDark;
+    internal static Color SectionBorder(bool dark) => dark ? Color.FromArgb(112, 137, 171) : Color.FromArgb(104, 129, 162);
     internal static Color Hover(bool dark) => dark ? Color.FromArgb(43, 57, 76) : Color.FromArgb(230, 239, 249);
     internal static Color Accent(bool dark) => dark ? Color.FromArgb(135, 186, 250) : Color.FromArgb(32, 99, 180);
+    internal static Color SelectedSurface(bool dark) => dark ? Color.FromArgb(40, 61, 86) : Color.FromArgb(222, 236, 253);
     internal static Color Warning(bool dark) => dark ? Color.FromArgb(48, 44, 36) : Color.LemonChiffon;
     internal static Color Success(bool dark) => dark ? Color.FromArgb(30, 66, 49) : Color.Honeydew;
     internal static Color Error(bool dark) => dark ? Color.FromArgb(255, 150, 150) : Color.Firebrick;
+    internal static Color NavigationBackground(bool dark) => Surface(dark);
+    internal static Color NavigationSelected(bool dark) => SelectedSurface(dark);
 
     internal static void Apply(Control control, bool dark)
     {
@@ -29,6 +33,26 @@ internal static class LauncherTheme
                     ? Surface(dark) : control.Parent?.BackColor ?? Surface(dark);
             switch (control)
             {
+                case SectionBox box:
+                    box.DarkMode = dark;
+                    box.BackColor = Surface(dark);
+                    box.Invalidate();
+                    break;
+                case FramedPanel panel:
+                    panel.DarkMode = dark;
+                    if(panel.Name=="LanguageControls")panel.BackColor=SelectedSurface(dark);
+                    panel.Invalidate();
+                    break;
+                case FeatureSection section:
+                    section.DarkMode = dark;
+                    section.Invalidate();
+                    break;
+                case ThemedListView list:
+                    list.DarkMode = dark;
+                    list.BackColor = Input(dark);
+                    list.ForeColor = Text(dark);
+                    list.Invalidate();
+                    break;
                 case InputFrame frame:
                     frame.DarkMode = dark;
                     frame.Invalidate();
@@ -60,6 +84,11 @@ internal static class LauncherTheme
                         button.ForeColor = Color.White;
                         button.FlatAppearance.MouseOverBackColor = Color.FromArgb(48, 117, 209);
                         button.FlatAppearance.MouseDownBackColor = Color.FromArgb(35, 95, 178);
+                    }
+                    else if(button.Name=="ThemeMode")
+                    {
+                        button.BackColor=SelectedSurface(dark);button.ForeColor=Text(dark);
+                        button.FlatAppearance.BorderColor=Accent(dark);button.FlatAppearance.BorderSize=2;
                     }
                     else
                     {
@@ -93,11 +122,12 @@ internal static class LauncherTheme
                     tabs.DarkMode = dark;
                     tabs.Invalidate();
                     break;
-                case Label label when label.Name is "LauncherStatus" or "UserDataNotice" or "DisplayNotice" or "DonatePrompt":
+                case Label label when label.Name is "LauncherStatus" or "UserDataNotice" or "DisplayNotice" or "DonatePrompt" or "AutomaticSaveHint":
                     label.ForeColor = Muted(dark);
                     break;
             }
             foreach (Control child in control.Controls) Apply(child, dark);
+            if (control is FeatureSection feature) feature.RefreshAppearance();
             if (control is Form form && form.IsHandleCreated && OperatingSystem.IsWindowsVersionAtLeast(10, 0, 18985))
             {
                 var enabled = dark ? 1 : 0;

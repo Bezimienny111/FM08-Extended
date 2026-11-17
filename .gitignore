@@ -24,6 +24,7 @@
 
 # Player settings, career profiles and diagnostics
 FmLauncher.config.json
+FmLauncher.ini
 **/profils/
 **/league-profiles/
 **/league-changes/
